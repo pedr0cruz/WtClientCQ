@@ -1,87 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\Sources\CQJSON.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Sources\FolderView.C">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Sources\TreeViewDragDrop.C">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Sources\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Sources\CQWtApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Sources\CsvUtil.C">
       <Filter>Utils Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Utils\ObserverGoF.cpp">
       <Filter>Utils Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Sources\WorkSpaceController.cpp">
+    <ClCompile Include="Sources\CQJSON.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Sources\WorkSpaceView.cpp">
+    <ClCompile Include="Sources\CQJSONdummy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Sources\WorkSpaceModel.cpp">
+    <ClCompile Include="Sources\CQWtApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Sources\ResultSetController.cpp">
+    <ClCompile Include="Sources\CsvUtil.C">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Sources\ResultSetModel.cpp">
+    <ClCompile Include="Sources\FolderView.C">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Sources\ResultSetView.cpp">
+    <ClCompile Include="Sources\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Sources\CQJSONdummy.cpp">
+    <ClCompile Include="Sources\ResultSetController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResultSetModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResultSetView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TreeViewDragDrop.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\WorkSpaceController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\WorkSpaceModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\WorkSpaceView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Headers\CQJSON.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\FolderView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\CQWtApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\CQWtAppView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\WorkSpaceController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Headers\CsvUtil.h">
       <Filter>Utils Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Utils\ObserverGoF.h">
       <Filter>Utils Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Headers\WorkSpaceView.h">
+    <ClInclude Include="Headers\WorkSpaceView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Headers\WorkSpaceModel.h">
+    <ClInclude Include="Headers\CQJSON.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Headers\ResultSetController.h">
+    <ClInclude Include="Headers\CQJSONdummy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Headers\CQJSONdummy.h">
+    <ClInclude Include="Headers\CQWtApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Headers\ResultSetView.h">
+    <ClInclude Include="Headers\CQWtAppView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Headers\ResultSetModel.h">
+    <ClInclude Include="Headers\CsvUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\FolderView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\ResultSetController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\ResultSetModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\ResultSetView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\WorkSpaceController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\WorkSpaceModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

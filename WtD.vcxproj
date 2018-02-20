@@ -323,33 +323,35 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Sources\CQJSON.cpp" />
-    <ClCompile Include="..\Sources\CQJSONdummy.cpp" />
-    <ClCompile Include="..\Sources\CQWtApp.cpp" />
     <ClCompile Include="..\Sources\CsvUtil.C" />
-    <ClCompile Include="..\Sources\FolderView.C" />
-    <ClCompile Include="..\Sources\main.cpp" />
-    <ClCompile Include="..\Sources\ResultSetController.cpp" />
-    <ClCompile Include="..\Sources\ResultSetModel.cpp" />
-    <ClCompile Include="..\Sources\ResultSetView.cpp" />
-    <ClCompile Include="..\Sources\TreeViewDragDrop.C" />
-    <ClCompile Include="..\Sources\WorkSpaceController.cpp" />
-    <ClCompile Include="..\Sources\WorkSpaceModel.cpp" />
-    <ClCompile Include="..\Sources\WorkSpaceView.cpp" />
     <ClCompile Include="..\Utils\ObserverGoF.cpp" />
-    <ClInclude Include="..\Headers\CQJSON.h" />
-    <ClInclude Include="..\Headers\CQJSONdummy.h" />
-    <ClInclude Include="..\Headers\CQWtApp.h" />
-    <ClInclude Include="..\Headers\CQWtAppView.h" />
+    <ClCompile Include="Sources\CQJSON.cpp" />
+    <ClCompile Include="Sources\CQJSONdummy.cpp" />
+    <ClCompile Include="Sources\CQWtApp.cpp" />
+    <ClCompile Include="Sources\CsvUtil.C" />
+    <ClCompile Include="Sources\FolderView.C" />
+    <ClCompile Include="Sources\main.cpp" />
+    <ClCompile Include="Sources\ResultSetController.cpp" />
+    <ClCompile Include="Sources\ResultSetModel.cpp" />
+    <ClCompile Include="Sources\ResultSetView.cpp" />
+    <ClCompile Include="Sources\TreeViewDragDrop.C" />
+    <ClCompile Include="Sources\WorkSpaceController.cpp" />
+    <ClCompile Include="Sources\WorkSpaceModel.cpp" />
+    <ClCompile Include="Sources\WorkSpaceView.cpp" />
     <ClInclude Include="..\Headers\CsvUtil.h" />
-    <ClInclude Include="..\Headers\FolderView.h" />
-    <ClInclude Include="..\Headers\ResultSetController.h" />
-    <ClInclude Include="..\Headers\ResultSetModel.h" />
-    <ClInclude Include="..\Headers\ResultSetView.h" />
-    <ClInclude Include="..\Headers\WorkSpaceController.h" />
-    <ClInclude Include="..\Headers\WorkSpaceModel.h" />
-    <ClInclude Include="..\Headers\WorkSpaceView.h" />
     <ClInclude Include="..\Utils\ObserverGoF.h" />
+    <ClInclude Include="Headers\CQJSON.h" />
+    <ClInclude Include="Headers\CQJSONdummy.h" />
+    <ClInclude Include="Headers\CQWtApp.h" />
+    <ClInclude Include="Headers\CQWtAppView.h" />
+    <ClInclude Include="Headers\CsvUtil.h" />
+    <ClInclude Include="Headers\FolderView.h" />
+    <ClInclude Include="Headers\ResultSetController.h" />
+    <ClInclude Include="Headers\ResultSetModel.h" />
+    <ClInclude Include="Headers\ResultSetView.h" />
+    <ClInclude Include="Headers\WorkSpaceController.h" />
+    <ClInclude Include="Headers\WorkSpaceModel.h" />
+    <ClInclude Include="Headers\WorkSpaceView.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:/Program Files/Wt 3.3.5 msvs2013 x64/lib/Wt/examples/treeview-dragdrop/bin/ZERO_CHECK.vcxproj">
