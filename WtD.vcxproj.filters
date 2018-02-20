@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\Sources\CQJSON.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\FolderView.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\TreeViewDragDrop.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\CQWtApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\CsvUtil.C">
+      <Filter>Utils Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utils\ObserverGoF.cpp">
+      <Filter>Utils Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\WorkSpaceController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\WorkSpaceView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\WorkSpaceModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\ResultSetController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\ResultSetModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\ResultSetView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\CQJSONdummy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Headers\CQJSON.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\FolderView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\CQWtApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\CQWtAppView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\WorkSpaceController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\CsvUtil.h">
+      <Filter>Utils Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utils\ObserverGoF.h">
+      <Filter>Utils Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\WorkSpaceView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\WorkSpaceModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ResultSetController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\CQJSONdummy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ResultSetView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ResultSetModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Program Files\Wt 3.3.5 msvs2013 x64\lib\Wt\examples\treeview-dragdrop\bin\WtD\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E2DD4294-7734-3FEF-BE82-6762C97DA7CF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{97944DA0-1379-31D7-9F90-5D9E12AE2EB3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils Files">
+      <UniqueIdentifier>{b2d8586b-9f49-4244-af0c-f27378fe647a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

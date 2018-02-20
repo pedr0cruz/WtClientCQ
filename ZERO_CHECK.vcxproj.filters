@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Program Files\Wt 3.3.5 msvs2013 x64\lib\Wt\examples\treeview-dragdrop\bin\CMakeFiles\e694484e0e938eab3079a6acf2774261\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DE53EDC7-B66F-3090-97D7-9B110062BEC4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
