@@ -44,21 +44,12 @@ class CQJSON
 		bool UserLogon(const char* login_name, const char* password, const char* database_name, const char* database_set);
 		std::string JSONUserLogon(const char* JSON_connection);
 
-		// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
-		bool GetEntity(const char* record_type, const char *display_name);
-		std::string JSONGetEntity(const char* JSON_entity);
-
-		// GetFieldValue: Obtiene el campo del registro almancenado en entity
-		char* GetFieldValue(const char* field);
-
-		std::string JSONGetFieldStringValues(const char* JSON_field);
-
 		std::string ExecuteQuery(char* query);
 		std::string JSONExecuteQuery(string JSON_query);
 
 		// Devuelve la lista de nombres de queries, graficos y reportes del workspace
-
 		vector<string> GetAllWorkspaceList();
+		
 		// Devuelve la lista de elementos del workspece, pudiendo indicar el folder y el tipo
 		vector<string> GetWorkspaceList(int folder, std::string tipo);
 
@@ -112,7 +103,71 @@ class CQJSON
 			return ss.str();
 		}
 		//		return input.jsstd::stringLiteral();
-	};
+	
+
+		/*********************** ENTITY *******************************/
+		// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
+		bool GetEntity(const char* record_type, const char *display_name);
+		string JSONGetEntity(const char* JSON_entity);
+
+		// GetFieldValue: Obtiene el campo del registro almancenado en entity
+		char* GetFieldValue(const char* field);
+		string JSONGetFieldStringValues(const char* JSON_field);
+
+		// SetFieldValue: Setea un campo del registro almancenado en entity
+		char* SetFieldValue(const char* field, const char* value);
+		string JSONSetFieldValues(const char* JSON_fields);
+
+		/* EditEntity: Inicia una acción de la entidad */
+		char* EditEntity(const char* action);
+
+		/* ValidateEntity: Valida la acción iniciada de la entidad */
+		char* ValidateEntity();
+
+		/* CommitEntity: Registra los cambios de la acción iniciada de la entidad */
+		char* CommitEntity();
+
+		/* RevertEntity: Cancela los cambios de la acción iniciada de la entidad */
+		char* RevertEntity();
+
+		/* ClearEntity: limpia la variable entity obligando a cargar nuevamente*/
+		void ClearEntity();
+
+};
+
+class CQEntity{
+private:
+	CQJSON session;
+	IOAdEntityPtr  entity = NULL;
+public:
+	// Constructor
+	CQEntity(CQJSON jSession) { session = jSession; }
+	~CQEntity(){ entity = NULL; }
+
+	// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
+	string GetEntity(const char* JSON_entity);
+
+	// GetFieldValue: Obtiene el campo del registro almancenado en entity
+	string GetFieldStringValues(const char* JSON_field);
+
+	// SetFieldValue: Setea un campo del registro almancenado en entity
+	string SetFieldValues(const char* JSON_fields);
+
+	/* EditEntity: Inicia una acción de la entidad */
+	char* Edit(const char* action);
+
+	/* ValidateEntity: Valida la acción iniciada de la entidad */
+	char* Validate();
+
+	/* CommitEntity: Registra los cambios de la acción iniciada de la entidad */
+	char* Commit();
+
+	/* RevertEntity: Cancela los cambios de la acción iniciada de la entidad */
+	char* Revert();
+
+	/* ClearEntity: limpia la variable entity obligando a cargar nuevamente*/
+	void Clear();
+};
 
 //} // namespace
 #endif CQJSON_INCLUDED

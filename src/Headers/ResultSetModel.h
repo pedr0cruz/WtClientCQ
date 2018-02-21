@@ -12,9 +12,9 @@
 #include <Wt/Json/Value>
 
 #ifdef MyDEBUG
-#include "CQJSONdummy.h"
+#	include "CQJSONdummy.h"
 #else
-#include "CQJSON.h"
+#	include "CQJSON.h"
 #endif
 
 // #include "ResultSetView.h"

@@ -2,11 +2,6 @@
 /* TO-DO
 - Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
 */
-
-#include "stdafx.h"
-
-#if defined (MyDEBUG)
-
 #include <Wt/Json/Parser>
 #include <Wt/Json/Serializer>
 #include <Wt/Json/Object>
@@ -417,5 +412,3 @@ string CQJSONdummy::JSONGetAllFolderList(char* JSON_connection)
 
 	return respuesta.toUTF8();
 }
-
-#endif // #if defined (MyDEBUG)

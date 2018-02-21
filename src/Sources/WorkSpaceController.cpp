@@ -8,6 +8,7 @@
 #include "WorkSpaceController.h"
 #include "WorkSpaceView.h"
 
+//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else

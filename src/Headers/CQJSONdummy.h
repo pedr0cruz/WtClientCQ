@@ -102,7 +102,5 @@ class CQJSONdummy
 		//		return input.jsstd::stringLiteral();
 	};
 
-typedef CQJSONdummy  CQJSON;
-
 //} // namespace
 #endif CQJSONdummy_INCLUDED

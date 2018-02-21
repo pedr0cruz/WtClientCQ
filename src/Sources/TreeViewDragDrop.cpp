@@ -39,6 +39,7 @@
 #include <Wt/Json/Array>
 #include <Wt/Json/Value>
 
+//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else
@@ -589,7 +590,12 @@ private:
    */
   bool populateFiles(string QueryName ) {
 
-	CQJSON cqSession;
+#ifdef MyDEBUG
+	  CQJSONdummy cqSession;
+#else
+	  CQJSON cqSession;
+#endif
+
 	Json::Object JsonObject, JsonCQ, JsonQuery, JsonColumn, JsonRow, result;
 	if (!cqSession.UserLogon("admin", "", "SAMPL", "SAMPLCNX")) return FALSE;
 	WString JsonRequest = JS({ "clearquest": { "db": "SAMPL", "repo" : "SAMPLCNX", "login" : "admin", "query" : { "name": "{1}" }} });
@@ -687,7 +693,12 @@ private:
 	//		"icons/yellow-folder-open.png", false);
 	// WTreeNode *node = new WTreeNode("Furniture", folderIcon);
 
+#ifdef MyDEBUG
+	CQJSONdummy cqSession;
+#else
 	CQJSON cqSession;
+#endif
+
 	Json::Object JsonObject, result;
 	cqSession.UserLogon("admin", "", "SAMPL", "SAMPLCNX");
 	string JsonFolderList = cqSession.JSONGetAllFolderList(JS({ "clearquest": {} }));

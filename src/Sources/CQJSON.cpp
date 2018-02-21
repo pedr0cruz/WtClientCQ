@@ -2,11 +2,6 @@
 /* TO-DO
 - Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
 */
-
-#include "stdafx.h"
-
-#if !defined (MyDEBUG)
-
 #include <Wt/Json/Parser>
 #include <Wt/Json/Serializer>
 #include <Wt/Json/Object>
@@ -200,7 +195,7 @@ bool CQJSON::UserLogon(const char* login_name, const char* password, const char*
 		session->UserLogon(_bstr_t(login_name),
 			_bstr_t(password),
 			_bstr_t(database_name),
-			_variant_t(0), // not shared session
+			_variant_t(2), // not shared session
 			_bstr_t(database_set));
 		bConectado = true;
 	}
@@ -399,6 +394,86 @@ char* CQJSON::GetFieldValue(const char* field)
 	if (!session || !entity) return NULL;
 	try {
 		b = entity->GetFieldStringValue( _bstr_t(field) );
+		return ConvertBSTRToString(b);
+	}
+	catch (...){ return NULL; }
+}
+
+/* JSONSetFieldValues
+<!--CQ / JSON ENTER-->
+{ "clearquest": {"type":"Defect", "id" : "SAMPL00000001", "action" : "Modify", "values" : [{"headline":"spelling errors"},{"priority":"3-Normal Queues"}] } }
+<!--CQ / JSON RETURNS-->
+{ "clearquest":{ "status":"ok", "description":"Carga exitosa" }}
+{ "clearquest":{ "status":"error", "description":"Error..." }}
+*/
+string CQJSON::JSONSetFieldValues(const char* JSON_fields)
+{
+	Json::Object conexion, result, field;
+	WString respuesta;
+
+	if (!session || !entity) return jsonError("Error: no está conectado."); // Valida la conexion y la entidad
+	// Valida que se ha enviado un comando de CQ
+	try {
+		Json::parse(JSON_fields, result);
+		if (!result.contains("clearquest")) return jsonError("Error en el objeto de entrada");
+	}
+	catch (Json::ParseError& e) {
+		return jsonError(e.what());
+	}
+	// Obtener los elementos de la conexion
+	conexion = result.get("clearquest");
+	string record_type = conexion.get("type").toString().orIfNull("");
+	string record_id = conexion.get("id").toString().orIfNull("");
+	string record_action = conexion.get("action").toString().orIfNull("");
+	Json::Array record_fields = conexion.get("values");
+	// Valida que se enviaron todos los datos
+	if (record_type.empty() || record_id.empty() || record_action.empty() || record_fields.empty())
+		return jsonError("Error en el objeto de entrada");
+	// Intenta la conexion
+	if (!GetEntity(record_type.c_str(), record_id.c_str()))
+		return jsonError("No se pudo obtener el elemento");
+	try{
+		if (!EditEntity(record_action.c_str())) return jsonError("No se pudo obtener el elemento");
+		// Lee un arreglo JSON de objetos de tipo [{campo:valor},{...}]
+		for (unsigned index = 0; index < record_fields.size(); ++index){
+			// field = {campo:valor}
+			field = record_fields[index];
+			// Obtiene el nombre del campo
+			set<string>setField = field.names();
+			// Usa el nombre del campo para obtener el valor
+			for (const auto& name : setField){ // Recorre la lista de nombres, que es solo de uno
+				string fieldname = name;
+				string fieldvalue = field.get(name);
+				// Actualiza los campos de la entidad
+				SetFieldValue(fieldname.c_str(), fieldvalue.c_str());
+#ifdef MyDEBUG
+				cerr << fieldname << " = " << fieldvalue << endl;
+#endif
+			}
+		}
+		// Validamos para Commit o Reverse
+		char* validation = ValidateEntity();
+		if (!validation){
+			CommitEntity();
+		}
+		else{
+			RevertEntity();
+			return jsonError(validation);
+		}
+	}
+	catch (...) {
+		return jsonError("Error al ejecutar la consulta");
+	}
+	return respuesta.toUTF8();
+}
+
+/* SetFieldValue: Obtiene el campo del registro almancenado en entity */
+char* CQJSON::SetFieldValue(const char* field, const char* value)
+{
+	_bstr_t b;
+	if (!session || !entity) return NULL;
+	try {
+		b = entity->SetFieldValue(_bstr_t(field), value);
 		return ConvertBSTRToString(b);
 	}
 	catch (...){ return NULL; }
@@ -899,4 +974,65 @@ string CQJSON::JSONGetAllFolderList(char* JSON_connection)
 	return respuesta.toUTF8();
 }
 
-#endif // #if !defined (MyDEBUG)
+/*********************** ENTITY *******************************/
+/* EditEntity: Inicia una acción de la entidad */
+char* CQJSON::EditEntity(const char* action)
+{
+	_bstr_t b;
+	if (!session || !entity) return NULL;
+	try {
+		b = session->EditEntity(entity, _bstr_t(action));
+		return ConvertBSTRToString(b);
+	}
+	catch (...){ return NULL; }
+}
+
+/* ValidateEntity: Valida la acción iniciada de la entidad */
+char* CQJSON::ValidateEntity()
+{
+	_bstr_t b;
+	if (!session || !entity) return "";
+	try {
+		b = entity->Validate();
+		return ConvertBSTRToString(b);
+	}
+	catch (...){ return ""; }
+}
+
+/* CommitEntity: Registra los cambios de la acción iniciada de la entidad */
+char* CQJSON::CommitEntity()
+{
+	_bstr_t b;
+	if (!session || !entity) return NULL;
+	try {
+		b = entity->Commit();
+		return ConvertBSTRToString(b);
+	}
+	catch (...){ return NULL; }
+}
+
+/* RevertEntity: Cancela los cambios de la acción iniciada de la entidad */
+char* CQJSON::RevertEntity()
+{
+	_bstr_t b;
+	if (!session || !entity) return NULL;
+	try {
+		b = entity->Revert();
+		return ConvertBSTRToString(b);
+	}
+	catch (...){ return NULL; }
+}
+
+/* ClearEntity: limpia la variable entity obligando a cargar nuevamente */
+void CQJSON::ClearEntity()
+{
+	entity = NULL;
+}
+
+/******************* CQENTITY *********************/
+string CQEntity::GetEntity(const char* JSON_entity)
+{
+	if (session.IsConnected()){
+		return session.JSONGetEntity(JSON_entity);
+	}
+}

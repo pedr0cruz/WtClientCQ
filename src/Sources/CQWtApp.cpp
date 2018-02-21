@@ -1,7 +1,3 @@
-//	CQWtApp.cpp
-
-#include "stdafx.h"
-
 #include "CQWtApp.h"
 
 #include <Wt/WBootstrapTheme>

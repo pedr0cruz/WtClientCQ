@@ -239,31 +239,15 @@ void ResultSetView::clearTable()
 
 void ResultSetView::createData()
 {
-#if 0
-	vector<string> m_header;
-	vector < vector<string> > m_data;
-
-	int numColumns = Model_->columnCount();
-	Json::Array JsonColumns = JsonQuery.get("columns");
-	Model_->cqSession->JSONExecuteQuery
-
-	for (int col = 0; col < numColumns; col++){
-		m_header.push_back(Model_->data(0, col));
-
-		WString colname = JsonColumn.get("name");
-		setHeaderData(col, colname.toUTF8());
-	}
-#endif
 	vector<string> m_header;
 	vector < vector<string> > m_data;
 
 	int numColumns = Model_->columnCount();
 
 	for (int col = 0; col < numColumns; col++){
-		m_header.push_back(Model_->data(0, col));
-
-		WString colname = JsonColumn.get("name");
-		setHeaderData(col, colname.toUTF8());
+//		m_header.push_back( Model_->data(0, col));
+//		WString colname = JsonColumn.get("name");
+//		setHeaderData(col, colname.toUTF8());
 	}
 
 
