@@ -1,7 +1,7 @@
-/* CQJSON_CPP: Clase de integración con ClearQuest con protocolo JSON (JavaScript Object Notation) */
-/* TO-DO
-- Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
-*/
+/// CQJSON.cpp: Clase de integración con ClearQuest con protocolo JSON (JavaScript Object Notation)
+/// TO-DO
+/// Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
+
 #include <Wt/Json/Parser>
 #include <Wt/Json/Serializer>
 #include <Wt/Json/Object>
@@ -9,7 +9,7 @@
 #include <Wt/Json/Value>
 #include <iostream>
 #include <vector>
-#include <algorithm>    // std::find
+#include <algorithm>    ///< std::find
 #include <sstream>
 #include "CQJSON.h"
 
@@ -19,7 +19,7 @@ using namespace Wt;
 
 // #define MyDEBUG
 
-CQJSON *CQJSON::instance = 0;	// Se comporta como un singleton (GoF)
+CQJSON *CQJSON::instance = 0;	///< Se comporta como un singleton (GoF)
 
 void _main_()
 {

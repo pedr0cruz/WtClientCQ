@@ -165,9 +165,10 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;MyDEBUG=1;_SCL_SECURE_NO_WARNINGS=1;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;MyDEBUG=1;USE_RESULTSET2=1;_SCL_SECURE_NO_WARNINGS=1;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src\Headers;$(SolutionDir)..\src\Utils;$(ProjectDir);C:\Program Files\Wt 3.3.6 msvs2013 x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;4275;4800;4018</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -228,6 +229,9 @@
     <ClInclude Include="..\..\src\Headers\CQWtAppView.h" />
     <ClInclude Include="..\..\src\Headers\CsvUtil.h" />
     <ClInclude Include="..\..\src\Headers\FolderView.h" />
+    <ClInclude Include="..\..\src\Headers\ResultSet2Controller.h" />
+    <ClInclude Include="..\..\src\Headers\ResultSet2Model.h" />
+    <ClInclude Include="..\..\src\Headers\ResultSet2View.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetController.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetModel.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetView.h" />
@@ -264,6 +268,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Sources\FolderView.cpp" />
     <ClCompile Include="..\..\src\Sources\main.cpp" />
+    <ClCompile Include="..\..\src\Sources\ResultSet2Controller.cpp" />
+    <ClCompile Include="..\..\src\Sources\ResultSet2Model.cpp" />
+    <ClCompile Include="..\..\src\Sources\ResultSet2View.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetController.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetModel.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetView.cpp" />

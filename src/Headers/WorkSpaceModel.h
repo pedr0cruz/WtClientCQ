@@ -19,6 +19,8 @@
 
 using namespace Wt;
 
+///	WorkSpaceModel: Main Application Model.
+/// This class inherits from a WT WStandardItemModel
 class WorkSpaceModel : public WStandardItemModel
 {
 public:
@@ -39,7 +41,6 @@ protected:
 private:
 	WStandardItem* createFolderItem(const WString& location, const std::string& wsId = std::string());
 	WStandardItem* createElementItem(const WString& location, const std::string& wsId = std::string(), Json::Object &joItem = Json::Value());
-
 };
 
 #endif WORKSPACE_MODEL_H

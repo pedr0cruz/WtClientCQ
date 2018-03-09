@@ -9,22 +9,27 @@
 #include <Wt/WText>
 #include <Wt/WLength>
 
-#define MYTEST // con esta directiva agrega lineas para probar la clase
+/// definicion que incluye lineas para probar la clase
+#define MYTEST 
 
 using namespace Wt;
 
+///	CQWtAppView: clase que implementa la vista de la aplicacion.
+///	CQWtAppView recibe en formato JSON los datos y se ocupa hacer
+/// el rendering de dichos datos. Se va a cambiar para usar los
+/// widgets de WT, algo que no se ha logrado todavia.
 class CQWtAppView
 {
 protected: 
-	WContainerWidget	*wt_root,				// Widget raiz
-						*appContainer_,			// Contendor exterior
-						*topPanelContainer_,	// Contenedor del panel superior
-						*workSpaceContainer_,	// Contenedor del arbol izquierdo
-						*resultSetContainer_,	// Contenedor de la tabla de resultados
-						*recordFormContainer_,	// Contenedor de los formularios
-						*footerContainer_;		// Contendor del pie de pagina
+	WContainerWidget	*wt_root,				///< Widget raiz
+						*appContainer_,			///< Contendor exterior
+						*topPanelContainer_,	///< Contenedor del panel superior
+						*workSpaceContainer_,	///< Contenedor del arbol izquierdo
+						*resultSetContainer_,	///< Contenedor de la tabla de resultados
+						*recordFormContainer_,	///< Contenedor de los formularios
+						*footerContainer_;		///< Contendor del pie de pagina
 public:
-	// Constructor: crea toda la vista exterior de la App
+	/// Constructor: crea toda la vista exterior de la App
 	CQWtAppView(Wt::WContainerWidget *PageRoot)
 	{
 		Wt::WBootstrapTheme * p_wtTheme = new Wt::WBootstrapTheme();
@@ -32,7 +37,7 @@ public:
 		Wt::WApplication::instance()->setTheme(p_wtTheme);
 		Wt::WApplication::instance()->setTitle("Proyecto CQWt");
 
-		// Configuracion inicial del root
+		/// Configuracion inicial del root
 		wt_root = (PageRoot);
 		wt_root->setId("wt_root");
 		wt_root->setStyleClass(Wt::WString::fromUTF8(""));
@@ -40,44 +45,48 @@ public:
 		wt_root->setInline(0);
 
 		///////////////////////////////////////////////////////////////
-		// ENTORNO: Se contruye de adentro hacia afuera
+		/// ENTORNO: Se contruye de adentro hacia afuera
 		///////////////////////////////////////////////////////////////
-#ifdef MYTEST	// Para escribir textos en los paneles
+#ifdef MYTEST	
+		/// Para escribir textos en los paneles
 		const char *cell = "{1} panel"; 
 		WText *item;
 #endif
-		// Creo un contendor adicional interno full screen
+		/// Creo un contendor adicional interno full screen
 		appContainer_ = new Wt::WContainerWidget(wt_root);
 		appContainer_->setHeight(WLength("100%")); // ó (100, WLength::Percentage));
 
 		///////////////// Interiores
-		// Panel Detalles
+		/// Panel Detalles
 		Wt::WGridLayout *layoutDetalles = new Wt::WGridLayout();
 		layoutDetalles->setRowResizable(0); // No cambia de tamaño externo
 		resultSetContainer_ = new Wt::WContainerWidget(appContainer_);
 		layoutDetalles->addWidget(resultSetContainer_, 0, 0);
-#ifdef _MYTEST	// Imprime el texto "Panel TABLE"
+#ifdef MYTEST
+		/// Imprime el texto "Panel TABLE"
 		resultSetContainer_->setStyleClass("green-box");
 		item = new Wt::WText(Wt::WString(cell).arg("TABLE"));
 		resultSetContainer_->addWidget(item);
 #endif
-		// Panel Formularios
+		/// Panel Formularios
 		recordFormContainer_ = new Wt::WContainerWidget(appContainer_);
 		layoutDetalles->addWidget(recordFormContainer_, 1, 0);
-#ifdef MYTEST	// Imprime el texto "Panel DETAILS" 	
+#ifdef MYTEST
+		/// Imprime el texto "Panel DETAILS" 	
 		item = new Wt::WText(Wt::WString(cell).arg("DETAILS"));
 		recordFormContainer_->setStyleClass("green-box");
 		recordFormContainer_->addWidget(item);
 #endif
 		///////////////// Interior (Izquierdo)
 		Wt::WGridLayout *layoutInterior = new Wt::WGridLayout();
-		layoutInterior->addLayout(layoutDetalles, 0, 1); // Coloco el detalle(tabla y formularios)
-		layoutInterior->setColumnStretch(1, 1); // La segunda columna ocupa todo el espacio posible
+		layoutInterior->addLayout(layoutDetalles, 0, 1); ///< Coloco el detalle(tabla y formularios)
+		layoutInterior->setColumnStretch(1, 1); ///< La segunda columna ocupa todo el espacio posible
 		layoutInterior->setColumnResizable(0);
-		// Panel WorkSpace
+		/// Panel WorkSpace
 		workSpaceContainer_ = new Wt::WContainerWidget(appContainer_);
 		layoutInterior->addWidget(workSpaceContainer_, 0, 0);
-#ifdef _MYTEST	// Imprime el texto "Panel LEFT" 	
+#ifdef MYTEST
+		/// Imprime el texto "Panel LEFT" 	
 		item = new Wt::WText(Wt::WString(cell).arg("LEFT"));
 		workSpaceContainer_->setStyleClass("green-box");
 		workSpaceContainer_->addWidget(item);
@@ -86,26 +95,28 @@ public:
 		Wt::WGridLayout *layoutExterior = new Wt::WGridLayout();
 		layoutExterior->addLayout(layoutInterior, 1, 0); // Coloco el centro
 		layoutExterior->setRowStretch(1, 1);
-		// Panel Superior
+		/// Panel Superior
 		topPanelContainer_ = new Wt::WContainerWidget(appContainer_);
 		layoutExterior->addWidget(topPanelContainer_, 0, 0);
-#ifdef MYTEST	// Imprime el texto "Panel TOP" 	
+#ifdef MYTEST
+		/// Imprime el texto "Panel TOP" 	
 		item = new Wt::WText(Wt::WString(cell).arg("TOP"));
 		topPanelContainer_->addWidget(item);
 		topPanelContainer_->setStyleClass("green-box");
 #endif
-		// Panel inferior
+		/// Panel inferior
 		footerContainer_ = new Wt::WContainerWidget(appContainer_);
 		layoutExterior->addWidget(footerContainer_, 2, 0);
-#ifdef MYTEST	// Imprime el texto "Panel DOWN" 	
+#ifdef MYTEST
+		/// Imprime el texto "Panel DOWN" 	
 		item = new Wt::WText(Wt::WString(cell).arg("DOWN"));
 		footerContainer_->setStyleClass("green-box");
 		footerContainer_->addWidget(item);
 #endif
-		// Ingresa el layout al container principal de la app
+		/// Ingresa el layout al container principal de la app
 		appContainer_->setLayout(layoutExterior); 
 
-		// Metodos autogenerados por WtDesigner
+		/// Metodos autogenerados por WtDesigner
 		addAllStyleSheets();
 		connectAllSignals();
 		addAllJavaScripts();
@@ -126,7 +137,7 @@ public:
 
 	~CQWtAppView()
 	{
-		// Al eliminar el Contendor exterior, se borran recursivamente todo lo interior
+		/// Al eliminar el Contendor exterior, se borran recursivamente todo lo interior
 		delete appContainer_;		
 	}
 	// Gets
@@ -138,4 +149,4 @@ public:
 	WContainerWidget* footerContainer() { return footerContainer_; }
 };
 
-#endif // CQWTAPPVIEW_H
+#endif /// CQWTAPPVIEW_H

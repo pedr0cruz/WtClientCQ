@@ -9,5 +9,6 @@ Wt::WApplication *createApplication(const Wt::WEnvironment& env)
 
 int main(int argc, char *argv[])
 {
-	return Wt::WRun(argc, argv, &createApplication);
+	auto ret_val = Wt::WRun(argc, argv, &createApplication);
+	return ret_val;
 }

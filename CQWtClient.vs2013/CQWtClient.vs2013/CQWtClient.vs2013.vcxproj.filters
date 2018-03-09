@@ -71,6 +71,15 @@
     <ClInclude Include="..\..\src\Headers\CQJSONdummy.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSet2Controller.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSet2Model.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSet2View.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Sources\CQWtApp.cpp">
@@ -125,6 +134,15 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSet2Controller.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSet2Model.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSet2View.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>

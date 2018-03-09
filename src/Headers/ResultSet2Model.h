@@ -1,5 +1,5 @@
-#ifndef RESULTSET_MODEL_H
-#define RESULTSET_MODEL_H
+#ifndef RESULTSET2_MODEL_H
+#define RESULTSET2_MODEL_H
 
 #include <Wt/WObject>
 #include <Wt/WStandardItemModel>
@@ -22,10 +22,10 @@
 using namespace Wt;
 //using namespace std;
 
-///	ResultSetModel: Stores the data for a custom model.
+///	ResultSet2Model: Stores the data for a custom model.
 /// This class inherits from WStandardItemModel to implement 
 /// a custom model.
-class ResultSetModel : public WStandardItemModel ///< Guarda un modelo personalizado
+class ResultSet2Model : public WStandardItemModel ///< Guarda un modelo personalizado
 {
 public:
 #ifdef MyDEBUG
@@ -34,7 +34,7 @@ public:
 	CQJSON* cqSession;
 #endif
 	/// Constructor.
-	ResultSetModel(WObject *parent);
+	ResultSet2Model(WObject *parent);
 
 	bool fillModel(string QueryName);
 
@@ -51,4 +51,4 @@ protected:
 };
 
 
-#endif /// RESULTSET_MODEL_H
+#endif /// RESULTSET2_MODEL_H

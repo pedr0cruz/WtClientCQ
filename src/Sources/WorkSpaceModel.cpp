@@ -67,7 +67,7 @@ bool WorkSpaceModel::fillModel()
 		// Guardar en otro arreglo de 2 nivel y despues en un arreglo de 3 nivel hasta el 5to
 	}
 	// Nivel 2 recorre el nivel 1 para ver si tiene algun hijo
-	for (unsigned index1 = 0; index1 < level1->rowCount(); index1++){
+	for (auto index1 = 0; index1 < level1->rowCount(); index1++){
 		level2 = level1->child(index1);
 		WString sLevel2 = level2->text();
 		// Recorrer nuevamente el arreglo que quedo
@@ -93,11 +93,11 @@ bool WorkSpaceModel::fillModel()
 		string sPath3level1 = sPath3.substr(0, sPath3.find('/')); // Obtengo el nivel1
 		sPath3 = sPath3.substr(sPath3.find('/') + 1); // Obtendo el nivel2
 		// Busco en el nivel 1
-		for (unsigned index1 = 0; index1 < level1->rowCount(); index1++){
+		for (auto index1 = 0; index1 < level1->rowCount(); index1++){
 			level2 = level1->child(index1);
 			WString level2name = level2->text();
 			if (level2name == sPath3level1) {  // Encontro el padre
-				for (unsigned index2 = 0; index2 < level2->rowCount(); index2++){
+				for (auto index2 = 0; index2 < level2->rowCount(); index2++){
 					level3 = level2->child(index2);
 					WString sLevel3 = level3->text();
 					// Recorrer nuevamente el arreglo que quedo

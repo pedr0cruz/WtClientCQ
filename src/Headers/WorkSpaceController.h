@@ -18,14 +18,16 @@
 
 using namespace Wt;
 
+///	WorkSpaceController: Main Application Controller.
+/// This class implements a Subject Pattern and creates the view
 class WorkSpaceController : public Wt::WObject, public SubjectGoF
 {
 public:
-	// Constructor
+	/// Constructor
 	WorkSpaceController(string name);
-	// Crea la vista con el Modelo
+	/// Crea la vista con el Modelo
 	WTreeView *createView(WContainerWidget* wsContainer);
-	void folderChanged(); // Slot para seleccion de nuevo item
+	void folderChanged(); ///< Slot para seleccion de nuevo item
 	string selectedItem() { return selectedItem_; }
 	~WorkSpaceController();
 protected:
@@ -35,4 +37,4 @@ protected:
 	string selectedItem_;
 };
 
-#endif // WORKSPACECTRL_H
+#endif /// WORKSPACECTRL_H

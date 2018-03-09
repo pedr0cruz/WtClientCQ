@@ -1,5 +1,5 @@
-#ifndef RESULTSET_VIEW_H
-#define RESULTSET_VIEW_H
+#ifndef RESULTSET2_VIEW_H
+#define RESULTSET2_VIEW_H
 
 #include <Wt/WContainerWidget>
 #include <Wt/WText>
@@ -12,17 +12,17 @@
 #include <vector>
 #include <string>
 #include <Wt/WSignal>
-#include <Wt/WImage>
+#include <Wt/WTableView>
 
-#include "ResultSetModel.h"
+#include "ResultSet2Model.h"
 
 //using namespace std;
 using namespace Wt;
 
-
-///	TableView: Shows the data from a model.
+#if 1
+///	TableView2: Shows the data from a model.
 /// This class inherits from WTable to implement a custom table view.
-class TableView : public WTable
+class TableView2 : public Wt::WTableView
 {
 private:
 	int selectedRow;
@@ -36,28 +36,41 @@ private:
 	void s_selectRow(int);
 
 public:
-	TableView(Wt::WContainerWidget *parent = 0);
+	TableView2(Wt::WContainerWidget *parent = 0);
 	void setHeader(vector<string>);
 	void addRow(vector<string>);
 	void setHidden(bool, const Wt::WAnimation &animation = Wt::WAnimation());
+	void setHeaderCount(int headers_count, Wt::Orientation header_orientation);
+
+/*
+	Signal< int, int > &  cellClicked()
+		Signal emitted when a cell is clicked.More...
+
+		Signal< int, int, int, int > &  currentCellChanged()
+		Signal emitted when a new cell received focus.More...
+
+		Signal &  itemSelectionChanged()
+		Signal emitted when the selection changes.More...
+*/
 
 	Signal<int>& rowSelected(){ return rowSelect; }
 	Signal<int>& onFindByColumn(){ return findByColumn; }
 	Signal<int, bool>& onSortByColumn(){ return sortByColumn; }
 
-	~TableView();
+	~TableView2();
 
 };
+#endif
 
-////////////////////////// ResultSetView /////////////////////////////////////////
+////////////////////////// ResultSet2View /////////////////////////////////////////
 
-///	ResultSetView: Shows the data from a result set.
+///	ResultSet2View: Shows the data from a result set.
 /// This class inherits from WContainerWidget to implement a container which holds
 /// a set of results.
-class ResultSetView : public Wt::WContainerWidget
+class ResultSet2View : public Wt::WContainerWidget
 {
 private:
-	ResultSetModel* Model_;
+	ResultSet2Model* Model_;
 	bool usePager;
 	int maxRows;
 	int totalRows;
@@ -68,7 +81,7 @@ private:
 	vector < vector<string> > data;
 	vector < vector<string> > filterData;
 
-	TableView *table;
+	TableView2 *table;
 	Wt::WContainerWidget *divPager;
 	Wt::WContainerWidget *divTotalPages;
 	Wt::WText *totalPages;
@@ -90,7 +103,9 @@ private:
 	void s_findByColumn(int);
 	void s_rowSelected(int);
 
-	Wt::Signal<string> rowSelect;
+//	Wt::Signal<string> rowSelect;
+
+//	Wt::EventSignal<WScrollEvent>& Wt::WContainerWidget::scrolled();
 
 	void filterBy(int, Wt::WString);
 	void sortByColumn(int, bool);
@@ -99,8 +114,8 @@ private:
 	void showRows();
 
 public:
-	ResultSetView(Wt::WContainerWidget *parent = 0);
-	ResultSetView(vector<string>, Wt::WContainerWidget *parent = 0);
+	ResultSet2View(Wt::WContainerWidget *parent = 0);
+	ResultSet2View(vector<string>, Wt::WContainerWidget *parent = 0);
 	static const char *ItemSelectionMimeType;
 
 	void setHeader(vector<string>);
@@ -109,15 +124,20 @@ public:
 	void fillTable();
 	void clearTable();
 
-	TableView* getTable(){ return table; };
+	TableView2* getTable(){ return table; };
 
 	void setMaxRows(int t){ maxRows = t; }
 	void setPager(bool pager){ usePager = pager; }
-	void setModel(ResultSetModel* model){ Model_ = model; }
+	void setModel(ResultSet2Model* model){ Model_ = model; }
 
+//	Wt::Signal<string>& onSelectedRow(){ return rowSelect; }
+	
+	/*
+	Wt::Signal& Wt::WAbstractItemView::selectionChanged()
+	{
+	}
+	*/
 
-	Wt::Signal<string>& onSelectedRow(){ return rowSelect; }
-
-	~ResultSetView();
+	~ResultSet2View();
 };
-#endif /// RESULTSET_VIEW_H
+#endif /// RESULTSET2_VIEW_H

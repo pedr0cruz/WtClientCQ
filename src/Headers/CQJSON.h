@@ -1,4 +1,4 @@
-/* CQJSON_HPP: Clase de integraci髇 con ClearQuest con protocolo JSON (JavaScript Object Notation) */
+/* CQJSON_HPP: Clase de integraci贸n con ClearQuest con protocolo JSON (JavaScript Object Notation) */
 #ifndef CQJSON_INCLUDED
 #define CQJSON_INCLUDED
 
@@ -16,10 +16,18 @@
 
 using namespace std; 
 
+
+/// CQJSON: ClearQuest client class which uses a JSON interface
+///
+/// This class is a ClearQuest client class which uses a JSON interface to communicate
+/// with the application view, which renders the received JSON data (and sends back
+/// data using the corresponding WT widgets according to the data type).
+///
 class CQJSON
 	{
 	private:
-		static CQJSON *instance; // Unica instancia global
+		///	singleton (unique global instance)
+		static CQJSON *instance;
 		IOAdSessionPtr session = NULL;
 		IOAdEntityPtr  entity = NULL;
 		bool bConectado = false;	// Indica que la conexion ya se ha establecido con la BD con UserLogon
@@ -38,19 +46,20 @@ class CQJSON
 		CQJSON( const char* login_name, const char* password, const char* database_name, const char* database_set ){
 			UserLogon(login_name, password, database_name, database_set); 	}
 		~CQJSON();
-		static CQJSON *getInstance(); // Devuelve siempre la misma instancia
+		/// Devuelve siempre la misma instancia
+		static CQJSON *getInstance(); 
 
-		// UserLogon: permite la conexi髇 a una BD de usuario
+		/// UserLogon: permite la conexi贸n a una BD de usuario
 		bool UserLogon(const char* login_name, const char* password, const char* database_name, const char* database_set);
 		std::string JSONUserLogon(const char* JSON_connection);
 
 		std::string ExecuteQuery(char* query);
 		std::string JSONExecuteQuery(string JSON_query);
 
-		// Devuelve la lista de nombres de queries, graficos y reportes del workspace
+		/// Devuelve la lista de nombres de queries, graficos y reportes del workspace
 		vector<string> GetAllWorkspaceList();
 		
-		// Devuelve la lista de elementos del workspece, pudiendo indicar el folder y el tipo
+		/// Devuelve la lista de elementos del workspece, pudiendo indicar el folder y el tipo
 		vector<string> GetWorkspaceList(int folder, std::string tipo);
 
 		std::string JSONGetWorkspaceList(int folder, char* type);
@@ -61,13 +70,13 @@ class CQJSON
 		bool GetFieldNames();
 		bool IsConnected() { return bConectado; }
 
-		// Devuelve un Json de exito
+		/// Devuelve un Json de exito
 		std::string jsonOK(Wt::WString msg) {
 			std::string msgerr = Wt::WString("{\"clearquest\": {\"status\":\"ok\", \"description\":\"{1}\"}}").arg(msg).toUTF8();
 			return msgerr;
 		}
 
-		// Devuelve un Json de error
+		/// Devuelve un Json de error
 		std::string jsonError(Wt::WString msg) {
 			std::string msgerr = Wt::WString("{\"clearquest\": {\"status\":\"error\", \"description\":\"{1}\"}}").arg(msg).toUTF8();
 			return msgerr;
@@ -86,8 +95,8 @@ class CQJSON
 					*/
 		}
 
-		// Convierte los caracteres de Escape segun JSON 
-		// Nota: la misma funcion la realiza Wstd::string::jsstd::stringLiteral, cambiarlo y probarlo
+		/// Convierte los caracteres de Escape segun JSON 
+		/// Nota: la misma funcion la realiza Wstd::string::jsstd::stringLiteral, cambiarlo y probarlo
 		std::string escapeJsonString(const std::string& input) {
 
 			std::ostringstream ss;
@@ -106,31 +115,31 @@ class CQJSON
 	
 
 		/*********************** ENTITY *******************************/
-		// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
+		/// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
 		bool GetEntity(const char* record_type, const char *display_name);
 		string JSONGetEntity(const char* JSON_entity);
 
-		// GetFieldValue: Obtiene el campo del registro almancenado en entity
+		/// GetFieldValue: Obtiene el campo del registro almancenado en entity
 		char* GetFieldValue(const char* field);
 		string JSONGetFieldStringValues(const char* JSON_field);
 
-		// SetFieldValue: Setea un campo del registro almancenado en entity
+		/// SetFieldValue: Setea un campo del registro almancenado en entity
 		char* SetFieldValue(const char* field, const char* value);
 		string JSONSetFieldValues(const char* JSON_fields);
 
-		/* EditEntity: Inicia una acci髇 de la entidad */
+		/// EditEntity: Inicia una acci贸n de la entidad
 		char* EditEntity(const char* action);
 
-		/* ValidateEntity: Valida la acci髇 iniciada de la entidad */
+		/// ValidateEntity: Valida la acci贸n iniciada de la entidad
 		char* ValidateEntity();
 
-		/* CommitEntity: Registra los cambios de la acci髇 iniciada de la entidad */
+		/// CommitEntity: Registra los cambios de la acci贸n iniciada de la entidad
 		char* CommitEntity();
 
-		/* RevertEntity: Cancela los cambios de la acci髇 iniciada de la entidad */
+		/// RevertEntity: Cancela los cambios de la acci贸n iniciada de la entidad
 		char* RevertEntity();
 
-		/* ClearEntity: limpia la variable entity obligando a cargar nuevamente*/
+		/// ClearEntity: limpia la variable entity obligando a cargar nuevamente
 		void ClearEntity();
 
 };
@@ -140,32 +149,32 @@ private:
 	CQJSON session;
 	IOAdEntityPtr  entity = NULL;
 public:
-	// Constructor
+	/// Constructor
 	CQEntity(CQJSON jSession) { session = jSession; }
 	~CQEntity(){ entity = NULL; }
 
-	// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
+	/// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
 	string GetEntity(const char* JSON_entity);
 
-	// GetFieldValue: Obtiene el campo del registro almancenado en entity
+	/// GetFieldValue: Obtiene el campo del registro almancenado en entity
 	string GetFieldStringValues(const char* JSON_field);
 
-	// SetFieldValue: Setea un campo del registro almancenado en entity
+	/// SetFieldValue: Setea un campo del registro almancenado en entity
 	string SetFieldValues(const char* JSON_fields);
 
-	/* EditEntity: Inicia una acci髇 de la entidad */
+	/// EditEntity: Inicia una acci贸n de la entidad 
 	char* Edit(const char* action);
 
-	/* ValidateEntity: Valida la acci髇 iniciada de la entidad */
+	/// ValidateEntity: Valida la acci贸n iniciada de la entidad 
 	char* Validate();
 
-	/* CommitEntity: Registra los cambios de la acci髇 iniciada de la entidad */
+	/// CommitEntity: Registra los cambios de la acci贸n iniciada de la entidad 
 	char* Commit();
 
-	/* RevertEntity: Cancela los cambios de la acci髇 iniciada de la entidad */
+	/// RevertEntity: Cancela los cambios de la acci贸n iniciada de la entidad
 	char* Revert();
 
-	/* ClearEntity: limpia la variable entity obligando a cargar nuevamente*/
+	/// ClearEntity: limpia la variable entity obligando a cargar nuevamente
 	void Clear();
 };
 

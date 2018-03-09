@@ -1,5 +1,5 @@
-#ifndef RESULTSETCTRL_H
-#define RESULTSETCTRL_H
+#ifndef RESULTSET2_CTRL_H
+#define RESULTSET2_CTRL_H
 
 #include <Wt/WObject>
 #include <Wt/WContainerWidget>
@@ -13,33 +13,37 @@
 #include <Wt/Json/Value>
 
 #include "ObserverGoF.h"
-#include "ResultSetView.h"
-#include "ResultSetModel.h"
+#include "ResultSet2View.h"
+#include "ResultSet2Model.h"
 
 using namespace Wt;
 
 ///	Controller for ResultSet which includes the result obtained from a query.
 ///	This class implements a Subject Pattern and contains a selected item.
-class ResultSetController : public Wt::WObject, public SubjectGoF
+class ResultSet2Controller : public Wt::WObject, public SubjectGoF
 {
 public:
 	/// Constructor
-	ResultSetController(string name);
+	ResultSet2Controller(string name);
 	/// Crea la vista con el Modelo
 	WWidget* createView(WContainerWidget* rsContainer);
-	void recordChanged(string s);
+
+	//void recordChanged(string s);
+
+	void rowChanged();
+
 	/// Slot para seleccion de nuevo item
 	string selectedItem() { return selectedItem_; }
 	/// Destructor
-	~ResultSetController();
+	~ResultSet2Controller();
 
 protected:
 	WContainerWidget* rsViewContainer_;
-	ResultSetView*  rsView_;
-	ResultSetModel* rsModel_;
+	ResultSet2View*  rsView_;
+	ResultSet2Model* rsModel_;
 	string selectedItem_;
 
 	void fillModel();
 };
 
-#endif /// RESULTSETCTRL_H
+#endif /// RESULTSET2_CTRL_H
