@@ -79,4 +79,5 @@ bool ResultSetModel::fillModel(string QueryName)
 			wTableData[row][col] = JsonRow.get(colname.toUTF8()); // Para WTable
 		}
 	}
+	return true;
 }

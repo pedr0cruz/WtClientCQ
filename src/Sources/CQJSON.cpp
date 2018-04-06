@@ -113,9 +113,10 @@ void _main_()
 	system("PAUSE");
 }
 
-// Constructor
+/// Constructor
 CQJSON::CQJSON()
 {
+    /// La clase utiliza COM, es necesario inicializar las bibliotecas COM
 	CoInitialize(0); // Debe estar en el constructor de la clase
 /*
 	// Conexion a la session de ClearQuest
@@ -172,21 +173,27 @@ CQJSON::CQJSON()
 	// CoUninitialize(); // Debe estar en el destructor de la clase
 }
 
-// Destructor
+/// Destructor
 CQJSON::~CQJSON()
 {
+    ///  Libera los recursos usados por el sistema COM
+    CoUninitialize();
 }
  
-// Devuelve siempre la misma instancia cuando se contruye
+/// Patrón Singleton: Devuelve siempre la misma instancia cuando se contruye
 CQJSON *CQJSON::getInstance()
 {
-	if (!instance)	{
+	if (! instance)	{
 		instance = new CQJSON();
 	}
 	return instance;
 }
 
-// UserLogon : Conexion al ClearQuest
+/// UserLogon : Conexion al ClearQuest
+/// @param login_name
+/// @param password
+/// @param database_name
+/// @param database_set
 bool CQJSON::UserLogon(const char* login_name, const char* password, const char* database_name, const char* database_set)
 {
 	// Conexion a la session de ClearQuest
@@ -246,18 +253,22 @@ string CQJSON::JSONUserLogon(const char* JSON_connection)
 	return jsonOK("Conexion exitosa");
 }
 
-/* GetEntity: Carga en variable entity un registro */
+/// GetEntity: Carga en variable entity un registro
+/// @param record_type
+/// @param display_name
 bool CQJSON::GetEntity(const char* record_type, const char *display_name)
 {
-	if (!session) return false;
+    if (!session) {
+        return false;
+    }
 	try {
 		entity = session->GetEntity(_bstr_t(record_type), _bstr_t(display_name));
-		return true;
 	}
 	catch (...){ 
 		entity = NULL;
 		return false;
 	}
+    return true;
 }
 
 /* JSONGetEntity: Lee y guarda en "entity" un registro
@@ -293,12 +304,12 @@ string CQJSON::JSONGetEntity(const char* JSON_entity)
 	return jsonOK("Carga exitosa");
 }
 
-/* GetFieldNames: Devuelve los nombres de todos los campos de la entidad en memoria*/
+/// GetFieldNames: Carga en memoria los nombres de todos los campos de la entidad actual
 bool CQJSON::GetFieldNames()
 {
 	_variant_t fieldnames;
-	SAFEARRAY* pSafeArray = NULL;
-	_variant_t * raw; // Puntero directo a la data de un SafeArray
+    SAFEARRAY* pSafeArray = nullptr;
+	_variant_t* raw = nullptr; // Puntero directo a la data de un SafeArray
 	_bstr_t wrapper;  // Para obtener un btr de un variant
 
 	// Obtener los campos de la Entidad
@@ -319,12 +330,12 @@ bool CQJSON::GetFieldNames()
 			cout << "element " << i << ": value = " << wrapper << endl;
 		}
 		SafeArrayUnaccessData(pSafeArray);
-		return true;
 	}
 	else {
 		return false;
 	}
 	SafeArrayDestroy(pSafeArray);
+    return true;
 }
 
 /* JSONGetFieldValue
@@ -387,16 +398,21 @@ string CQJSON::JSONGetFieldStringValues(const char* JSON_fields)
 	return respuesta.toUTF8();
 }
 
-/* GetFieldValue: Obtiene el campo del registro almancenado en entity */
+/// GetFieldValue: Obtiene el campo del registro almancenado en entity
+/// @param field Nombre del campo cuyo valor se desea conocer
 char* CQJSON::GetFieldValue(const char* field)
 {
-	_bstr_t b;
-	if (!session || !entity) return NULL;
-	try {
+    if (!session || !entity) {
+        return NULL;
+    }
+    _bstr_t b;
+    try {
 		b = entity->GetFieldStringValue( _bstr_t(field) );
 		return ConvertBSTRToString(b);
 	}
-	catch (...){ return NULL; }
+	catch (...) {
+        return NULL;
+    }
 }
 
 /* JSONSetFieldValues

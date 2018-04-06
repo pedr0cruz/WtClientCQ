@@ -1,0 +1,22 @@
+window_sizes 1366 705 359 1002 601 58
+
+diagrams
+  active  classdiagram_ref 128025 // Diagrama de clases
+    1002 601 75 A3 0 0
+end
+selected 
+  package_ref 129 // Arquitectura-20180323-01
+open
+  class_ref 128025 // CQWtApplication
+  class_ref 128409 // WorkspaceController
+  class_ref 128537 // WorkspaceModel
+  class_ref 128921 // WorkspaceView
+  class_ref 129049 // WTreeView
+  class_ref 129305 // resultSetsView
+  class_ref 129433 // WTabWidget
+  class_ref 129561 // ResultSet2Model
+  class_ref 130073 // WTableView
+  class_ref 143129 // WGoogleMap
+  class_ref 149785 // resultSetsModel
+end
+end

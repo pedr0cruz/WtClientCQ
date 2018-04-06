@@ -6,8 +6,16 @@
 #include "CQWtAppView.h"
 #include "ObserverGoF.h"
 #include "WorkSpaceController.h"
-#include "ResultSetController.h"
-#include "ResultSet2Controller.h"
+
+#if ! defined (USE_RESULTSET2)
+#	include "ResultSetController.h"
+#else
+#	include "ResultSet2Controller.h"
+#endif
+#include "RecordSetController.h"
+
+#include "ResultSetsController.h"
+#include "RecordSetsController.h"
 
 /// Definición de la clase CQWtApplication, responsable del control de la aplicación.
 /// Se comporta como un Observer (GoF) y un MVC
@@ -31,12 +39,22 @@ public:
 protected:
 	/// Vista principal, configurada como grilla de Widgets
 	CQWtAppView* mainView;
+	/// Controlador de panel izquierdo
 	WorkSpaceController* workSpaceCtrl;
+	/// Controlador de panel superior
+#if 0
 #if ! defined (USE_RESULTSET2)
 	ResultSetController* resultSetCtrl;
 #else
 	ResultSet2Controller* resultSetCtrl;
 #endif
+	/// Controlador de panel inferior
+	RecordSetController* recordSetCtrl;
+#endif
+    /// Controlador de panel superior
+    ResultSetsController* resultSetsCtrl;
+    /// Controlador de panel inferior
+    RecordSetsController* recordSetsCtrl;
 
 private:
 	/// Establece los archivos de recursos a utilizar

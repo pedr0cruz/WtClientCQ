@@ -1,0 +1,12 @@
+window_sizes 1362 705 207 1150 601 58
+
+diagrams
+  active  classdiagram_ref 128025 // Diagrama de clases
+    1154 601 80 A3 22 0
+end
+selected 
+package_ref 129 // Arquitectura-00-main-20180403-01
+open
+  class_ref 129177 // ResultSetsController
+end
+end

@@ -17,6 +17,11 @@ public:
 	/// Constructor
 	WorkSpaceView(Wt::WContainerWidget *parent = 0);
 
+    /// Called when primary mouse button clicked
+    void clicked();
+    /// Called when primary mouse button double clicked
+    void doubleClicked();
+
 protected:	
 	/// Para Drag and Drop
 	virtual void dropEvent(const Wt::WDropEvent &event,	const Wt::WModelIndex &target);

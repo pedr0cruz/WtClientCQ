@@ -1,0 +1,10 @@
+window_sizes 1366 705 236 1125 601 58
+
+diagrams
+  active  classdiagram_ref 128025 // Diagrama de clases
+    1125 601 80 A3 0 0
+end
+open
+  classview_ref 128025 // CQWtClient
+end
+end

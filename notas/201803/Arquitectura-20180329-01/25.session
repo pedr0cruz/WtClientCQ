@@ -1,0 +1,10 @@
+window_sizes 1366 705 321 1040 601 58
+
+diagrams
+  active  classdiagram_ref 128025 // Diagrama de clases
+    1040 601 80 A3 0 0
+end
+open
+  class_ref 129177 // ResultSetsController
+end
+end

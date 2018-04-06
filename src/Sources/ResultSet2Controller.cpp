@@ -19,8 +19,8 @@
 
 using namespace Wt;
 
-// Constructor
-ResultSet2Controller::ResultSet2Controller(string name) : SubjectGoF(name)
+/// Constructor
+ResultSet2Controller::ResultSet2Controller(const string & name) : SubjectGoF(name)
 {
 	rsModel_ = new ResultSet2Model(this);
 }
@@ -37,6 +37,15 @@ WWidget* ResultSet2Controller::createView(WContainerWidget* resultsetContainer)
 //		.connect(this, &ResultSet2Controller::recordChanged);
 	//treeView->mouseWentUp().connect(this, &WorkSpaceController::showPopup);
 
+	rsView_->clicked().connect(this, &ResultSet2Controller::clicked);
+	rsView_->doubleClicked().connect(this, &ResultSet2Controller::doubleClicked);
+	//rsView_->enterPressed().connect(this, &ResultSet2Controller::enterPressed);
+	//rsView_->escapePressed().connect(this, &ResultSet2Controller::escapePressed);
+	rsView_->focussed().connect(this, &ResultSet2Controller::focussed);
+	rsView_->keyPressed().connect(this, &ResultSet2Controller::keyPressed);
+	rsView_->mouseWheel().connect(this, &ResultSet2Controller::mouseWheel);
+	rsView_->scrolled().connect(this, &ResultSet2Controller::scrolled);
+
 	//TODO FIXME HACK
 //	rsView_->onSelectedRow()
 //		.connect(this, &ResultSet2Controller::recordChanged);
@@ -46,11 +55,9 @@ WWidget* ResultSet2Controller::createView(WContainerWidget* resultsetContainer)
 	return rsView_;
 }
 
-#if 0
-
-void ResultSet2Controller::recordChanged( string sQuery ) 
+void ResultSet2Controller::recordChanged(const string & sQuery)
 {
-	rsModel_->fillModel( sQuery );
+	rsModel_->fillModel(sQuery);
 	rsView_->fillTable();
 	rsView_->refresh();
 
@@ -67,10 +74,49 @@ void ResultSet2Controller::recordChanged( string sQuery )
 	*/
 }
 
-#endif
-
+#if 0
 void ResultSet2Controller::rowChanged()
 {
+}
+#endif
+
+void ResultSet2Controller::clicked()
+{
+	auto a = 0;
+	auto b = a;
+}
+
+void ResultSet2Controller::doubleClicked()
+{
+	auto a = 0;
+	auto b = a;
+}
+
+//rsView_->enterPressed().connect(this, &ResultSet2Controller::enterPressed);
+//rsView_->escapePressed().connect(this, &ResultSet2Controller::escapePressed);()
+
+void ResultSet2Controller::focussed()
+{
+	auto a = 0;
+	auto b = a;
+}
+
+void ResultSet2Controller::keyPressed()
+{
+	auto a = 0;
+	auto b = a;
+}
+
+void ResultSet2Controller::mouseWheel()
+{
+	auto a = 0;
+	auto b = a;
+}
+
+void ResultSet2Controller::scrolled(WScrollEvent e)
+{
+	auto a = 0;
+	auto b = a;
 }
 
 ResultSet2Controller::~ResultSet2Controller()

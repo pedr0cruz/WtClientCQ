@@ -1,0 +1,15 @@
+TODO:
+
+1 - Compilar ResultSetView2
+
+2 - Comprobar que esta ok
+
+3 - Revisar los cambios que haya que hacer
+    con respecto a WTableView , si fuera necesario
+
+4 - Copiar WT para VS2013 en la laptop o en el disco
+    duro externo que no encuentro el instalador
+
+5 - Tomar fotos de secuenciales de isabel
+
+6 - 

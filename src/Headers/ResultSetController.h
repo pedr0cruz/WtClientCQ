@@ -16,7 +16,9 @@
 #include "ResultSetView.h"
 #include "ResultSetModel.h"
 
-using namespace Wt;
+#include <string>
+
+//using namespace Wt;
 
 ///	Controller for ResultSet which includes the result obtained from a query.
 ///	This class implements a Subject Pattern and contains a selected item.
@@ -24,9 +26,9 @@ class ResultSetController : public Wt::WObject, public SubjectGoF
 {
 public:
 	/// Constructor
-	ResultSetController(string name);
+	ResultSetController(const std::string & name);
 	/// Crea la vista con el Modelo
-	WWidget* createView(WContainerWidget* rsContainer);
+    Wt::WWidget* createView(Wt::WContainerWidget* rsContainer);
 	void recordChanged(string s);
 	/// Slot para seleccion de nuevo item
 	string selectedItem() { return selectedItem_; }
@@ -34,10 +36,10 @@ public:
 	~ResultSetController();
 
 protected:
-	WContainerWidget* rsViewContainer_;
+    Wt::WContainerWidget* rsViewContainer_;
 	ResultSetView*  rsView_;
 	ResultSetModel* rsModel_;
-	string selectedItem_;
+	std::string selectedItem_;
 
 	void fillModel();
 };

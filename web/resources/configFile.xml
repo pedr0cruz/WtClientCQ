@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+	<message id="logoApp">resources/logos/servican.jpg</message>
+	<message id="linkContacto">http://qbanconsulting.com/</message>
+	<message id="contactoFooter">© 2006-2016. QBAN Consulting S.A.C</message>
+	
+	<message id="userDB">STST</message>
+	<message id="schemaDB">SEGURFLOW</message>
+	<!--- posicion de la columna de la tabla de visitas 
+	por la cual se consideran dos o mas visitas iguales -->
+	<message id="columna-boleta-ingresos">5</message>
+</messages>

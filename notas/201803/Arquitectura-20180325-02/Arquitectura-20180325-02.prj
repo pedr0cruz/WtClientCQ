@@ -1,0 +1,739 @@
+format 217
+"Arquitectura-20180325-02"
+  revision 21
+  modified_by 25 "Antonio"
+
+
+  
+  // class settings
+  default_attribute_visibility private default_relation_visibility private default_operation_visibility public
+  
+  classdiagramsettings draw_all_relations yes hide_attributes no hide_operations no hide_getset_operations no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_context no show_members_multiplicity no show_members_initialization no show_attribute_modifiers no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_relation_modifiers no show_relation_visibility no show_infonote no shadow yes gradient none show_stereotype_properties no end
+  
+  usecasediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes gradient none show_stereotype_properties no end
+  
+  sequencediagramsettings show_full_operations_definition no show_class_of_operation no write_horizontally yes instances_drawing_mode natural drawing_language uml draw_all_relations yes shadow yes gradient none show_stereotype_properties no show_class_context_mode no show_msg_context_mode no end
+  
+  collaborationdiagramsettings show_full_operations_definition no show_class_of_operation no show_hierarchical_rank no write_horizontally yes instances_drawing_mode natural drawing_language uml package_name_in_tab no show_class_pack_context_mode no show_msg_context_mode no draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectdiagramsettings write_horizontally yes package_name_in_tab no show_class_pack_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  componentdiagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  deploymentdiagramsettings package_name_in_tab no show_context_mode no write_horizontally yes auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  statediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes write_label_horizontally yes show_trans_definition no draw_all_relations yes shadow yes gradient none
+   show_activities yes region_horizontally yes drawing_language uml show_stereotype_properties no end
+  
+  activitydiagramsettings package_name_in_tab no show_context_mode no show_opaque_action_definition no auto_label_position yes write_label_horizontally no draw_all_relations yes shadow yes gradient none
+   show_infonote yes drawing_language uml show_stereotype_properties no end
+  
+  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activitypartition_color transparent activityaction_color transparent parameterpin_color white generalization_color black 
+  dpi 96
+  font_size 8
+  diagram_format A4
+
+  image_root_dir ""
+
+
+  mark_for_import
+  
+  stereotype "model library"
+  classview 128025 "CQWtClient"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    classdiagram 128025 "Diagrama de clases"
+      classdiagramsettings draw_all_relations no member_max_width 0 end
+      size A3
+    end
+
+    class 128025 "CQWtApplication"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${abstract}${custom}valuetype ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128025 // <generalisation>
+	relation 128025 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128025 // <generalisation>
+	  b parent class_ref 128153 // WApplication
+      end
+
+      classrelation 128153 // mainView (<unidirectional association>)
+	relation 128153 --->
+	  a role_name "mainView" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128153 // mainView (<unidirectional association>)
+	  b parent class_ref 128281 // CQWtAppView
+      end
+
+      classrelation 128281 // workSpaceCtrl ()
+	relation 128281 ---> name ""
+	  a role_name "workSpaceCtrl" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128281 // workSpaceCtrl ()
+	  b parent class_ref 128409 // WorkspaceController
+      end
+
+      classrelation 129177 // rssCtrl (<unidirectional association>)
+	relation 129177 --->
+	  a role_name "rssCtrl" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129177 // rssCtrl (<unidirectional association>)
+	  b parent class_ref 129177 // ResultSetsController
+      end
+
+      classrelation 180249 // recCtrl (<unidirectional association>)
+	relation 179993 --->
+	  a role_name "recCtrl" private
+	    classrelation_ref 180249 // recCtrl (<unidirectional association>)
+	  b parent class_ref 170265 // RecordController
+      end
+    end
+
+    class 128153 "WApplication"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 152345 // <generalisation>
+	relation 152217 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 152345 // <generalisation>
+	  b parent class_ref 150297 // ObserverGoF
+      end
+    end
+
+    class 128281 "CQWtAppView"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 128409 "WorkspaceController"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128409 // wsModel (<unidirectional association>)
+	relation 128409 --->
+	  a role_name "wsModel" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128409 // wsModel (<unidirectional association>)
+	  b parent class_ref 128537 // WorkspaceModel
+      end
+
+      classrelation 159257 // wsView (<unidirectional association>)
+	relation 159129 --->
+	  a role_name "wsView" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 159257 // wsView (<unidirectional association>)
+	  b parent class_ref 128921 // WorkspaceView
+      end
+
+      classrelation 165785 // <generalisation>
+	relation 165657 ---|>
+	  a public
+	    classrelation_ref 165785 // <generalisation>
+	  b parent class_ref 156825 // SubjectGoF
+      end
+    end
+
+    class 128537 "WorkspaceModel"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128537 // <generalisation>
+	relation 128537 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128537 // <generalisation>
+	  b parent class_ref 128665 // WStandardItemModel
+      end
+
+      classrelation 128665 // cqSession (<unidirectional association>)
+	relation 128665 --->
+	  a role_name "cqSession" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128665 // cqSession (<unidirectional association>)
+	  b parent class_ref 128793 // CQJSON
+      end
+    end
+
+    class 128665 "WStandardItemModel"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 128793 "CQJSON"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 128921 "WorkspaceView"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128793 // <unidirectional association>
+	relation 128793 --->
+	  a role_name "" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128793 // <unidirectional association>
+	  b parent class_ref 128409 // WorkspaceController
+      end
+
+      classrelation 129049 // <generalisation>
+	relation 129049 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129049 // <generalisation>
+	  b parent class_ref 129049 // WTreeView
+      end
+    end
+
+    class 129049 "WTreeView"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 172825 // <generalisation>
+	relation 172697 ---|>
+	  a public
+	    classrelation_ref 172825 // <generalisation>
+	  b parent class_ref 129817 // WAbstractItemView
+      end
+    end
+
+    class 129177 "ResultSetsController"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 151705 // rsModels (<directional aggregation>)
+	relation 151577 o-->
+	  a role_name "rsModels" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 151705 // rsModels (<directional aggregation>)
+	  b parent class_ref 129561 // ResultSet2Model
+      end
+
+      classrelation 151833 // rssTabWidget (<unidirectional association>)
+	relation 151705 --->
+	  a role_name "rssTabWidget" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 151833 // rssTabWidget (<unidirectional association>)
+	  b parent class_ref 129433 // WTabWidget
+      end
+
+      classrelation 166041 // <generalisation>
+	relation 165913 ---|>
+	  a public
+	    classrelation_ref 166041 // <generalisation>
+	  b parent class_ref 156825 // SubjectGoF
+      end
+
+      classrelation 195609 // rsViews (<directional aggregation>)
+	relation 195353 o-->
+	  a role_name "rsViews" private
+	    classrelation_ref 195609 // rsViews (<directional aggregation>)
+	  b parent class_ref 163353 // WTableView
+      end
+    end
+
+    class 129433 "WTabWidget"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144025 // <dependency>
+	relation 143897 -_->
+	  a public
+	    cpp default "#include in source"
+	    classrelation_ref 144025 // <dependency>
+	  b parent class_ref 129817 // WAbstractItemView
+      end
+
+      classrelation 152089 // <directional aggregation>
+	relation 151961 o-->
+	  a role_name "" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 152089 // <directional aggregation>
+	  b parent class_ref 129817 // WAbstractItemView
+      end
+    end
+
+    class 129561 "ResultSet2Model"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 137241 // cqSession (<unidirectional association>)
+	relation 137113 --->
+	  a role_name "cqSession" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 137241 // cqSession (<unidirectional association>)
+	  b parent class_ref 128793 // CQJSON
+      end
+
+      classrelation 180121 // <generalisation>
+	relation 179865 ---|>
+	  a public
+	    classrelation_ref 180121 // <generalisation>
+	  b parent class_ref 128665 // WStandardItemModel
+      end
+    end
+
+    class 129689 "WStandardItem"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 129817 "WAbstractItemView"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 150297 "ObserverGoF"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 156825 "SubjectGoF"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 165913 // <unidirectional association>
+	relation 165785 --->
+	  a role_name "" private
+	    classrelation_ref 165913 // <unidirectional association>
+	  b parent class_ref 150297 // ObserverGoF
+      end
+
+      classrelation 166169 // <unidirectional association>
+	relation 166041 --->
+	  a role_name "" private
+	    classrelation_ref 166169 // <unidirectional association>
+	  b parent class_ref 150297 // ObserverGoF
+      end
+
+      classrelation 180377 // <unidirectional association>
+	relation 180121 --->
+	  a role_name "" private
+	    classrelation_ref 180377 // <unidirectional association>
+	  b parent class_ref 150297 // ObserverGoF
+      end
+    end
+
+    class 163353 "WTableView"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 172697 // <generalisation>
+	relation 172569 ---|>
+	  a public
+	    classrelation_ref 172697 // <generalisation>
+	  b parent class_ref 129817 // WAbstractItemView
+      end
+    end
+
+    class 169881 "ResultSet2View"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 179353 // <generalisation>
+	relation 179225 ---|>
+	  a public
+	    classrelation_ref 179353 // <generalisation>
+	  b parent class_ref 163353 // WTableView
+      end
+
+      classrelation 179609 // <unidirectional association>
+	relation 179481 --->
+	  a role_name "" private
+	    classrelation_ref 179609 // <unidirectional association>
+	  b parent class_ref 170137 // CoRHandlerGoF
+      end
+    end
+
+    class 170137 "CoRHandlerGoF"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 179737 // <aggregation>
+	relation 179609 o---
+	  a role_name "" private
+	    classrelation_ref 179737 // <aggregation>
+	  b role_name "" private
+	    classrelation_ref 179865 // <aggregation>
+      end
+
+      classrelation 179865 // <aggregation>
+	relation_ref 179609 // <aggregation>
+      end
+    end
+
+    class 170265 "RecordController"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 180505 // <generalisation>
+	relation 180249 ---|>
+	  a public
+	    classrelation_ref 180505 // <generalisation>
+	  b parent class_ref 156825 // SubjectGoF
+      end
+
+      classrelation 187033 // recTabWidget (<unidirectional association>)
+	relation 186777 --->
+	  a role_name "recTabWidget" private
+	    classrelation_ref 187033 // recTabWidget (<unidirectional association>)
+	  b parent class_ref 129433 // WTabWidget
+      end
+
+      classrelation 187417 // recModels (<directional aggregation>)
+	relation 187161 o-->
+	  a role_name "recModels" private
+	    classrelation_ref 187417 // recModels (<directional aggregation>)
+	  b parent class_ref 176921 // RecordModel
+      end
+
+      classrelation 195737 // recViews (<directional aggregation>)
+	relation 195481 o-->
+	  a role_name "recViews" private
+	    classrelation_ref 195737 // recViews (<directional aggregation>)
+	  b parent class_ref 163353 // WTableView
+      end
+    end
+
+    class 176793 "RecordSetView"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 187289 // <generalisation>
+	relation 187033 ---|>
+	  a public
+	    classrelation_ref 187289 // <generalisation>
+	  b parent class_ref 163353 // WTableView
+      end
+
+      classrelation 188313 // <unidirectional association>
+	relation 188057 --->
+	  a role_name "" private
+	    classrelation_ref 188313 // <unidirectional association>
+	  b parent class_ref 170137 // CoRHandlerGoF
+      end
+
+      classrelation 188441 // <generalisation>
+	relation 188185 ---|>
+	  a public
+	    classrelation_ref 188441 // <generalisation>
+	  b parent class_ref 170137 // CoRHandlerGoF
+      end
+    end
+
+    class 176921 "RecordModel"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 187545 // <generalisation>
+	relation 187289 ---|>
+	  a public
+	    classrelation_ref 187545 // <generalisation>
+	  b parent class_ref 128665 // WStandardItemModel
+      end
+
+      classrelation 187673 // cqSession (<unidirectional association>)
+	relation 187417 --->
+	  a role_name "cqSession" private
+	    classrelation_ref 187673 // cqSession (<unidirectional association>)
+	  b parent class_ref 128793 // CQJSON
+      end
+    end
+
+    class 177561 "TableColumn"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 188569 // <generalisation>
+	relation 188313 ---|>
+	  a public
+	    classrelation_ref 188569 // <generalisation>
+	  b parent class_ref 170137 // CoRHandlerGoF
+      end
+
+      classrelation 189081 // <unidirectional association>
+	relation 188825 --->
+	  a role_name "" private
+	    classrelation_ref 189081 // <unidirectional association>
+	  b parent class_ref 170137 // CoRHandlerGoF
+      end
+    end
+
+    class 184089 "TableRow"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 202265 // <generalisation>
+	relation 202009 ---|>
+	  a public
+	    classrelation_ref 202265 // <generalisation>
+	  b parent class_ref 170137 // CoRHandlerGoF
+      end
+
+      classrelation 208793 // <unidirectional association>
+	relation 208537 --->
+	  a role_name "" private
+	    classrelation_ref 208793 // <unidirectional association>
+	  b parent class_ref 170137 // CoRHandlerGoF
+      end
+    end
+
+    class 190617 "TableCell"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 208921 // <unidirectional association>
+	relation 208665 --->
+	  a role_name "" private
+	    classrelation_ref 208921 // <unidirectional association>
+	  b parent class_ref 170137 // CoRHandlerGoF
+      end
+
+      classrelation 215449 // <generalisation>
+	relation 215193 ---|>
+	  a public
+	    classrelation_ref 215449 // <generalisation>
+	  b parent class_ref 170137 // CoRHandlerGoF
+      end
+    end
+  end
+end

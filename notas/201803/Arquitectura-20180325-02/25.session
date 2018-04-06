@@ -1,0 +1,14 @@
+window_sizes 1366 705 321 1040 601 58
+
+diagrams
+  active  classdiagram_ref 128025 // Diagrama de clases
+    1040 601 90 A3 38 0
+end
+selected 
+  package_ref 129 // Arquitectura-20180325-02
+open
+  class_ref 129177 // ResultSetsController
+  class_ref 170137 // CoRHandlerGoF
+  class_ref 190617 // TableCell
+end
+end

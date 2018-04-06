@@ -42,9 +42,11 @@ WTreeView *WorkSpaceController::createView(WContainerWidget* workSpaceContainer)
 	return wsView_;
 }
 
-void WorkSpaceController::folderChanged() {
-	if (wsView_->selectedIndexes().empty())
-		return;
+void WorkSpaceController::folderChanged()
+{
+    if (wsView_->selectedIndexes().empty()) {
+        return;
+    }
 	WModelIndex selected = *wsView_->selectedIndexes().begin();
 	boost::any d = selected.data(UserRole);
 	if (!d.empty()) {

@@ -7,6 +7,7 @@
 using namespace std;
 
 /////// Clase Observador: recibe una llamada a "update" cuando un Sujeto cambia
+
 ObserverGoF::~ObserverGoF()
 {
 }
@@ -15,23 +16,25 @@ ObserverGoF::ObserverGoF()
 {
 }
 
-
 /////// Clase Sujeto: cuando cambia, invoca a notify para que se enteren los Observadores
 
 // Obtiene y almacena un objeto Observador
-void SubjectGoF::attach(ObserverGoF *o) 
+//void SubjectGoF::attach(ObserverGoF *o) 
+void SubjectGoF::attach(std::shared_ptr <ObserverGoF> o)
 { 
-	vecObservers.push_back(o); 
+	vecObservers.push_back (o); 
 }
 
-	// Notifica a todos los observadores, que ocurrio un cambio
-void SubjectGoF::notify(){
+// Notifica a todos los observadores, que ocurrio un cambio
+void SubjectGoF::notify()
+{
 	int size = static_cast <int> (vecObservers.size());
-	for (int i = 0; i < size; i++){
+	for (int i = 0; i < size; i++) {
 		vecObservers[i]->update(this);
 	}
 }
-	// Devuelve el nombre del sujeto
+
+// Devuelve el nombre del sujeto
 string SubjectGoF::subjectName()
 { 
 	return name_; 
@@ -42,7 +45,7 @@ SubjectGoF::~SubjectGoF()
 {
 }
 
-SubjectGoF::SubjectGoF(string name) :name_(name)
+SubjectGoF::SubjectGoF(string name) : name_(name)
 {
 }
 

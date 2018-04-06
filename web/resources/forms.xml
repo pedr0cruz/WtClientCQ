@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+
+  <message id='formulario-cliente'>
+    <form class="form-horizontal">
+      <fieldset>
+        <div class="form-group">
+          <label for="${id:activo}" class="col-md-4 control-label">Activo</label>
+          <div class="col-md-4">
+            <div class="checkbox">
+              <label for="checkActivo-0">
+                ${activo}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label text-right" for="${id:ruc}" contenteditable="true">RUC</label>
+          <div class="col-md-4">
+            ${ruc}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="${id:siglas}">Siglas</label>
+          <div class="col-md-3">
+            ${siglas}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="${id:razonSocial}">Razón Social</label>
+          <div class="col-md-6">
+            ${razonSocial}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="${id:persContacto}">Persona de contacto</label>
+          <div class="col-md-8">
+            ${persContacto}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="${id:telContacto}">Teléfono de contacto</label>
+          <div class="col-md-4">
+            ${telContacto}
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="${id:vigencia}">Vigencia</label>
+          <div class="col-md-4">
+            ${vigencia}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-16 text-center">
+            ${actualizarButton}
+            ${guardarButton}
+            ${cancelarButton}
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </message>
+
+  <message id='formulario-locales'>
+    <form class="form-horizontal">
+      <fieldset>
+        <div class="form-group">
+          <label for="checkActivo" class="col-md-3 control-label">Activo</label>
+          <div class="col-md-4">
+            <div class="checkbox">
+              <label for="checkActivo-0">
+                ${activo}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-3 control-label text-right" for="textinput">Nombre</label>
+          <div class="col-md-6">
+            ${nombre}
+          </div>
+        </div>
+        <!-- Text input: Siglas-->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="razonsocial">Sucursal</label>
+          <div class="col-md-6">
+            ${sucursal}
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="provincia">Provincia</label>
+          <div class="col-md-4">
+            <select class="form-control">
+              <option>Lima</option>
+              <option>Callao</option>
+              <option>Arequipa</option>
+            </select>
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="contacto">Dirección</label>
+          <div class="col-md-8">
+            ${direccion}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-16 text-center">
+            ${actualizarButton}
+            ${guardarButton}
+            ${cancelarButton}
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </message>
+
+  <message id='login-modal'>
+    <h1>Ingrese sus credenciales:</h1>
+    ${break}
+    <form>
+      ${user}
+      ${pass}
+      ${login}
+    </form>
+
+  </message>
+
+  <message id='formulario-visitas'>    
+    <form class="form-horizontal">
+      <fieldset>
+        <!-- Form Name -->
+        <!-- Multiple Checkboxes -->
+        <!-- Area Combo -->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="${id:area}">Área</label>
+          <div class="col-md-6">
+            ${area}
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-3 control-label text-right" for="${id:empleado}">Empleado</label>
+          <div class="col-md-7">
+            ${empleado}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="${id:motivo}">Motivo</label>
+          <div class="col-md-4">
+            ${motivo}
+          </div>
+          <div class="col-md-3">
+            ${boleta}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="${id:vehiculoMarca}">Vehículo</label>
+          <div class="col-md-4">
+            ${vehiculoMarca}
+          </div>
+          <div class="col-md-3">
+            ${vehiculoPlaca}
+          </div>
+        </div>
+
+        <!-- Text input: DNI -->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="${id:tipoDocVisitante}">Doc. &nbsp;Visitante</label>
+          <div class="col-md-2">
+            ${tipoDocVisitante}
+          </div>
+          <div class="col-md-4">
+            ${docVisitante}
+          </div>
+          <div class="col-md-1">
+            ${dniCode}
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="${id:apellidos}">Apellidos Visitante</label>
+          <div class="col-md-7">
+            ${apellidos}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="${id:nombre}">Nombres Visitante</label>
+          <div class="col-md-7">
+            ${nombre}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="${id:tipoEquipo}">Equipo</label>
+          <div class="col-md-2">
+            ${tipoEquipo}
+          </div>
+          <div class="col-md-2">
+            ${marcaEquipo}
+          </div>
+          <div class="col-md-3">
+            ${serieEquipo}
+          </div>
+        </div>
+
+        <!-- Button (Double) -->
+        <div class="form-group">
+          <div class="col-md-12 text-center">
+            ${guardarButton}
+            ${cancelarButton}
+          </div>
+        </div>
+      </fieldset>
+    </form>  
+
+  </message>
+
+
+
+
+</messages>

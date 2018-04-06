@@ -4,6 +4,7 @@
 // Patron de Diseño Observer
 
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -24,7 +25,8 @@ class SubjectGoF
 {
 public:
 	// Obtiene y almacena un objeto Observador
-	virtual void attach(ObserverGoF *o);
+	//virtual void attach(ObserverGoF *o);
+	virtual void attach(std::shared_ptr <ObserverGoF> o);
 	// Notifica a todos los observadores, que ocurrio un cambio
 	virtual void notify();
 	// Devuelve el nombre del sujeto
@@ -34,7 +36,8 @@ public:
 protected:
 	SubjectGoF(string name);
 	string name_;
-	vector<ObserverGoF *> vecObservers; // Lista de observadores
+	//vector<ObserverGoF *> vecObservers; // Lista de observadores
+	vector <std::shared_ptr <ObserverGoF> > vecObservers; // Lista de observadores
 };
 
 

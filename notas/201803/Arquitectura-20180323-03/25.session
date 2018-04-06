@@ -1,0 +1,11 @@
+window_sizes 1366 705 329 1032 601 58
+
+diagrams
+  active  classdiagram_ref 128025 // Diagrama de clases
+    1032 601 75 A3 26 0
+end
+open
+  class_ref 128921 // WorkspaceView
+  class_ref 129049 // WTreeView
+end
+end

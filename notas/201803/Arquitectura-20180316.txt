@@ -1,0 +1,88 @@
+
+
+class ResultSet2Model {
+	vector < string > wTableHeader;
+	//	En este caso esto seria un CACHE porque 
+	//	la tabla es una WTableView que pide los datos
+	//	a demanda e implementa el desplazamiento (scroll)
+	//	de forma virtual, o sea, solo recibe las notificaciones
+	//	y es responsabilidad del programador ofrecer los datos.
+	//	Seria responsabilidad del modelo, o del controlador, 
+	//	pero de cierta manera WTableView incorpora parte de la
+	//	responsabilidad que en la arquitectura MVC es del 
+	//	controlador.
+	vector < vector <string> > wTableCache;
+	vector < vector <string> > wTableFilterData;
+}
+class ResultSet2View {
+	ResultSet2Model* Model_;
+	// ... ui data ...
+	long cacheStartRow;
+	bool usePager, maxRows, totalRows, maxPages, actualPage;
+
+	vector < string > header;
+	
+	// Duda: porque esto esta en ResultSetView si en 
+	//	ResultSetModel tambien hay un wTableData ???
+	vector < vector <string> > data;
+	
+	vector < vector <string> > filterData;
+
+	WTableView *table;
+	// WT view widgets
+	Wt::WContainerWidget *divPager;
+	Wt::WContainerWidget *divTotalPages;
+	Wt::WText *totalPages;
+	Wt::WContainerWidget *divTablesPager;
+	Wt::WMenu *pagerTable;
+	Wt::WContainerWidget * firstItem;
+	Wt::WMenuItem * firstItem_mi;
+	Wt::WContainerWidget * previousItem;
+	Wt::WMenuItem * previousItem_mi;
+	Wt::WContainerWidget * nextItem;
+	Wt::WMenuItem * nextItem_mi;
+	Wt::WContainerWidget * lastItem;
+	Wt::WMenuItem * lastItem_mi;
+
+	Wt::Signal<string> rowSelect;
+}
+class ResultSet2Controller {
+	WContainerWidget* rsViewContainer_;
+	ResultSet2View*  rsView_;
+	ResultSet2Model* rsModel_;
+	//string selectedItem_;
+	vector < string > selectedItems_;
+}
+
+Notas: 
+
+1 - Poner una cadena de responsabilidad para que los eventos de la interfaz de usuario
+puedan ser manejados por el controlador correspondiente. Puede que algunos eventos
+sean controlados por un controlador para las filas o segun la celda segun el rol
+de cada columna (se supone que todas las celdas de cada columna tienen el mismo
+rol, o sea, todas las celdas de una columna son texto, o son un combobox, o son
+una imagen).
+
+2 - Hay varias alternativas para manejar la tabla con las filas. Puede hacerse un
+patrón Composite y recorrerlo usando Iterator, o puede hacerse un patrón Visitor 
+para visitar las filas. Para mi la mejor opción es un patrón Iterator, y obtener
+el iterador desde cada fila, y cuando se llegue a la última se devuelve un 
+NullIterator, el cual siempre va a dar que no hay más registros, o sea, que 
+está en el último registro. En ese caso se implementaría un iterador virtual del
+cual se derivan todos: el normal y el nulo. También puede implementarse la opción
+de crear el iterador directo (o sea del inicio al final) o inverso.
+
+3 - Valorar de que manera se haria el filtrado. Lo que es más intuitivo es con
+un iterador filtrado que bien puede llamarse FilteredIterator.
+
+4 - Valorar si es necesario implementar el cache. Supongo que eso depende del caso 
+en particular. Posiblemente pudiera implementarse con el patrón decorator, de forma
+que sea opcional ???
+
+5 - Es posible que valga la pena implementar el patrón bridge entre WTableView
+y las clases para la implementación del rendering, de modo que sea más fácil
+de cambiar en el futuro lo que se haga. La pregunta es si vale la pena el
+incremento en la complejidad del sistema ?
+
+
+

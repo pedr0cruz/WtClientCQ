@@ -18,7 +18,7 @@
 using namespace Wt;
 
 // Constructor
-ResultSetController::ResultSetController(string name) : SubjectGoF(name)
+ResultSetController::ResultSetController(const string & name) : SubjectGoF(name)
 {
 	rsModel_ = new ResultSetModel(this);
 }

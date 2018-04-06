@@ -1,0 +1,45 @@
+class ResultSetModel {
+	vector < string > wTableHeader;
+	vector < vector <string> > wTableData;
+	vector < vector <string> > wTableFilterData;
+}
+class ResultSetView {
+	ResultSetModel* Model_;
+	// ... ui data ...
+	bool usePager, maxRows, totalRows, maxPages, actualPage;
+
+	vector < string > header;
+	vector < vector <string> > data;
+	vector < vector <string> > filterData;
+
+	TableView *table;
+	// WT view widgets
+	Wt::WContainerWidget *divPager;
+	Wt::WContainerWidget *divTotalPages;
+	Wt::WText *totalPages;
+	Wt::WContainerWidget *divTablesPager;
+	Wt::WMenu *pagerTable;
+	Wt::WContainerWidget * firstItem;
+	Wt::WMenuItem * firstItem_mi;
+	Wt::WContainerWidget * previousItem;
+	Wt::WMenuItem * previousItem_mi;
+	Wt::WContainerWidget * nextItem;
+	Wt::WMenuItem * nextItem_mi;
+	Wt::WContainerWidget * lastItem;
+	Wt::WMenuItem * lastItem_mi;
+
+	Wt::Signal<string> rowSelect;
+}
+class ResultSetController {
+	WContainerWidget* rsViewContainer_;
+	ResultSetView*  rsView_;
+	ResultSetModel* rsModel_;
+	string selectedItem_;
+}
+
+class ResultSet2Model {
+}
+class ResultSet2View {
+}
+class ResultSet2Controller {
+}

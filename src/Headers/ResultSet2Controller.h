@@ -12,38 +12,52 @@
 #include <Wt/Json/Array>
 #include <Wt/Json/Value>
 
-#include "ObserverGoF.h"
 #include "ResultSet2View.h"
 #include "ResultSet2Model.h"
+
+#include "ObserverGoF.h"
 
 using namespace Wt;
 
 ///	Controller for ResultSet which includes the result obtained from a query.
-///	This class implements a Subject Pattern and contains a selected item.
-class ResultSet2Controller : public Wt::WObject, public SubjectGoF
+///	Implements the Subject of the Observer Pattern and contains a selected item.
+class ResultSet2Controller  : public Wt::WObject
+                            , public SubjectGoF
 {
 public:
-	/// Constructor
-	ResultSet2Controller(string name);
-	/// Crea la vista con el Modelo
-	WWidget* createView(WContainerWidget* rsContainer);
+    /// Constructor
+    ResultSet2Controller(const string & name);
 
-	//void recordChanged(string s);
+    /// Crea una vista
+    WWidget* createView(WContainerWidget* container);
 
-	void rowChanged();
+    void recordChanged(const string & s);
+    //EventSignal<WScrollEvent>& scrolled();
 
-	/// Slot para seleccion de nuevo item
-	string selectedItem() { return selectedItem_; }
-	/// Destructor
-	~ResultSet2Controller();
+    void clicked();
+    void doubleClicked();
+    void focussed();
+    void keyPressed();
+    void mouseWheel();
+    void scrolled(WScrollEvent e);
+
+//	void rowChanged();
+
+    /// Slot para seleccion de nuevo item
+    string selectedItem() { return selectedItem_; }
+
+    /// Destructor
+    ~ResultSet2Controller();
 
 protected:
-	WContainerWidget* rsViewContainer_;
-	ResultSet2View*  rsView_;
-	ResultSet2Model* rsModel_;
-	string selectedItem_;
+    WContainerWidget* rsViewContainer_;
 
-	void fillModel();
+    ResultSet2View*  rsView_;
+    ResultSet2Model* rsModel_;
+
+    string selectedItem_;
+
+    void fillModel();
 };
 
 #endif /// RESULTSET2_CTRL_H

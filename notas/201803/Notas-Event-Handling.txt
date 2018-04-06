@@ -1,0 +1,25 @@
+*Event handling* uses a *signal/slots* system
+
+A *Slot* is any method or any descendant of *WObject*.
+
+To connect a signal with a slot, the method signature of the slot MUST be compatible with the signal definition.
+
+A *Signal* may be created by adding a Signal<X, ...> object to your class. Up to 6 arguments of any *Copyable* arbitrary types may be specified to be passed through the signal to connected slots.
+
+THe library defines various user-event signals on various widgets, and it is easy and convenient to add signals ans slots to widget classes to communicate events and triggers callbacks.
+
+Event signals (EventSignal<E>) are signals that MAY be triggered internally by the library to respond to user actions. The abstract base class WInteractWidget defines most of these event signals. To react to one of those events, the programmer connects a self-defined or already existing slot to such a signal.
+
+To connect signals from multiple senders to a single slot, we recommend the use of std::bind() to identify the sender (or the intention) of the signal.
+
+Usage example:
+
+	std::vector<Wt::WPushButton*> buttons = ...;
+	for(unsigned i = 0; i < buttons.size(); ++i) {
+		buttons[i]->clicked().connect(std::bind(&Keyboard::handleClick, i));
+	}
+
+	void Keyboard::handleClick(int i) {
+		t->setText(WString("You pressed button {1}").args(i));
+	}
+
