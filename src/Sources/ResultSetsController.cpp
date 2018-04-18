@@ -13,13 +13,12 @@
 
 #include "ObserverGoF.h"
 
-#include "ResultSetsModel.h"
-#include "ResultSetsView.h"
+#include "ResultSetController.h"
+
+//#include "ResultSetsModel.h"
+//#include "ResultSetsView.h"
 #include "ResultSetsController.h"
 
-#include "ResultSet2Controller.h"
-
-//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else
@@ -36,12 +35,13 @@ static const string s_resultSetsTabsWidget("resultSetsTabWidget");
 /// Constructor
 ResultSetsController::ResultSetsController(const string & name)
     : SubjectGoF(name)
-    , rssTabWidget_ (nullptr)
+    , rssTabWidget_(nullptr)
     , rssTabWidgetContainer_(nullptr)
 {
     model_ = new ResultSetsModel(this);
 }
 
+/// Destructor
 ResultSetsController::~ResultSetsController()
 {
     for each (auto key_value_pair in controllersMap_) {
@@ -69,10 +69,10 @@ WContainerWidget* ResultSetsController::createView(WContainerWidget* parentConta
 
 ResultSet2Controller* ResultSetsController::newController(const string & name)
 {
-    auto controller = new ResultSet2Controller(name);
-    auto table = new WTableView();
-    auto newTabIndex = rssTabWidget_->count();
-    auto menuItem = rssTabWidget_->addTab(table, name);
+    ResultSet2Controller* controller = new ResultSet2Controller(name);
+    WTableView* table = new WTableView();
+    int newTabIndex = rssTabWidget_->count();
+    WMenuItem* menuItem = rssTabWidget_->addTab(table, name);
     controllersMap_[newTabIndex] = controller;
     return controller;
 }

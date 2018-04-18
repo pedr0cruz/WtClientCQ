@@ -1,10 +1,10 @@
-// ResultSetModel.cpp
+// ResultSet2Model.cpp
 // Representa el Modelo en el MVC del ResultSet
 // Se conecta con el CQ y contruye la tabla de elementos JSON del RS
 
 #include <boost/algorithm/string/replace.hpp>
 
-#include "ResultSetModel.h"
+#include "ResultSet2Model.h"
 
 //#include "CQJSON.h"
 #ifdef MyDEBUG
@@ -23,7 +23,7 @@
 #endif
 
 // Constructor
-ResultSetModel::ResultSetModel(WObject* parent) : WStandardItemModel(parent)
+ResultSet2Model::ResultSet2Model(WObject* parent) : WStandardItemModel(parent)
 {
 #ifdef MyDEBUG
 	cqSession = CQJSONdummy::getInstance();
@@ -34,7 +34,7 @@ ResultSetModel::ResultSetModel(WObject* parent) : WStandardItemModel(parent)
 }
 
 // Llena el WorkSpace desde el CQ
-bool ResultSetModel::fillModel(string QueryName)
+bool ResultSet2Model::fillModel(string QueryName)
 {
 	Json::Object JsonObject, JsonCQ, JsonQuery, JsonColumn, JsonRow, result;
 
@@ -70,7 +70,7 @@ bool ResultSetModel::fillModel(string QueryName)
 		JsonRow = JsonRows[row];
 		wTableData[row].resize(numColumns); // Para WTable
 		//fileModel_->insertRows(fileModel_->rowCount(), row + 1 - fileModel_->rowCount());
-		for (auto col = 0; col < numColumns; col++){
+		for (unsigned col = 0; col < numColumns; col++){
 			Json::Object JsonColumn = JsonColumns[col];
 			WString colname = JsonColumn.get("name");
 			boost::any data(Wt::WString::fromUTF8(JsonRow.get(colname.toUTF8())));
@@ -79,5 +79,5 @@ bool ResultSetModel::fillModel(string QueryName)
 			wTableData[row][col] = JsonRow.get(colname.toUTF8()); // Para WTable
 		}
 	}
-	return true;
+	return TRUE;
 }

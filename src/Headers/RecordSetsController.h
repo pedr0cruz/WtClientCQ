@@ -5,6 +5,9 @@
 #include <Wt/WTabWidget>
 #include <Wt/WTemplateFormView>
 
+#include <map>
+#include <string>
+
 #include "ObserverGoF.h"
 
 class RecordSetsModel;
@@ -29,12 +32,7 @@ public:
     RecordSetController* newController(const string & name);
 
     /// Evento que ocurre al cambiar la pestaña activa
-	void tabChanged(string s);
-	//EventSignal<WScrollEvent>& scrolled();
-
-	/// Slot para seleccion de nuevo item
-	//string selectedTab() { return selectedTab_; }
-    //int currentTabIndex() { return currentTabIndex_; }
+	void tabChanged(int currentTab);
 
 	/// Destructor
 	~RecordSetsController();
@@ -44,8 +42,6 @@ protected:
     RecordSetsModel* model_;
     /// Vista asociada a este controlador
     RecordSetsView* view_;
-    Wt::WTabWidget* recTabWidget_;
-    Wt::WContainerWidget* recTabWidgetContainer_;
 
     /// Mapa de indices (enteros) a controladores (uno por pestaña)
     typedef std::map<int, RecordSetController*> ControllersMap;

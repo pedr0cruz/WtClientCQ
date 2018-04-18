@@ -13,53 +13,58 @@
 #include <Wt/Json/Value>
 
 #include "ObserverGoF.h"
+
 #include "RecordSetView.h"
 #include "RecordSetModel.h"
 
-using namespace Wt;
-
-///	Controller for ResultSet which includes the result obtained from a query.
-///	This class implements a Subject Pattern and contains a selected item.
+///	Controller for RecordSet which includes the result obtained from a given ResultSet
+/// in the table visible in the top view.
+///	Implements the Subject of the Observer Pattern and contains a selected item which
+/// happens to be the control wich has the focus.
 class RecordSetController : public Wt::WObject, public SubjectGoF
 {
 public:
 	/// Constructor
-	RecordSetController(const string & name);
-	/// Crea la vista
-	WWidget* createView(WContainerWidget* recContainer);
-	//std::shared_ptr <WWidget> createView(std::shared_ptr <WContainerWidget> rsContainer);
+    RecordSetController(const std::string & name);
 
-	//void recordChanged(string s);
-	//EventSignal<WScrollEvent>& scrolled();
+    /// Crea una vista (pudiera haber varias para el mismo modelo)
+    Wt::WWidget* createView(Wt::WContainerWidget* container);
+
+    ///  Eventos a los que debe reaccionar este controlador
+
+    /// Cambia el control que tiene el foco
+    void itemChanged(string s);
+    /// Se ha movido la vista dentro de la ventana
+    //EventSignal<WScrollEvent>& scrolled();
 
 	void clicked();
 	void doubleClicked();
-	void focussed();
+    void enterPressed();
+    void escapePressed();
+    void focussed();
 	void keyPressed();
-	void mouseWheel();
-	void scrolled(WScrollEvent e);
+    void mouseWheel();
 
-//	void rowChanged();
+    void scrolled(Wt::WScrollEvent e);
 
-	/// Slot para seleccion de nuevo item
-	string selectedItem() { return selectedItem_; }
+    /// Slot para seleccion de nuevo item
+    std::string selectedItem() { return selectedItem_; }
 
 	/// Destructor
 	~RecordSetController();
 
 protected:
-	WContainerWidget* recViewContainer_;
-	//std::shared_ptr <WContainerWidget> recViewContainer_;
+    ///  Contenedor de la vista
+    Wt::WContainerWidget* viewContainer_;
 
-	//std::shared_ptr <RecordSetView>  recView_;
-    RecordSetView*  recView_;
-    //std::vector <RecordSetView*> recViewVec_;
+    /// Modelo asociado a este controlador
+    RecordSetModel* model_;
+    /// Vista asociada a este controlador
+    RecordSetView*  view_;
 
-	//std::shared_ptr <RecordSetModel> recModel_;
-    RecordSetModel* recModel_;
-    //std::vector <RecordSetModel*> recModelVec_;
-
-	string selectedItem_;
+    ///  Datos particulares de cada tipo de vista
+    string selectedItem_;
+    /// FIN de datos particulares de cada tipo de vista
 
 	void fillModel();
 };

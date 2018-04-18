@@ -19,7 +19,12 @@ MediatorGoF::~MediatorGoF()
 }
 
 /// Registra un objeto cliente. Devuelve false si el cliente ya habia sido registrado.
-void MediatorGoF::registerClient(std::shared_ptr<ColleagueGoF> colleague_ptr)
+//void MediatorGoF::registerClient(std::shared_ptr<ColleagueGoF> colleague_ptr)
+//{
+//    colleagues_vec_.push_back(colleague_ptr);
+//}
+
+void MediatorGoF::registerClient(ColleagueGoF* colleague_ptr)
 {
     colleagues_vec_.push_back(colleague_ptr);
 }

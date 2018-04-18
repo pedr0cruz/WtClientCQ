@@ -1,5 +1,10 @@
+// ResultSetView
+//
+
 #ifndef RESULTSET_VIEW_H
 #define RESULTSET_VIEW_H
+
+#pragma once
 
 #include <Wt/WContainerWidget>
 #include <Wt/WText>
@@ -9,45 +14,69 @@
 #include <Wt/WAnimation>
 #include <Wt/WDialog>
 #include <Wt/WLabel>
+#include <Wt/WSignal>
+#include <Wt/WTableView>
+
 #include <vector>
 #include <string>
-#include <Wt/WSignal>
-#include <Wt/WImage>
 
 #include "ResultSetModel.h"
 
-//using namespace std;
-using namespace Wt;
-
-
+#if 1
 ///	TableView: Shows the data from a model.
 /// This class inherits from WTable to implement a custom table view.
-class TableView : public WTable
+class TableView : public Wt::WTableView
 {
 private:
+    /// Indice de la fila seleccionada
 	int selectedRow;
-	int selectedHeader;
-	Signal<int> rowSelect;
-	Signal<int> findByColumn;
-	Signal<int, bool> sortByColumn;
+    /// Indice del encabezamiento seleccionado
+    int selectedHeader;
+    
+    /// Señal de selección de fila
+	Wt::Signal<int> rowSelect;
+    /// Señal de búsqueda por columna
+    Wt::Signal<int> findByColumn;
+    /// Señal de ordenamiento por columnas
+    Wt::Signal<int, bool> sortByColumn;
 
+    /// Indica orden ascendente o descendente por cada columna
 	vector<bool> sortOrder;
 
+    /// FIX ME HACK PENDIENTE TODO
 	void s_selectRow(int);
 
 public:
+    /// Constructor
 	TableView(Wt::WContainerWidget *parent = 0);
-	void setHeader(vector<string>);
-	void addRow(vector<string>);
-	void setHidden(bool, const Wt::WAnimation &animation = Wt::WAnimation());
+    /// Establece los encabezamientos
+    void setHeader(std::vector <std::string>);
+    /// Agrega una fila recibida en un argumento como vector de cadenas
+    void addRow(std::vector <std::string>);
+    /// Oculta/muestra la vista (argumento en true/false) y establece qué animación utilizar.
+    void setHidden(bool, const Wt::WAnimation & animation = Wt::WAnimation());
+    /// Establece la cantidad de filas/columnas que se usarán como encabezamientos (según header_orientation).
+	void setHeaderCount(int headers_count, Wt::Orientation header_orientation);
 
-	Signal<int>& rowSelected(){ return rowSelect; }
-	Signal<int>& onFindByColumn(){ return findByColumn; }
-	Signal<int, bool>& onSortByColumn(){ return sortByColumn; }
+/*
+	Signal< int, int > &  cellClicked()
+		Signal emitted when a cell is clicked.More...
 
-	~TableView();
+		Signal< int, int, int, int > &  currentCellChanged()
+		Signal emitted when a new cell received focus.More...
 
+		Signal &  itemSelectionChanged()
+		Signal emitted when the selection changes.More...
+*/
+
+    Wt::Signal<int>& rowSelected(){ return rowSelect; }
+    Wt::Signal<int>& onFindByColumn(){ return findByColumn; }
+    Wt::Signal<int, bool>& onSortByColumn(){ return sortByColumn; }
+
+    /// Destructor
+	virtual ~TableView();
 };
+#endif
 
 ////////////////////////// ResultSetView /////////////////////////////////////////
 
@@ -57,18 +86,20 @@ public:
 class ResultSetView : public Wt::WContainerWidget
 {
 private:
-	ResultSetModel* Model_;
+    static const char* ItemSelectionMimeType;
+
+    ResultSetModel* model_;
 	bool usePager;
 	int maxRows;
 	int totalRows;
 	int maxPages;
 	int actualPage;
 
-	vector<string> header;
-	vector < vector<string> > data;
-	vector < vector<string> > filterData;
+    std::vector < std::string> header;
+    std::vector < std::vector <std::string> > data;
+    std::vector < std::vector <std::string> > filterData;
 
-	TableView *table;
+	TableView* table;
 	Wt::WContainerWidget *divPager;
 	Wt::WContainerWidget *divTotalPages;
 	Wt::WText *totalPages;
@@ -90,7 +121,9 @@ private:
 	void s_findByColumn(int);
 	void s_rowSelected(int);
 
-	Wt::Signal<string> rowSelect;
+//	Wt::Signal<string> rowSelect;
+
+//	Wt::EventSignal<WScrollEvent>& Wt::WContainerWidget::scrolled();
 
 	void filterBy(int, Wt::WString);
 	void sortByColumn(int, bool);
@@ -100,12 +133,12 @@ private:
 
 public:
 	ResultSetView(Wt::WContainerWidget *parent = 0);
-	ResultSetView(vector<string>, Wt::WContainerWidget *parent = 0);
-	static const char *ItemSelectionMimeType;
+    ResultSetView(std::vector <std::string>, Wt::WContainerWidget *parent = 0);
 
-	void setHeader(vector<string>);
-	void setData(vector < vector<string> >);
-	void createData(); ///< toma el modelo y lo guarda de la matriz <vector <vector>>
+    void setHeader(std::vector <std::string>);
+    void setData(std::vector < std::vector <std::string> >);
+    /// Toma el modelo y lo guarda de la matriz <vector <vector>>
+	void createData();
 	void fillTable();
 	void clearTable();
 
@@ -113,10 +146,15 @@ public:
 
 	void setMaxRows(int t){ maxRows = t; }
 	void setPager(bool pager){ usePager = pager; }
-	void setModel(ResultSetModel* model){ Model_ = model; }
+	void setModel(ResultSetModel* model){ model_ = model; }
 
-
-	Wt::Signal<string>& onSelectedRow(){ return rowSelect; }
+//	Wt::Signal<string>& onSelectedRow(){ return rowSelect; }
+	
+	/*
+	Wt::Signal& Wt::WAbstractItemView::selectionChanged()
+	{
+	}
+	*/
 
 	~ResultSetView();
 };

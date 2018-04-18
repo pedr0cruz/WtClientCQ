@@ -1,21 +1,19 @@
-// CQWtApp.h
+/// CQWtApp.h
 
 #ifndef CQWTAPP_H
 #define CQWTAPP_H
+
+#pragma once
 
 #include "CQWtAppView.h"
 #include "ObserverGoF.h"
 #include "WorkSpaceController.h"
 
-#if ! defined (USE_RESULTSET2)
-#	include "ResultSetController.h"
-#else
-#	include "ResultSet2Controller.h"
-#endif
 #include "RecordSetController.h"
-
-#include "ResultSetsController.h"
 #include "RecordSetsController.h"
+
+#include "ResultSetController.h"
+#include "ResultSetsController.h"
 
 /// Definición de la clase CQWtApplication, responsable del control de la aplicación.
 /// Se comporta como un Observer (GoF) y un MVC
@@ -30,29 +28,25 @@
 class CQWtApplication : public Wt::WApplication, public ObserverGoF
 {
 public:
+    /// Constructor 
 	CQWtApplication(const Wt::WEnvironment& env);
-	~CQWtApplication();
+    /// Destructor
+    virtual ~CQWtApplication();
 
 	/// Llamado desde un sujeto que cambia (Patron Observer-GoF)
 	void update(SubjectGoF* s);
 
 protected:
+
 	/// Vista principal, configurada como grilla de Widgets
 	CQWtAppView* mainView;
+
 	/// Controlador de panel izquierdo
 	WorkSpaceController* workSpaceCtrl;
-	/// Controlador de panel superior
-#if 0
-#if ! defined (USE_RESULTSET2)
-	ResultSetController* resultSetCtrl;
-#else
-	ResultSet2Controller* resultSetCtrl;
-#endif
-	/// Controlador de panel inferior
-	RecordSetController* recordSetCtrl;
-#endif
+
     /// Controlador de panel superior
     ResultSetsController* resultSetsCtrl;
+
     /// Controlador de panel inferior
     RecordSetsController* recordSetsCtrl;
 

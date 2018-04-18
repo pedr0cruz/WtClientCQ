@@ -1,3 +1,6 @@
+// ResultSetModel.h
+//
+
 #ifndef RESULTSET_MODEL_H
 #define RESULTSET_MODEL_H
 
@@ -17,38 +20,42 @@
 #	include "CQJSON.h"
 #endif
 
-// #include "ResultSetView.h"
-
-using namespace Wt;
-//using namespace std;
-
 ///	ResultSetModel: Stores the data for a custom model.
 /// This class inherits from WStandardItemModel to implement 
 /// a custom model.
-class ResultSetModel : public WStandardItemModel ///< Guarda un modelo personalizado
+class ResultSetModel : public Wt::WStandardItemModel ///< Guarda un modelo personalizado
 {
 public:
-#ifdef MyDEBUG
-	CQJSONdummy* cqSession;
-#else
-	CQJSON* cqSession;
-#endif
-	/// Constructor.
-	ResultSetModel(WObject *parent);
+    /// Constructor
+    ResultSetModel(Wt::WObject *parent);
 
-	bool fillModel(string QueryName);
+    /// Destructor
+    virtual ~ResultSetModel();
+
+    /// Llena el modelo con los datos de la consulta
+    bool fillModel(string QueryName);
 
 protected:
-	/// Vectores necesarios para tablas simples WTable
-	vector < string > wTableHeader;
-	vector < vector <string> > wTableData;
-	vector < vector <string> > wTableFilterData;
 
-	// Return the mime type.
-//	virtual string mimeType() const {
-//		return ResultSetView::ItemSelectionMimeType;
-//	}
+#ifdef MyDEBUG
+    CQJSONdummy* cqSession;
+#else
+    CQJSON* cqSession;
+#endif
+
+    /// Vectores necesarios para tablas simples WTable
+    std::vector < std::string > wTableHeader;
+    std::vector < std::vector <std::string> > wTableData;
+    std::vector < std::vector <std::string> > wTableFilterData;
+
+	/// Return the mime type.
+	virtual std::string mimeType() const
+    {
+        return ItemSelectionMimeType;
+	}
+
+private:
+    static const char *ItemSelectionMimeType;
 };
-
 
 #endif /// RESULTSET_MODEL_H

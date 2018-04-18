@@ -143,7 +143,9 @@ public:
     
     //void setHeader(vector<string>);
 	//void addRow(vector<string>);
-	
+
+    int currentTabIndex() { return currentTabIndex_; }
+
     void setModel(ResultSetsModel* model);
 	//void setModel(std::shared_ptr <ResultSetModel> model);
 
@@ -160,6 +162,7 @@ private:
 
     //ResultSetView(std::shared_ptr <Wt::WContainerWidget> parent = nullptr);
     ResultSetsModel* model_;
+    int currentTabIndex_;
     //string selectedTab;
     //int selectedHeader;
     //Signal<int> rowSelect;

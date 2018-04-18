@@ -44,15 +44,6 @@
     <ClInclude Include="..\..\src\Headers\FolderView.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Headers\ResultSetController.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Headers\ResultSetModel.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Headers\ResultSetView.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Headers\WorkSpaceController.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -71,13 +62,55 @@
     <ClInclude Include="..\..\src\Headers\CQJSONdummy.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Headers\ResultSet2Controller.h">
+    <ClInclude Include="..\..\src\Headers\RecordSetController.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Headers\ResultSet2Model.h">
+    <ClInclude Include="..\..\src\Headers\RecordSetView.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Headers\ResultSet2View.h">
+    <ClInclude Include="..\..\src\Headers\RecordSetModel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\MediatorGoF.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\TabWidget.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSetsController.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\RecordSetsController.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\RecordSetsModel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\RecordSetsView.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSetsModel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSetsView.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSetModel-.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSetView-.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSetController-.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSetView.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSetModel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Headers\ResultSetController.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,15 +125,6 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Sources\main.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Sources\ResultSetController.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Sources\ResultSetModel.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Sources\ResultSetView.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Sources\TreeViewDragDrop.C">
@@ -136,13 +160,52 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Sources\ResultSet2Controller.cpp">
+    <ClCompile Include="..\..\src\Sources\CQWtAppView2.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Sources\ResultSet2Model.cpp">
+    <ClCompile Include="..\..\src\Utils\MediatorGoF.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSetsController.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Sources\ResultSet2View.cpp">
+    <ClCompile Include="..\..\src\Sources\RecordSetsController.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSetsModel.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSetsView.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\RecordSetsModel.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\RecordSetView.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\RecordSetModel.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\RecordSetController.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSetController-.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSetModel-.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSetView-.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSetView.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSetModel.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\ResultSetController.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,21 +1,21 @@
-/* CQJSON_HPP: Clase de integración con ClearQuest con protocolo JSON (JavaScript Object Notation) */
-#ifndef CQJSON_INCLUDED
-#define CQJSON_INCLUDED
+/// CQJSON.h
+/// Clase de integración con ClearQuest con protocolo 
+/// JSON (JavaScript Object Notation)
+
+#ifndef CQJSON_H
+#define CQJSON_H
+
+#pragma once
 
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include <Wt\Wstring>
 
 #define JS(...) #__VA_ARGS__
 
-#pragma once
-#import "C:\\Program Files (x86)\\IBM\\RationalSDLC\\ClearQuest\\cqole.dll" no_namespace auto_rename
-
-//using namespace Wt;
-
-using namespace std; 
-
+//#import "C:\\Program Files (x86)\\IBM\\RationalSDLC\\ClearQuest\\cqole.dll" no_namespace auto_rename
 
 /// CQJSON: ClearQuest client class which uses a JSON interface
 ///
@@ -28,77 +28,111 @@ class CQJSON
 	private:
 		///	singleton (unique global instance)
 		static CQJSON *instance;
+
+        /// Puntero a sesión de ClearQuest
 		IOAdSessionPtr session = NULL;
-		IOAdEntityPtr  entity = NULL;
-		bool bConectado = false;	// Indica que la conexion ya se ha establecido con la BD con UserLogon
-		int GetCompOperator(const char *name) { // Codigos de los operadores de querys
+        /// Puntero a entidad de ClearQuest
+        IOAdEntityPtr  entity = NULL;
+
+        /// Indica que la conexion ya se ha establecido con la BD con UserLogon
+        bool bConectado = false;
+
+        /// Devuelve el indide del código de operador de consulta especificado como argumento
+        int GetCompOperator(const char *name)
+        {
+            // Codigos de los operadores de querys
 			char* CompOperators[] = { "\0", "EQ", "NEQ", "LT", "LTE", "GT", "GTE", "LIKE", "NOT_LIKE", "BETWEEN", "NOT_BETWEEN", "IS_NULL", "IS_NOT_NULL", "IN", "NOT_IN", "\0" };
 			for (int i = 1; CompOperators[i]; i++) if (!strcmp(name, CompOperators[i]))	return i; return 0;
 		}
-		string GetColumnType(unsigned long type) { // Codigos de los tipo de datos de las columnas
+
+        /// Devuelve el código de operador de consulta que corresponde al indice especificado
+        std::string GetColumnType(unsigned long type)
+        {
 			char* CTypes[] = { "\0", "STRING", "MULTILINE", "BINARY", "LONG", "DATETIME", "DOUBLE", "\0" };
 			return CTypes[type];
 		}
 
+        /// FIXME HACK PENDIENTE Devuelve ... de ClearQuest
 		std::string GetParameters(IOAdResultSetPtr);
+
 	public:
-		CQJSON();
-		CQJSON( const char* login_name, const char* password, const char* database_name, const char* database_set ){
-			UserLogon(login_name, password, database_name, database_set); 	}
-		~CQJSON();
-		/// Devuelve siempre la misma instancia
-		static CQJSON *getInstance(); 
+        /// Constructor implícito (sin argumentos)
+        CQJSON();
+        /// Constructor con argumentos para conectarse a base de datos
+        CQJSON (const char* login_name, const char* password,
+                const char* database_name, const char* database_set)
+        {
+			UserLogon(login_name, password, database_name, database_set);
+        }
+        /// Destructor
+		virtual ~CQJSON();
+
+        /// Devuelve siempre la misma instancia (patrón Singleton)
+        static CQJSON *getInstance();
 
 		/// UserLogon: permite la conexión a una BD de usuario
 		bool UserLogon(const char* login_name, const char* password, const char* database_name, const char* database_set);
-		std::string JSONUserLogon(const char* JSON_connection);
+        /// JSONUserLogon: Usa JSON para la conexión a una BD de usuario
+        std::string JSONUserLogon(const char* JSON_connection);
 
-		std::string ExecuteQuery(char* query);
-		std::string JSONExecuteQuery(string JSON_query);
+		/// Ejecuta la consulta especificada
+        std::string ExecuteQuery(char* query);
+        /// Ejecuta la consulta especificada usando JSON
+        std::string JSONExecuteQuery(std::string JSON_query);
 
 		/// Devuelve la lista de nombres de queries, graficos y reportes del workspace
-		vector<string> GetAllWorkspaceList();
+        std::vector <std::string> GetAllWorkspaceList();
 		
 		/// Devuelve la lista de elementos del workspece, pudiendo indicar el folder y el tipo
-		vector<string> GetWorkspaceList(int folder, std::string tipo);
+		std::vector <std::string> GetWorkspaceList(int folder, std::string tipo);
 
-		std::string JSONGetWorkspaceList(int folder, char* type);
-		std::string JSONGetAllWorkspaceList(char* JSON_connection);
+        /// Devuelve cadena con datos de Workspace ... 
+        /// Para el comentario: FIXME, HACK PENDIENTE
+        std::string JSONGetWorkspaceList(int folder, char* type);
+        /// Devuelve cadena con datos de Workspace ... usando JSON
+        /// Para el comentario: FIXME, HACK PENDIENTE
+        std::string JSONGetAllWorkspaceList(char* JSON_connection);
 
-		std::string JSONGetAllFolderList(char* JSON_connection);
+        /// Devuelve lista de carpetas del Workspace ... usando JSON
+        /// Para el comentario: FIXME, HACK PENDIENTE
+        std::string JSONGetAllFolderList(char* JSON_connection);
 
-		bool GetFieldNames();
-		bool IsConnected() { return bConectado; }
+        /// Obtiene nombre de los campos
+        bool GetFieldNames();
+        /// Devuelve si está conectado (como usuario) o no
+        bool IsConnected() { return bConectado; }
 
 		/// Devuelve un Json de exito
-		std::string jsonOK(Wt::WString msg) {
+		std::string jsonOK(Wt::WString msg)
+        {
 			std::string msgerr = Wt::WString("{\"clearquest\": {\"status\":\"ok\", \"description\":\"{1}\"}}").arg(msg).toUTF8();
 			return msgerr;
 		}
 
 		/// Devuelve un Json de error
-		std::string jsonError(Wt::WString msg) {
+		std::string jsonError(Wt::WString msg)
+        {
 			std::string msgerr = Wt::WString("{\"clearquest\": {\"status\":\"error\", \"description\":\"{1}\"}}").arg(msg).toUTF8();
 			return msgerr;
+/*		
+            // Intentando construir un Json programaticamente, hasta ahora nada
+            Json::Object errmsg, obj;
+			Json::Value v(Json::ObjectType), result;
 
-			// Intentando construir un Json programaticamente, hasta ahora nada
-			/*		Json::Object errmsg, obj;
-					Json::Value v(Json::ObjectType), result;
+			obj["status"] = Wstd::string("error");
+			obj.insert( make_pair("desc", msg) );
+			v = &obj;
 
-					obj["status"] = Wstd::string("error");
-					obj.insert( make_pair("desc", msg) );
-					v = &obj;
-
-					errmsg["clearquest"] = Wstd::string(Json::serialize(obj)); // OK
-					std::string generated = Json::serialize(errmsg);
-					cerr << generated;
-					*/
+			errmsg["clearquest"] = Wstd::string(Json::serialize(obj)); // OK
+			std::string generated = Json::serialize(errmsg);
+			cerr << generated;
+*/
 		}
 
 		/// Convierte los caracteres de Escape segun JSON 
 		/// Nota: la misma funcion la realiza Wstd::string::jsstd::stringLiteral, cambiarlo y probarlo
-		std::string escapeJsonString(const std::string& input) {
-
+		std::string escapeJsonString(const std::string& input)
+        {
 			std::ostringstream ss;
 			for (auto iter = input.cbegin(); iter != input.cend(); iter++) {
 				//C++98/03:
@@ -114,18 +148,21 @@ class CQJSON
 		//		return input.jsstd::stringLiteral();
 	
 
-		/*********************** ENTITY *******************************/
+		/// *********************** ENTITY ******************************
 		/// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
 		bool GetEntity(const char* record_type, const char *display_name);
-		string JSONGetEntity(const char* JSON_entity);
+        /// GetEntity: obtiene un registro y lo guarda en entity usando JSON. Recibe el tipo de registro y el DbId
+        std::string JSONGetEntity(const char* JSON_entity);
 
 		/// GetFieldValue: Obtiene el campo del registro almancenado en entity
 		char* GetFieldValue(const char* field);
-		string JSONGetFieldStringValues(const char* JSON_field);
+
+        /// Devuelve valores de campo de JSON
+        std::string JSONGetFieldStringValues(const char* JSON_field);
 
 		/// SetFieldValue: Setea un campo del registro almancenado en entity
 		char* SetFieldValue(const char* field, const char* value);
-		string JSONSetFieldValues(const char* JSON_fields);
+		std::string JSONSetFieldValues(const char* JSON_fields);
 
 		/// EditEntity: Inicia una acción de la entidad
 		char* EditEntity(const char* action);
@@ -141,10 +178,9 @@ class CQJSON
 
 		/// ClearEntity: limpia la variable entity obligando a cargar nuevamente
 		void ClearEntity();
-
 };
 
-class CQEntity{
+class CQEntity {
 private:
 	CQJSON session;
 	IOAdEntityPtr  entity = NULL;
@@ -154,13 +190,13 @@ public:
 	~CQEntity(){ entity = NULL; }
 
 	/// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
-	string GetEntity(const char* JSON_entity);
+	std::string GetEntity(const char* JSON_entity);
 
 	/// GetFieldValue: Obtiene el campo del registro almancenado en entity
-	string GetFieldStringValues(const char* JSON_field);
+    std::string GetFieldStringValues(const char* JSON_field);
 
 	/// SetFieldValue: Setea un campo del registro almancenado en entity
-	string SetFieldValues(const char* JSON_fields);
+    std::string SetFieldValues(const char* JSON_fields);
 
 	/// EditEntity: Inicia una acción de la entidad 
 	char* Edit(const char* action);
@@ -178,5 +214,4 @@ public:
 	void Clear();
 };
 
-//} // namespace
-#endif CQJSON_INCLUDED
+#endif CQJSON_H

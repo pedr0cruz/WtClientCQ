@@ -1,0 +1,189 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Chapter 24. Boost.Variant</title><link rel="stylesheet" type="text/css" href="/static/main/css/main.css"><link rel="home" href="the-boost-c++-libraries" title="The Boost C++ Libraries"><link rel="prev" href="boost.any" title="Chapter 23. Boost.Any"><link rel="next" href="boost.propertytree" title="Chapter 25. Boost.PropertyTree"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.11.0/styles/vs.min.css"><script onload="hljs.initHighlightingOnLoad()" src="//cdn.jsdelivr.net/highlight.js/9.11.0/highlight.min.js"></script><script>var disqus_identifier = 'boost.variant';</script><script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-59953346-1', 'auto');
+      ga('send', 'pageview');
+    </script><script async="async" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54ede4aa2dd8667c"></script></head><body class="chapter"><div class="relative"><header><a href="the-boost-c++-libraries"><img src="/static/main/img/boost-logo.svg" alt="" width="20" height="20" id="boost-logo">The Boost C++ Libraries</a><a href="https://twitter.com/theboostcpplibs" class="twitter"><img src="/static/main/img/twitter.png" width="17" height="14" alt="Follow @theboostcpplibs" class="twitter"></a></header><nav><ul><li><a href="the-boost-c++-libraries">The Boost C++ Libraries</a><ul><li><a href="data-structures">Part IV. Data Structures</a><ul><li><a href="boost.optional">Chapter 21. Boost.Optional</a></li><li><a href="boost.tuple">Chapter 22. Boost.Tuple</a></li><li><a href="boost.any">Chapter 23. Boost.Any</a></li><li><strong><a href="boost.variant">Chapter 24. Boost.Variant</a></strong></li><li><a href="boost.propertytree">Chapter 25. Boost.PropertyTree</a></li><li><a href="boost.dynamicbitset">Chapter 26. Boost.DynamicBitset</a></li><li><a href="boost.tribool">Chapter 27. Boost.Tribool</a></li><li><a href="boost.compressed_pair">Chapter 28. Boost.CompressedPair</a></li></ul></li></ul></li></ul>
+        
+<script>
+  (function() {
+    var cx = '011552474235077786014:zyife9oy_sk';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div class="gcse-search"></div>
+<script>
+function onAdClick() {
+  var ad = document.querySelector('.ad');
+  ad.style.cursor = 'default';
+  var img = document.querySelector('.ad .content img');
+  img.style.display = 'none';
+  var links = document.getElementsByClassName('shoplink');
+  for (var i = 0; i < links.length; ++i) {
+    links[i].style.display = 'inline';
+  }
+  ga('send', 'event', 'ad', 'click', 'book');
+}
+</script>
+  <div class="ad" onclick="onAdClick()" style="cursor:pointer;width:200px;margin-top:7px">
+    <div class="title">Get the book</div>
+    <div class="url">theboostcpplibraries.com</div>
+    <div class="content">
+      <img src="/static/main/img/book-cover-small.png" alt="The Boost C++ Libraries" width="74" height="94" style="float:left;margin-right:5px"/>
+      <table style="font-size:1.2em;border-collapse:collapse">
+        <tr>
+          <td style="text-align:right">$45.95</td>
+          <td>Print</td>
+          <td class="shoplink" style="display:none"><a href="https://www.amazon.com/gp/product/1937434362/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=1937434362&amp;linkCode=as2&amp;tag=theboostcppli-20&amp;linkId=ZD2OKWS6OJX5F3S3" style="text-decoration:underline" onclick="ga('send', 'event', 'ad', 'click', 'print');return true;">Amazon</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:right">$9.99</td>
+          <td>Kindle</td>
+          <td class="shoplink" style="display:none"><a href="https://www.amazon.com/gp/product/B00OX0KJOK/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B00OX0KJOK&amp;linkCode=as2&amp;tag=theboostcppli-20&amp;linkId=B5LGTSOTEZ6C7EVL" style="text-decoration:underline" onclick="ga('send', 'event', 'ad', 'click', 'kindle');return true;">Amazon</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:right">$9.99</td>
+          <td>E-book</td>
+          <td class="shoplink" style="display:none"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=F7WCSZLHDU9GN" style="text-decoration:underline" onclick="ga('send', 'event', 'ad', 'click', 'ebook');return true;">Download</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:right">$9.99</td>
+          <td>PDF</td>
+          <td class="shoplink" style="display:none"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HMMF8LP558LHL" style="text-decoration:underline" onclick="ga('send', 'event', 'ad', 'click', 'pdf');return true;">Download</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+  <a href="/expert" class="ad" style="margin-top:15px">
+    <div class="title">&hellip; or the expert</div>
+    <div class="url">theboostcpplibraries.com</div>
+    <div class="content">
+      <img src="/static/main/img/boris-schaeling-small.jpg" alt="Boris Schäling" width="74" height="74" style="float:left;margin-right:5px"/>
+      <div style="font-size:1.2em;color:grey">Presentations,<br>trainings and<br>consulting on<br>Boost and C++</div>
+    </div>
+  </a>
+  
+  
+  
+  <div style="text-align:center;margin:15px 0px"><a href="/ad" style="color:darkgrey">Your exclusive ad here?</a></div>
+  <!--script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3679079217438126" data-ad-slot="4616164693" data-ad-format="auto"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script-->
+  
+
+      </nav></div><div lang="en" class="chapter" id="boost.variant"><div class="titlepage"><div><div><h1 class="title">Chapter 24. Boost.Variant</h1></div></div></div><p><a class="link" href="http://www.boost.org/libs/variant" target="_top">Boost.Variant</a> provides a class called <code class="classname">boost::variant</code> that resembles <code class="code">union</code>. You can store values of different types in a <code class="classname">boost::variant</code> variable. At any point only one value can be stored. When a new value is assigned, the old value is overwritten. However, the new value may have a different type from the old value. The only requirement is that the types must have been passed as template parameters to <code class="classname">boost::variant</code> so they are known to the <code class="classname">boost::variant</code> variable.</p><p><code class="classname">boost::variant</code> supports any type. For example, it is possible to store a <code class="classname">std::string</code> in a <code class="classname">boost::variant</code> variable – something that wasn’t possible with <code class="code">union</code> before C++11. With C++11, the requirements for <code class="code">union</code> were relaxed. Now a <code class="code">union</code> can contain a <code class="classname">std::string</code>. Because a <code class="classname">std::string</code> must be initialized with placement new and has to be destroyed by an explicit call to the destructor, it can still make sense to use <code class="classname">boost::variant</code>, even in a C++11 development environment.</p>
+    
+    <div class="example" id="ex.variant_01"><div class="example-title">Example 24.1. Using <code class="classname">boost::variant</code></div><div class="example-contents"><pre class="programlisting"><code class="cpp">#include &lt;boost/variant.hpp&gt;
+#include &lt;string&gt;
+
+int main()
+{
+  boost::variant&lt;double, char, std::string&gt; v;
+  v = 3.14;
+  v = 'A';
+  v = "Boost";
+}</code></pre></div></div>
+    
+  <p><code class="classname">boost::variant</code> is defined in <code class="filename">boost/variant.hpp</code>. Because <code class="classname">boost::variant</code> is a template, at least one parameter must be specified. One or more template parameters specify the supported types. In <a class="xref" href="boost.variant#ex.variant_01" title="Example 24.1. Using boost::variant">Example 24.1</a>, <var class="varname">v</var> can store values of type <code class="type">double</code>, <code class="type">char</code>, or <code class="classname">std::string</code>. However, if you tried to assign a value of type <code class="type">int</code> to <var class="varname">v</var>, the resulting code would not compile.</p>
+    
+    <div class="example" id="ex.variant_02"><div class="example-title">Example 24.2. Accessing values in <code class="classname">boost::variant</code> with <code class="function">boost::get()</code></div><div class="example-contents"><pre class="programlisting"><code class="cpp">#include &lt;boost/variant.hpp&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+  boost::variant&lt;double, char, std::string&gt; v;
+  v = 3.14;
+  std::cout &lt;&lt; boost::get&lt;double&gt;(v) &lt;&lt; '\n';
+  v = 'A';
+  std::cout &lt;&lt; boost::get&lt;char&gt;(v) &lt;&lt; '\n';
+  v = "Boost";
+  std::cout &lt;&lt; boost::get&lt;std::string&gt;(v) &lt;&lt; '\n';
+}</code></pre></div></div>
+    
+  <p>To display the stored values of <var class="varname">v</var>, use the free-standing function <code class="function">boost::get()</code> (see <a class="xref" href="boost.variant#ex.variant_02" title="Example 24.2. Accessing values in boost::variant with boost::get()">Example 24.2</a>).</p><p><code class="function">boost::get()</code> expects one of the valid types for the corresponding variable as a template parameter. Specifying an invalid type will result in a run-time error because validation of types does not take place at compile time.</p><p>Variables of type <code class="classname">boost::variant</code> can be written to streams such as the standard output stream, bypassing the hazard of run-time errors (see <a class="xref" href="boost.variant#ex.variant_03" title="Example 24.3. Direct output of boost::variant on a stream">Example 24.3</a>).</p>
+    
+    <div class="example" id="ex.variant_03"><div class="example-title">Example 24.3. Direct output of <code class="classname">boost::variant</code> on a stream</div><div class="example-contents"><pre class="programlisting"><code class="cpp">#include &lt;boost/variant.hpp&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+  boost::variant&lt;double, char, std::string&gt; v;
+  v = 3.14;
+  std::cout &lt;&lt; v &lt;&lt; '\n';
+  v = 'A';
+  std::cout &lt;&lt; v &lt;&lt; '\n';
+  v = "Boost";
+  std::cout &lt;&lt; v &lt;&lt; '\n';
+}</code></pre></div></div>
+    
+  <p>For type-safe access, Boost.Variant provides a function called <code class="function">boost::apply_visitor()</code>.</p>
+    
+    <div class="example" id="ex.variant_04"><div class="example-title">Example 24.4. Using a visitor for <code class="classname">boost::variant</code></div><div class="example-contents"><pre class="programlisting"><code class="cpp">#include &lt;boost/variant.hpp&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+
+struct output : public boost::static_visitor&lt;&gt;
+{
+  void operator()(double d) const { std::cout &lt;&lt; d &lt;&lt; '\n'; }
+  void operator()(char c) const { std::cout &lt;&lt; c &lt;&lt; '\n'; }
+  void operator()(std::string s) const { std::cout &lt;&lt; s &lt;&lt; '\n'; }
+};
+
+int main()
+{
+  boost::variant&lt;double, char, std::string&gt; v;
+  v = 3.14;
+  boost::apply_visitor(output{}, v);
+  v = 'A';
+  boost::apply_visitor(output{}, v);
+  v = "Boost";
+  boost::apply_visitor(output{}, v);
+}</code></pre></div></div>
+    
+  <p>As its first parameter, <code class="function">boost::apply_visitor()</code> expects an object of a class derived from <code class="classname">boost::static_visitor</code>. This class must overload <code class="methodname">operator()</code> for every type used by the <code class="classname">boost::variant</code> variable it acts on. Consequently, the operator is overloaded three times in <a class="xref" href="boost.variant#ex.variant_04" title="Example 24.4. Using a visitor for boost::variant">Example 24.4</a> because <var class="varname">v</var> supports the types <code class="type">double</code>, <code class="type">char</code>, and <code class="classname">std::string</code>.</p><p><code class="classname">boost::static_visitor</code> is a template. The type of the return value of <code class="methodname">operator()</code> must be specified as a template parameter. If the operator does not have a return value, a template parameter is not required, as seen in the example.</p><p>The second parameter passed to <code class="function">boost::apply_visitor()</code> is a <code class="classname">boost::variant</code> variable.</p><p><code class="function">boost::apply_visitor()</code> automatically calls the <code class="methodname">operator()</code> for the first parameter that matches the type of the value currently stored in the second parameter. This means that the sample program uses different overloaded operators every time <code class="function">boost::apply_visitor()</code> is invoked – first the one for <code class="type">double</code>, followed by the one for <code class="type">char</code>, and finally the one for <code class="classname">std::string</code>.</p><p>The advantage of <code class="function">boost::apply_visitor()</code> is not only that the correct operator is called automatically. In addition, <code class="function">boost::apply_visitor()</code> ensures that overloaded operators have been provided for every type supported by <code class="classname">boost::variant</code> variables. If one of the three overloaded operators had not been defined, the code could not be compiled.</p><p>If overloaded operators are equivalent in functionality, the code can be simplified by using a template (see <a class="xref" href="boost.variant#ex.variant_05" title="Example 24.5. Using a visitor with a function template for boost::variant">Example 24.5</a>).</p>
+    
+    <div class="example" id="ex.variant_05"><div class="example-title">Example 24.5. Using a visitor with a function template for <code class="classname">boost::variant</code></div><div class="example-contents"><pre class="programlisting"><code class="cpp">#include &lt;boost/variant.hpp&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+
+struct output : public boost::static_visitor&lt;&gt;
+{
+  template &lt;typename T&gt;
+  void operator()(T t) const { std::cout &lt;&lt; t &lt;&lt; '\n'; }
+};
+
+int main()
+{
+  boost::variant&lt;double, char, std::string&gt; v;
+  v = 3.14;
+  boost::apply_visitor(output{}, v);
+  v = 'A';
+  boost::apply_visitor(output{}, v);
+  v = "Boost";
+  boost::apply_visitor(output{}, v);
+}</code></pre></div></div>
+    
+  <p>Because <code class="function">boost::apply_visitor()</code> ensures code correctness at compile time, it should be preferred over <code class="function">boost::get()</code>.</p></div><div><div class="prev"><a href="boost.any">Prev</a></div><div class="next"><a href="boost.propertytree">Next</a></div></div>
+    <div id="disqus_thread"></div>
+<script>
+  var disqus_shortname = 'theboostcpplibraries';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<a href="https://github.com/BorisSchaeling/theboostcpplibraries" class="github-corner" aria-label="View source on Github" onclick="ga('send', 'event', 'github', 'click', 'view');return true;"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#ddd; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+  </body></html>

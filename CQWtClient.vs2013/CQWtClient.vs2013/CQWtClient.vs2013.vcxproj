@@ -152,6 +152,7 @@
       <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS=1;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src\Headers;$(SolutionDir)..\src\Utils;$(ProjectDir);"$(ProgramW6432)\Wt 3.3.6 msvs2013 x64\include";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zm220 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -169,6 +170,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src\Headers;$(SolutionDir)..\src\Utils;$(ProjectDir);"$(ProgramW6432)\Wt 3.3.6 msvs2013 x64\include";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251;4275;4800;4018</DisableSpecificWarnings>
+      <AdditionalOptions>/Zm220 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -205,6 +207,7 @@
       <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src\Headers;$(SolutionDir)..\src\Utils;$(ProjectDir);"$(ProgramW6432)\Wt 3.3.6 msvs2013 x64\include";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zm220 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -229,15 +232,26 @@
     <ClInclude Include="..\..\src\Headers\CQWtAppView.h" />
     <ClInclude Include="..\..\src\Headers\CsvUtil.h" />
     <ClInclude Include="..\..\src\Headers\FolderView.h" />
-    <ClInclude Include="..\..\src\Headers\ResultSet2Controller.h" />
-    <ClInclude Include="..\..\src\Headers\ResultSet2Model.h" />
-    <ClInclude Include="..\..\src\Headers\ResultSet2View.h" />
+    <ClInclude Include="..\..\src\Headers\RecordSetController.h" />
+    <ClInclude Include="..\..\src\Headers\RecordSetModel.h" />
+    <ClInclude Include="..\..\src\Headers\RecordSetsController.h" />
+    <ClInclude Include="..\..\src\Headers\RecordSetsModel.h" />
+    <ClInclude Include="..\..\src\Headers\RecordSetsView.h" />
+    <ClInclude Include="..\..\src\Headers\RecordSetView.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetController.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetModel.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetView.h" />
+    <ClInclude Include="..\..\src\Headers\ResultSetController-.h" />
+    <ClInclude Include="..\..\src\Headers\ResultSetModel-.h" />
+    <ClInclude Include="..\..\src\Headers\ResultSetsController.h" />
+    <ClInclude Include="..\..\src\Headers\ResultSetsModel.h" />
+    <ClInclude Include="..\..\src\Headers\ResultSetsView.h" />
+    <ClInclude Include="..\..\src\Headers\ResultSetView-.h" />
+    <ClInclude Include="..\..\src\Headers\TabWidget.h" />
     <ClInclude Include="..\..\src\Headers\WorkSpaceController.h" />
     <ClInclude Include="..\..\src\Headers\WorkSpaceModel.h" />
     <ClInclude Include="..\..\src\Headers\WorkSpaceView.h" />
+    <ClInclude Include="..\..\src\Utils\MediatorGoF.h" />
     <ClInclude Include="..\..\src\Utils\ObserverGoF.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -255,6 +269,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\src\Sources\CQWtApp.cpp" />
+    <ClCompile Include="..\..\src\Sources\CQWtAppView2.cpp" />
     <ClCompile Include="..\..\src\Sources\CsvUtil.C">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MyDeb|x64'">true</ExcludedFromBuild>
@@ -268,12 +283,20 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Sources\FolderView.cpp" />
     <ClCompile Include="..\..\src\Sources\main.cpp" />
-    <ClCompile Include="..\..\src\Sources\ResultSet2Controller.cpp" />
-    <ClCompile Include="..\..\src\Sources\ResultSet2Model.cpp" />
-    <ClCompile Include="..\..\src\Sources\ResultSet2View.cpp" />
+    <ClCompile Include="..\..\src\Sources\RecordSetController.cpp" />
+    <ClCompile Include="..\..\src\Sources\RecordSetModel.cpp" />
+    <ClCompile Include="..\..\src\Sources\RecordSetsController.cpp" />
+    <ClCompile Include="..\..\src\Sources\RecordSetsModel.cpp" />
+    <ClCompile Include="..\..\src\Sources\RecordSetView.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetController.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetModel.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetView.cpp" />
+    <ClCompile Include="..\..\src\Sources\ResultSetController-.cpp" />
+    <ClCompile Include="..\..\src\Sources\ResultSetModel-.cpp" />
+    <ClCompile Include="..\..\src\Sources\ResultSetsController.cpp" />
+    <ClCompile Include="..\..\src\Sources\ResultSetsModel.cpp" />
+    <ClCompile Include="..\..\src\Sources\ResultSetsView.cpp" />
+    <ClCompile Include="..\..\src\Sources\ResultSetView-.cpp" />
     <ClCompile Include="..\..\src\Sources\TreeViewDragDrop.C">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MyDeb|x64'">true</ExcludedFromBuild>
@@ -283,6 +306,7 @@
     <ClCompile Include="..\..\src\Sources\WorkSpaceController.cpp" />
     <ClCompile Include="..\..\src\Sources\WorkSpaceModel.cpp" />
     <ClCompile Include="..\..\src\Sources\WorkSpaceView.cpp" />
+    <ClCompile Include="..\..\src\Utils\MediatorGoF.cpp" />
     <ClCompile Include="..\..\src\Utils\ObserverGoF.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

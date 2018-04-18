@@ -19,9 +19,9 @@ ObserverGoF::ObserverGoF()
 /////// Clase Sujeto: cuando cambia, invoca a notify para que se enteren los Observadores
 
 // Obtiene y almacena un objeto Observador
-//void SubjectGoF::attach(ObserverGoF *o) 
-void SubjectGoF::attach(std::shared_ptr <ObserverGoF> o)
-{ 
+//void SubjectGoF::attach(std::shared_ptr <ObserverGoF> o)
+void SubjectGoF::attach(ObserverGoF *o)
+{
 	vecObservers.push_back (o); 
 }
 

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sorting virtual model - Wt - Redmine</title>
+<meta name="description" content="Redmine" />
+<meta name="keywords" content="issue,bug,tracker" />
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="4f4RzmxZdhQ9Vqk7NXxr7ocOeLmP/rHjo6OcfzRzJok=" name="csrf-token" />
+<link rel='shortcut icon' href='/favicon.ico?1357920784' />
+<link href="/stylesheets/jquery/jquery-ui-1.8.21.css?1357749252" media="all" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/application.css?1357749252" media="all" rel="stylesheet" type="text/css" />
+
+<script src="/javascripts/jquery-1.7.2-ui-1.8.21-ujs-2.0.3.js?1357749252" type="text/javascript"></script>
+<script src="/javascripts/application.js?1357749252" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(window).load(function(){ warnLeavingUnsaved('Esta página contiene texto no guardado y si la abandona sus cambios se perderán'); });
+//]]>
+</script>
+
+
+<!-- page specific tags -->
+</head>
+<body class="controller-messages action-show">
+<div id="wrapper">
+<div id="wrapper2">
+<div id="top-menu">
+    <div id="account">
+        <ul><li><a href="/login" class="login">Conexión</a></li>
+<li><a href="/account/register" class="register">Registrar</a></li></ul>    </div>
+    
+    <ul><li><a href="/" class="home">Inicio</a></li>
+<li><a href="/projects" class="projects">Proyectos</a></li>
+<li><a href="http://www.redmine.org/guide" class="help">Ayuda</a></li></ul></div>
+
+<div id="header">
+    <div id="quick-search">
+        <form accept-charset="UTF-8" action="/projects/wt/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+        <input name="messages" type="hidden" value="1" />
+        <label for='q'>
+          <a href="/projects/wt/search" accesskey="4">Búsqueda</a>:
+        </label>
+        <input accesskey="f" class="small" id="q" name="q" size="20" type="text" />
+</form>        
+    </div>
+
+    <h1>Wt</h1>
+
+    <div id="main-menu">
+        <ul><li><a href="/projects/wt" class="overview">Vistazo</a></li>
+<li><a href="/projects/wt/activity" class="activity">Actividad</a></li>
+<li><a href="/projects/wt/roadmap" class="roadmap">Planificación</a></li>
+<li><a href="/projects/wt/issues" class="issues">Peticiones</a></li>
+<li><a href="/projects/wt/wiki" class="wiki">Wiki</a></li>
+<li><a href="/projects/wt/boards" class="boards selected">Foros</a></li></ul>
+    </div>
+</div>
+
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+        
+        
+    </div>
+
+    <div id="content">
+        
+        <p class="breadcrumb"><a href="/projects/wt/boards">Foros</a> » <a href="/projects/wt/boards/2">Help</a> » </p>
+
+<div class="contextual">
+    <span class="message-13693-watcher"></span>
+    
+    
+    
+</div>
+
+<h2>Sorting virtual model</h2>
+
+<div class="message">
+<p><span class="author">Añadido por <a href="/users/4813">Egbert Koerhuis</a> hace <a href="/projects/wt/activity?from=2017-07-11" title="2017-07-11 10:22">8 meses</a></span></p>
+<div class="wiki">
+<p>For the design of a table overview I was looking for a way to display some data in a WTableView. Since the ammount of data can rise up to 1024 rows I start using a VirtualModel. Now I tried to sort the data in the table using the following code:<br /><code><br />Wt::WTableView *tblVDots = new Wt::WTableView();    <br />VirtualModel *tblDots = new VirtualModel(1024, 256, tblVDots);<br />tblVDots->setModel(tblDots);<br />tblVDots->setRowHeaderCount(1);<br />tblVDots->setColumn1Fixed(true);<br />tblVDots->setAlternatingRowColors(true);<br />tblVDots->setEditTriggers(Wt::WAbstractItemView::NoEditTrigger);<br />tblVDots->setSelectable(true);<br />tblVDots->setSortingEnabled(true); //enable sorting all columns<br />tblVDots->setSortingEnabled(1,false); //disable sorting in column 1<br />tblVDots->setSelectionMode(Wt::SingleSelection);<br />tblVDots->setSelectionBehavior(Wt::SelectItems);<br />tblVDots->resize(1024, 250);<br /></code></p>
+
+
+	<p>When the page is loaded, I see the triangles that indicate the sorting option, but when I click on the header, no sorting is performed. I wonder if the sorting is available for a VirtualModel, and if it does, how I need to setup the sorting.</p>
+
+
+	<p>thanks in advance!</p>
+
+
+	<p>Egbert</p>
+</div>
+
+</div>
+<br />
+
+<h3 class="comments">Respuestas (2)</h3>
+  <div class="message reply" id="message-13694">
+    <div class="contextual">
+      
+      
+      
+    </div>
+  <h4>
+    
+    <a href="/boards/2/topics/13693?r=13694#message-13694">RE: Sorting virtual model</a>
+    -
+    Añadido por <a href="/users/2791">Roel Standaert</a> hace <a href="/projects/wt/activity?from=2017-07-11" title="2017-07-11 11:12">8 meses</a>
+  </h4>
+  <div class="wiki"><p>Sorting is only possible if the model supports sorting, i.e. you have to implement <code>WAbstractItemModel::sort(int, SortOrder)</code>. The sorting arrows in the <code>WTableView</code> will tell the model to sort itself. If you want the ability to sort, but you don't want to affect the underlying model, you can use <code>WSortFilterProxyModel</code>.</p>
+
+
+	<p>Regards,<br />Roel</p></div>
+  
+  </div>
+  <div class="message reply" id="message-13695">
+    <div class="contextual">
+      
+      
+      
+    </div>
+  <h4>
+    
+    <a href="/boards/2/topics/13693?r=13695#message-13695">RE: Sorting virtual model</a>
+    -
+    Añadido por <a href="/users/4813">Egbert Koerhuis</a> hace <a href="/projects/wt/activity?from=2017-07-11" title="2017-07-11 14:48">8 meses</a>
+  </h4>
+  <div class="wiki"><p>Hello Roel,</p>
+
+
+	<p>thanks for your answer, this solved my problem! I placed the <code>VirtualModel</code> in the <code>WSortFilterProxyModel</code> and now I am able to sort the values. With <code>mapToSource</code> I get the right location in my <code>VirtualModel</code>. <br />I am just starting Wt and there are so many models, it is hard to get the right one. Thanks for your help.</p>
+
+
+	<p>regards,<br />Egbert</p></div>
+  
+  </div>
+<p class="pagination"> (1-2/2)</p>
+
+
+
+        
+        <div style="clear:both;"></div>
+    </div>
+</div>
+
+<div id="ajax-indicator" style="display:none;"><span>Cargando...</span></div>
+<div id="ajax-modal" style="display:none;"></div>
+
+<div id="footer">
+  <div class="bgl"><div class="bgr">
+    Powered by <a href="http://www.redmine.org/">Redmine</a> &copy; 2006-2012 Jean-Philippe Lang
+  </div></div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

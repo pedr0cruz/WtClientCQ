@@ -1,3 +1,6 @@
+// WorskSpaceModel.h
+//
+
 #ifndef WORKSPACE_MODEL_H
 #define WORKSPACE_MODEL_H
 
@@ -17,30 +20,45 @@
 #include "CQJSON.h"
 #endif
 
-using namespace Wt;
-
 ///	WorkSpaceModel: Main Application Model.
-/// This class inherits from a WT WStandardItemModel
-class WorkSpaceModel : public WStandardItemModel
+/// This class inherits from a WT WStandardItemModel to implement 
+/// a custom model.
+class WorkSpaceModel : public Wt::WStandardItemModel ///< Guarda un modelo personalizado
 {
 public:
-	WorkSpaceModel( WObject* parent );
-	bool fillModel();
+    /// Constructor
+    WorkSpaceModel(Wt::WObject* parent);
+
+    /// Destructor
+    ~WorkSpaceModel();
+
+    /// Llena el modelo con los datos del árbol
+    bool fillModel();
+
 protected:
+
 #ifdef MyDEBUG
-	CQJSONdummy* cqSession;
+    /// Puntero a Objeto que se comunica con el servidor
+    /// y que se implementa con el patrón Singleton. 
+    /// Esta es una variante de la clase que no utiliza
+    /// ni necesita Las bibliotecas de ClearQuest.
+    CQJSONdummy* cqSession;
 #else
-	CQJSON* cqSession;
+    /// Puntero a Objeto que se comunica con el servidor
+    /// y que se implementa con el patrón Singleton. 
+    CQJSON* cqSession;
 #endif
-	WModelIndex         wsItem_;
+
+    ///  Elemento seleccionado
+	Wt::WModelIndex wsItem_;
 	/// Mapas para la descripcion de los elementos del WS
-	std::map<std::string, WString> wsNameMap_;
-	std::map<std::string, WStandardItem*> wsItemMap_;
-	std::map<std::string, Json::Object*> jsonObjectMap_;
+	std::map<std::string, Wt::WString> wsNameMap_;
+    std::map<std::string, Wt::WStandardItem*> wsItemMap_;
+    std::map<std::string, Wt::Json::Object*> jsonObjectMap_;
 
 private:
-	WStandardItem* createFolderItem(const WString& location, const std::string& wsId = std::string());
-	WStandardItem* createElementItem(const WString& location, const std::string& wsId = std::string(), Json::Object &joItem = Json::Value());
+    Wt::WStandardItem* createFolderItem(const Wt::WString& location, const std::string& wsId = std::string());
+    Wt::WStandardItem* createElementItem(const Wt::WString& location, const std::string& wsId = std::string(), Wt::Json::Object &joItem = Wt::Json::Value());
 };
 
-#endif WORKSPACE_MODEL_H
+#endif /// WORKSPACE_MODEL_H

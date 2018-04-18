@@ -1,0 +1,181 @@
+﻿Te cuento
+ya configure la solucion vs2013 y funciona
+segun creo ya dejaremos de intentar con vs015, correcto?
+puedes darme un chance de 15 min para almorzar ? porque el almuerzo aca se acaba si voy a la 1:30 ya no hay nada (hablo de la cafeteria de la universidad, las otras son muy caras para almorzar ahi todos los dias)
+yo simple,emte prorice el vs2013 porque es lo mas importante que funcuone con algo
+tes espero entonces
+el vs2015 estoy seguro que tambien funcionada
+es solo que no gaste tanto tiempo en eso sino en vs2013
+ok regreso en 15 min
+ok
+aca estoy
+ok
+una hora almorzando ☺
+no fue media ? bueno, aca estoy
+ok avancemos porque en 10mins voy a almorzar
+Te decia que ya funciona, pero debemos crear un solo proyecto vs2013, donde las carpetas out, src, etc. esten dentro de la carpeta principal de la solucion.
+asi esta, con un solo proyecto vs2013
+no me parece buena idea que la salida este dentro de la carpeta
+yo siempre pongo los archivos de salida fuera
+porque para tener un compactado con las fuentes es mas facil
+lo digo porque esta en la carpeta Projects, junto a otros proyectos que tengo alli
+ahh ... pero todos los caminos son relativos
+o sea todos son con respecto al raiz de la solucion
+si muevo la carpeta scr ya no compila
+src
+yo voy a hacer el cambio de las carpetas y cambiar las rutas relativas.
+claro, no la puedes mover CON RESPECTO a la raiz del proyecto
+todas estan relativas !!!
+pero con respecto a la raiz de la solucion !!!
+ok, yo voy a hacer esa parte, hablemos de la tuya
+has entendido el objetivo del producto?
+por lo que he visto , es algo asi como un sistema de tickets
+asi es, mas o menos eso, correcto.
+tickets para errores, o sugerencias... no ?
+algo asi.
+bien, tenemos cinco paneles
+tienes a la mano el ppt que te envie?
+si, deja abrirlo
+Lo tengo abierto
+ok,tenemos que dividir en dos meses el desarrollo de los cinco paneles
+ya tengo hecho el panel de navegador
+empazaremos con el panel de la Tabla
+Vuelve a leer el ppt con calma y regreso en 30mins para discutirlo, voy a almorzar.
+Lo leíste?
+si, lo lei
+Y tengo una duda: la logica de negocio en donde estara ? porque en el diagrama que pusiste esta entre la interfaz de usuario y un globo que dice CQ-JSON ....
+es la unica duda que tengo
+La lógica de necio esta en otro producto que se conecta a través del CQJSON
+Pero hay controllers de cada panel
+Y uno principal
+Estamos desarrollando un front-end
+ah... ahora entiendo
+El controlador principal es CqwtApplication que debe tener una  instancia de WorkSpaceController (el Explorador), ResultSetController (las Tablas), y aun falta RecordController (las vistas de los elementos)
+estas?
+¿?
+estoy, era problema con la red
+a esta hora se satura pr momentos
+lo entiendo todo... entonces, debo hacer primero... que ?
+bien, documentar el codigo que controla la panel ResultSet(Tabla) y proponer una arquitectura mas adecuada para ello.
+resultset es el contenido de lo que sale en la tabla superior... no ?
+Asi es. Como sabes, el Wt tiene una propuesta de uso de arquitectura MVC que usa WTable, WStandarItemModel y otros elementos.
+pero yo no pude concluirlo.
+No se si la solucion del Wt es buena o hacer una nuestra.
+puedo seguir a partir de lo que tu hiciste ? o lo hago de cero ? o te da igual ?
+quiero que tu lo analices
+mi idea es que la propuesta de Wt debe ser buena y bien pensada.
+Quizas yo no tuve el tiempo de analizarla
+Te voy a explicar el funcionamiento en detalle, ve a la imagen de Ejemplo en el PPT.
+ahi estoy
+Bien
+El usuario se loguea e ingresa al sistema (su nombre se vera en el menu superior).
+A la izquierda, en el explorador aparecen una serie de opciones
+anja, te sigo
+llamadas Query.
+Un Query puede ser de tres tipos: Tabla, Grafico, Reporte. Por ahora solo haremos Tabla, pero tenemos que preveer una relacion de jerarquia para tratar a los tres tipos.
+se supone que un grafico se alimente de una tabla... o de varias
+igual un reporte
+Exacto. Cuando selecciona el usuario un query de tipo Tabla, el sistema envia la solici
+tud al CQJSON.
+Eso se hace porque hay un patron observer.
+el Observer es para que el controlador principal CQWtApplication se entere de la seleccion hecha por el usuario.
+me sigues?
+lo puedes ver en el diagrama de clases de la ultima lamina.
+ok?
+t sigo perfectamente
+El CQWtApplication se comunica con el ResultSetController para indicarle la nueva solicitud.
+El ResultSetController debe tener una lista de todos los elementos seleccionados porque se pueden visualizar varias tablas en diferentes Tabs o pestañas. Lo puedes ver?
+Por ejemplo en el Ejemplo hay 4 tablas apiladas, donde la ultima es All Defects.
+lo ves?
+si, te sigo
+Para cada tabla seleccionada, el ResultSetController, debe guardar la información del query que fue seleccionado.
+y con esta información se comunica con CQJSON y este le devuelve una cadena JSON con toda la información de la tabla, sus columnas y sus filas.
+y la vista muestra el resultado analizando el json
+correcto.
+Puedes ir al codigo de CQJSON?
+CQJSON.cpp al metodo JSONExecuteQuery.
+¿?
+anja ahi estoy
+Alli en el comentario hay un ejemplo del JSON que devuelve.
+Este JSON yo lo he definido, podemos hacerle mejoras.
+eso es para visualizar los datos por la vista, no ?
+bueno, supuestamente los datos del JSON deberian ingresar en una instancia de la clase ResultSetModel que hereda de WStandarItemModel.
+Ese elemento se le entrega al ResultSetView para que lo visualice. Ese es el modelo que plantea el Wt.
+Pero no llegué a completar la tarea.
+entonces lo primero que hare es eso hacerlo con wt
+porque ellos deben haber invertido tiempo en hacerlo eficiente
+asi es
+La clase  ResultSetView tambien hereda de WtContainerWidget porque tambien debe ser incluido en el contenedor de tablas principal. Recuerda que es un anidamiento de ContainerWidget, uno dentro de otro.
+si, es jerarquico
+alguna duda?
+estoy pensando y leyendo
+ok, espero.
+y mirando el codigo
+el codigo de negocio esta en las clases CQ... ?
+quizas lo primero seria documentar lo actual en doxigen y proponer una arquitectura completa, porque la que te envio es parcial
+El codigo del negocio en este caso es la visualización de datos y la interacción con el usuario. Ese comportamiento esta en los Controllers y Views.
+El CQ tiene el conocimiento de como obtener información y tambien dados los comandos o botones ingresados por el usuario, genera acciones en CQ cuya respuesta tambien es un JSON, con esa respuesta, tambien se muestran resultados o se refrezca la data.
+entiendo...
+Entoces en CQ ocurre la magia: puede ser un sistema de Ticket, Control de Almacen, Pago de Nominas, cualquier cosa.
+Nuestro sistema solamente visualiza y recibe las acciones de los usuarios.
+O sea nuestro sistema es lo que sintetiza la interfaz de usuario
+Es solamente Interface de Usuario.
+el nucleo es CQ
+correcto!
+A eso se le llama un Cliente de ClearQuest personalizado.
+El que ves en el Ejemplo es el que viene de fabrica.
+¿?
+Entiendo ... o sea que ese ejemplo lo da la gente de CQ ?
+No, lo venden.
+o sea que venden el CQ y el ejemplo forma parte del manual
+El sistema incluye varios clientes, uno para web que muestro en el ejemplo.
+Pero es costoso.
+Y no tiene todo lo que necesito.
+no seria posible reemplazar CQ con algoi nuestro ?
+Eso es a futuro...
+Por ahora, necesitamos un cliente web personalizado y con posibilidades de incluirle mas cosas en el futuro.
+porque podriasmos venderlo mas barato que CQ y ganamos los dos : )
+es correcto, a futuro podemos hacerlo. Ahora concentrate en nuestro WtCQClient.
+El siguiente proyecto es AndroidCQClient App.
+O sea que a futuro debo instalar android studio
+ya veremos...
+entonces, ahora lo que debo hacer es documentar el codigo que tu has hecho  y hacerlo todo como debe ser con las funciones de WT
+Si, y con patrones bien identificados(con su nombre)
+o sea en cada comentario de funcion le pongo el patron que implemento
+Estoy pensando que debemos utilizar patron Decorator para permitir a futuro seguir mejorando mas funcionalidades (botones, iconos, etc) que crees?
+No todo el codigo tiene patrones, cuando lo tenga, se documenta.
+La documentación completa en doxigen, cuando estará lista?
+¿?
+Sabes la cantidad de lineas de fuente ?
+diria que en 2 dias
+incluye sabados y domingos?
+puedo incluirlos, aunque tengo cosas que hacer... trabajo de mafrugada si hace falta
+ok quedemos en cuatro dias, para que tambien hagas la propuesta de arquitectura final, la revisamos el martes, de acuerdo?
+de acuerdo
+el martes mañana o tarde ?
+tarde
+pero debemos cada dia conversar el avance y las dudas, todos los dias se conversa al menos algo.
+no es bueno que al final se detecten problemas que pudieron haberse conversado durante el progreso de la tarea.
+ok, comprendo
+y lo de pasarlo a vs2015 ? hace falta o no ?
+no
+eso no es prioridad
+si al final da tiempo, podemos hacer el ejercicio.
+Has utilizado Trello?
+trello ? me suena pero no recuerdo
+ya vi lo que es... lo he visto pero no usado
+buscalo
+ok
+lo vamos a usar
+debes tener una version en la PC y en tu movil tambien.
+ok aunque mi movil es muy lento para hacer nada
+mi cuenta en trello es tdiazcu@gmail.com
+no te preocupes, en el movil es solo ver
+con Trello, vamos a planificar y hacer seguimiento a lo avanzado, para que no se nos quede nada suelto.
+Mi cuenta es pcruz.qban@gmail.com
+voy a crear un proyecto y compartirlo contigo. 
+ok
+Ya te inclui en el equipo del proyecto Trello.
+Ya me voy. Hablamos mañana.
+ok que tengas una buena tarde noche
+Envía un mensaje

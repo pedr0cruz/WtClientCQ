@@ -1,0 +1,271 @@
+format 217
+
+classcanvas 128025 class_ref 128025 // CQWtApplication
+  classdiagramsettings member_max_width 0 drawing_language c++ end
+  xyz 306.405 144.779 2000
+end
+classcanvas 128281 class_ref 128153 // WApplication
+  classdiagramsettings member_max_width 0 end
+  xyz 259.917 58.393 2000
+end
+classcanvas 128537 class_ref 128281 // CQWtAppView
+  classdiagramsettings member_max_width 0 end
+  xyz 130.217 143.03 2000
+end
+classcanvas 129561 class_ref 128793 // CQJSON
+  classdiagramsettings member_max_width 0 end
+  xyz 878.036 207.423 2000
+end
+classcanvas 130585 class_ref 129177 // ResultSetsController
+  classdiagramsettings member_max_width 0 end
+  xyz 336.729 226.718 2000
+end
+classcanvas 131481 class_ref 129433 // WTabWidget
+  classdiagramsettings member_max_width 0 end
+  xyz 141.25 226.335 2000
+end
+classcanvas 131737 class_ref 129561 // ResultSetModel
+  classdiagramsettings member_max_width 0 end
+  xyzwh 663.076 210.325 2000 135 39
+end
+classcanvas 139545 class_ref 150297 // ObserverGoF
+  classdiagramsettings member_max_width 0 end
+  xyz 372.154 61.342 2006
+end
+classcanvas 141209 class_ref 156825 // SubjectGoF
+  classdiagramsettings member_max_width 0 end
+  xyz 425.17 144.5 2000
+end
+classcanvas 141721 class_ref 163353 // WTableView
+  classdiagramsettings member_max_width 0 end
+  xyz 554.73 387.19 2006
+end
+classcanvas 142233 class_ref 169881 // ResultSetView
+  classdiagramsettings member_max_width 0 end
+  xyzwh 545.48 533.65 2006 425 42
+end
+classcanvas 143641 class_ref 128665 // WStandardItemModel
+  classdiagramsettings member_max_width 0 end
+  xyz 672.17 139.07 2000
+end
+classcanvas 160025 class_ref 170137 // CoRHandlerGoF
+  classdiagramsettings member_max_width 0 end
+  xyzwh 679.98 381.57 2000 332 39
+end
+classcanvas 160153 class_ref 177561 // TableColumn
+  classdiagramsettings member_max_width 0 end
+  xyz 913.29 445.68 2008
+end
+classcanvas 160281 class_ref 184089 // TableRow
+  classdiagramsettings member_max_width 0 end
+  xyz 836.18 449.64 2013
+end
+classcanvas 160409 class_ref 190617 // TableCell
+  classdiagramsettings member_max_width 0 end
+  xyz 764.64 449.74 2000
+end
+classcanvas 168345 class_ref 216857 // ResultSetController
+  classdiagramsettings member_max_width 0 end
+  xyzwh 638.83 296.34 2000 201 39
+end
+classcanvas 169625 class_ref 223513 // ResultSetsView
+  classdiagramsettings member_max_width 0 end
+  xyzwh 349.04 358.28 2000 123 39
+end
+classcanvas 170265 class_ref 223641 // ResultSetsModel
+  classdiagramsettings member_max_width 0 end
+  xyz 486.24 226.4 2005
+end
+relationcanvas 128409 relation_ref 128025 // <generalisation>
+  decenter_begin 172
+  decenter_end 739
+  from ref 128025 z 2001 to ref 128281
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128665 relation_ref 128153 // <unidirectional association>
+  decenter_begin 407
+  from ref 128025 z 2001 to ref 128537
+  role_a_pos 234 140 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130713 relation_ref 129177 // <unidirectional association>
+  decenter_begin 632
+  decenter_end 261
+  from ref 128025 z 2001 to ref 130585
+  role_a_pos 383 207 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133913 relation_ref 137113 // <unidirectional association>
+  decenter_begin 407
+  decenter_end 444
+  from ref 131737 z 2001 to ref 129561
+  role_a_pos 812 205 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 138393 relation_ref 151705 // <unidirectional association>
+  decenter_begin 451
+  decenter_end 483
+  from ref 130585 z 2001 to ref 131481
+  role_a_pos 232 225 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 141337 relation_ref 165913 // <generalisation>
+  decenter_begin 884
+  decenter_end 349
+  from ref 130585 z 2001 to ref 141209
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 141465 relation_ref 166041 // <unidirectional association>
+  decenter_begin 284
+  decenter_end 810
+  from ref 141209 z 2007 to ref 139545
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 143769 relation_ref 179865 // <generalisation>
+  decenter_begin 565
+  decenter_end 504
+  from ref 131737 z 2001 to ref 143641
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 157849 relation_ref 221721 // <generalisation>
+  decenter_begin 804
+  decenter_end 231
+  from ref 128025 z 2007 to ref 139545
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 160537 relation_ref 241689 // <generalisation>
+  decenter_begin 708
+  decenter_end 386
+  from ref 160409 z 2001 to ref 160025
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 160665 relation_ref 188825 // <unidirectional association>
+  decenter_begin 347
+  decenter_end 791
+  from ref 160153 z 2009 to ref 160025
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 160793 relation_ref 235161 // <unidirectional association>
+  decenter_begin 405
+  decenter_end 544
+  from ref 160281 z 2014 to ref 160025
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 160921 relation_ref 188313 // <generalisation>
+  decenter_begin 623
+  decenter_end 870
+  from ref 160153 z 2009 to ref 160025
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 161049 relation_ref 241817 // <unidirectional association>
+  decenter_begin 326
+  decenter_end 312
+  from ref 160409 z 2001 to ref 160025
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 161177 relation_ref 235033 // <generalisation>
+  decenter_begin 716
+  decenter_end 615
+  from ref 160281 z 2014 to ref 160025
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 165657 relation_ref 255769 // <directional aggregation>
+  decenter_begin 880
+  decenter_end 954
+  from ref 160025 z 2001 to point 969.72 337.76
+  line 165785 z 2001 to point 1092 336.72
+  line 165913 z 2001 to point 1092.04 416.36
+  line 166041 z 2001 to ref 160025
+  role_a_pos 1024 398 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 166937 relation_ref 255897 // <unidirectional association>
+  decenter_begin 368
+  decenter_end 67
+  from ref 142233 z 2007 to ref 160025
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 167065 relation_ref 256025 // <generalisation>
+  decenter_begin 428
+  decenter_end 143
+  from ref 142233 z 2007 to ref 160025
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 167193 relation_ref 262553 // <generalisation>
+  decenter_begin 159
+  decenter_end 777
+  from ref 142233 z 2007 to ref 141721
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 168857 relation_ref 275737 // <unidirectional association>
+  decenter_begin 463
+  from ref 168345 z 2001 to ref 131737
+  role_a_pos 742 255 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 168985 relation_ref 275865 // <unidirectional association>
+  decenter_begin 118
+  decenter_end 263
+  from ref 168345 z 2013 to ref 142233
+  role_a_pos 666 513 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 169113 relation_ref 282777 // <directional aggregation>
+  decenter_begin 584
+  from ref 142233 z 2007 to ref 160409
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 169369 relation_ref 282905 // <directional aggregation>
+  decenter_begin 760
+  from ref 142233 z 2014 to ref 160281
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 169497 relation_ref 283033 // <directional aggregation>
+  decenter_begin 961
+  from ref 142233 z 2009 to ref 160153
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 169881 relation_ref 283161 // <unidirectional association>
+  decenter_begin 579
+  from ref 130585 z 2001 to ref 169625
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 170393 relation_ref 283289 // <directional aggregation>
+  decenter_end 46
+  from ref 169625 z 2007 to point 408.8 439.2
+  line 170521 z 2007 to point 562.52 496.64
+  line 170649 z 2007 to ref 142233
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 170777 relation_ref 283417 // <unidirectional association>
+  from ref 130585 z 2006 to ref 170265
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 171161 relation_ref 283673 // <directional aggregation>
+  decenter_begin 483
+  decenter_end 467
+  from ref 170265 z 2006 to ref 131737
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

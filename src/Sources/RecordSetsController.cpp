@@ -33,10 +33,7 @@ using namespace Wt;
 static const string s_recordSetsTabsWidget("recordSetsTabWidget");
 
 /// Constructor
-RecordSetsController::RecordSetsController(const string & name)
-    : SubjectGoF(name)
-    , recTabWidget_(nullptr)
-    , recTabWidgetContainer_(nullptr)
+RecordSetsController::RecordSetsController(const string & name) : SubjectGoF(name)
 {
     model_ = new RecordSetsModel(this);
 }
@@ -53,21 +50,30 @@ RecordSetsController::~RecordSetsController()
 RecordSetController* RecordSetsController::newController(const string & name)
 {
     auto controller = new RecordSetController(name);
+/*
     auto form = new WTemplateFormView();
     auto newTabIndex = recTabWidget_->count();
     auto menuItem = view_->addTab(form, name);
-    controllersMap_[newTabIndex] = controller;
+*/
+    auto newControllerIndex = controllersMap_.size();
+    controllersMap_[newControllerIndex] = controller;
     return controller;
 }
 
-#if 0
-RecordSetController* RecordSetController::currentController()
+// Crea y configura la vista
+WWidget* RecordSetsController::createView(WContainerWidget* recordSetsContainer)
 {
-    auto currentTabIndex = recTabWidget_->currentIndex();
-    /*
-    auto tabObject = rssTabWidget_->children()[currentTabIndex];
-    WTabWidget = tab->
-    */
-    return controllersMap_[currentTabIndex];
+    view_ = new RecordSetsView(recordSetsContainer);
+    view_->setModel(model_);
+
+    view_->currentChanged().connect(this, &RecordSetsController::tabChanged);
+
+    return view_->getTabWidgetContainer();
 }
-#endif
+
+void RecordSetsController::tabChanged(int currentTab)
+{
+    model_->setCurrentTab(currentTab);
+    controllersMap_[currentTab]->notify();
+}
+

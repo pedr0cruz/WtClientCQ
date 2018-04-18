@@ -1,5 +1,5 @@
-#ifndef RESULTSETCTRL_H
-#define RESULTSETCTRL_H
+#ifndef RESULTSET_CTRL_H
+#define RESULTSET_CTRL_H
 
 #include <Wt/WObject>
 #include <Wt/WContainerWidget>
@@ -13,35 +13,57 @@
 #include <Wt/Json/Value>
 
 #include "ObserverGoF.h"
+
 #include "ResultSetView.h"
 #include "ResultSetModel.h"
 
-#include <string>
-
-//using namespace Wt;
-
 ///	Controller for ResultSet which includes the result obtained from a query.
-///	This class implements a Subject Pattern and contains a selected item.
+///	Implements the Subject of the Observer Pattern and contains a selected item.
 class ResultSetController : public Wt::WObject, public SubjectGoF
 {
 public:
-	/// Constructor
-	ResultSetController(const std::string & name);
-	/// Crea la vista con el Modelo
-    Wt::WWidget* createView(Wt::WContainerWidget* rsContainer);
-	void recordChanged(string s);
-	/// Slot para seleccion de nuevo item
-	string selectedItem() { return selectedItem_; }
-	/// Destructor
-	~ResultSetController();
+    /// Constructor
+    ResultSetController(const std::string & name);
+
+    /// Crea una vista (pudiera haber varias para el mismo modelo)
+    Wt::WContainerWidget* createView(Wt::WContainerWidget* container);
+
+    ///  Eventos a los que debe reaccionar este controlador
+
+    /// Ha cambiado el registro mostrado
+    void recordChanged(const std::string & s);
+    void clicked();
+    void doubleClicked();
+    void focussed();
+    void keyPressed();
+    void mouseWheel();
+    void rowChanged();
+    /// Se ha movido la vista dentro de la ventana
+    //EventSignal<Wt::WScrollEvent>& scrolled();
+    void scrolled(Wt::WScrollEvent e);
+
+    ///  Fin de eventos a los que debe reaccionar este controlador
+
+    /// Slot para seleccion de nuevo item
+    std::string selectedItem() { return selectedItem_; }
+
+    /// Destructor
+    ~ResultSetController();
 
 protected:
-    Wt::WContainerWidget* rsViewContainer_;
-	ResultSetView*  rsView_;
-	ResultSetModel* rsModel_;
-	std::string selectedItem_;
+    ///  Contenedor de la vista
+    Wt::WContainerWidget* viewContainer_;
 
-	void fillModel();
+    /// Modelo asociado a este controlador
+    ResultSetModel* model_;
+    /// Vista asociada a este controlador
+    ResultSetView*  view_;
+
+    ///  Datos particulares de cada tipo de vista
+    std::string selectedItem_;
+    /// FIN de datos particulares de cada tipo de vista
+
+    void fillModel();
 };
 
-#endif /// RESULTSETCTRL_H
+#endif /// RESULTSET_CTRL_H

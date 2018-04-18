@@ -26,8 +26,8 @@ CQWtApplication::CQWtApplication(const Wt::WEnvironment& env) : Wt::WApplication
 	/// Crea la controladora del WorkSpace
 	workSpaceCtrl = new WorkSpaceController("WorkSpaceCtrl");
 	workSpaceCtrl->createView(mainView->workSpaceContainer()); ///< Indica en que vista trabajará
-	//workSpaceCtrl->attach(this); ///< GoF: conecta sujeto con Observador
-	workSpaceCtrl->attach(std::shared_ptr <ObserverGoF> (this)); ///< GoF: conecta sujeto con Observador
+	workSpaceCtrl->attach(this); ///< GoF: conecta sujeto con Observador
+	//workSpaceCtrl->attach(std::shared_ptr <ObserverGoF> (this)); ///< GoF: conecta sujeto con Observador
 
     //resultSetCtrl->createView(mainView->resultSetTabsContainer()); ///< Indica en que vista trabajará
 	//resultSetCtrl->attach(this); ///< GoF: conecta sujeto con Observador
@@ -35,12 +35,15 @@ CQWtApplication::CQWtApplication(const Wt::WEnvironment& env) : Wt::WApplication
     /// Crea la controladora de los ResultSets
     resultSetsCtrl = new ResultSetsController("ResultSetsCtrl");
     resultSetsCtrl->createView(mainView->resultSetsTabsContainer()); ///< Indica en que vista trabajará
-    resultSetsCtrl->attach(std::shared_ptr <ObserverGoF>(this)); ///< GoF: conecta sujeto con Observador
+    //resultSetsCtrl->attach(std::shared_ptr <ObserverGoF>(this)); ///< GoF: conecta sujeto con Observador
+    resultSetsCtrl->attach(this); ///< GoF: conecta sujeto con Observador
 
 	/// Crea la controladora del RecordSet
 	//recordSetCtrl = new RecordSetController("RecordSetCtrl");
 	//recordSetCtrl->createView(mainView->workSpaceContainer()); ///< Indica en que vista trabajará
     //recordSetCtrl->createView(mainView->recordSetTabsContainer()); ///< Indica en que vista trabajará
+    recordSetsCtrl = new RecordSetsController("RecordSetsCtrl");
+    recordSetsCtrl->createView(mainView->recordSetsTabsContainer()); ///< Indica en que vista trabajará
 
 	//workSpaceCtrl->attach(this); ///< GoF: conecta sujeto con Observador
 	//workSpaceCtrl->attach(std::shared_ptr <ObserverGoF>(this)); ///< GoF: conecta sujeto con Observador
@@ -58,13 +61,14 @@ void CQWtApplication::update(SubjectGoF* aController)
     if (subjectName == "WorkSpaceCtrl"){
 		//WorkSpaceController *ws = (WorkSpaceController*)aController;
         //WorkSpaceController* ws = reinterpret_cast <decltype (ws)> (aController);
-        std::shared_ptr <WorkSpaceController> ws = std::shared_ptr <WorkSpaceController> (
-            reinterpret_cast <WorkSpaceController*> (aController)
-        );
-//	TODO FIXME HACK
+        //std::shared_ptr <WorkSpaceController> ws = std::shared_ptr <WorkSpaceController> (
+        //  reinterpret_cast <WorkSpaceController*> (aController)
+        //);
+        WorkSpaceController* ws = reinterpret_cast <decltype (ws)> (aController);
+        //	TODO FIXME HACK
 //		resultSetCtrl->recordChanged(ws->selectedItem());
         string selectedItem(ws->selectedItem());
-        //resultSetsCtrl->
+        resultSetsCtrl->newController(selectedItem);
     }
 }
 

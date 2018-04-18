@@ -17,38 +17,37 @@
 #	include "CQJSON.h"
 #endif
 
-// #include "RecordSetView.h"
-
-using namespace Wt;
-//using namespace std;
+#include <string>
+#include <vector>
 
 ///	RecordSetModel: Stores the data for a custom model.
-/// This class inherits from WStandardItemModel to implement a custom model.
-class RecordSetModel : public WStandardItemModel ///< Guarda un modelo personalizado
+/// This class inherits from WStandardItemModel to implement 
+/// a custom model.
+class RecordSetModel : public Wt::WStandardItemModel ///< Guarda un modelo personalizado
 {
 public:
-#ifdef MyDEBUG
-	CQJSONdummy* cqSession;
-#else
-	CQJSON* cqSession;
-#endif
-	/// Constructor.
-	RecordSetModel(WObject *parent);
 
-	bool fillModel(string QueryName);
+	/// Constructor.
+	RecordSetModel(Wt::WObject *parent);
+
+	/// Llena modelo con datos para el elemento dado
+    bool fillModel(const std::string result_set);
 
 protected:
-	/// Vectores necesarios para tablas simples WTable
-#if 0
-	vector < string > wTableHeader;
-	vector < vector <string> > wTableData;
-	vector < vector <string> > wTableFilterData;
+
+#ifdef MyDEBUG
+    /// Puntero a Objeto que se comunica con el servidor
+    /// y que se implementa con el patrón Singleton. 
+    /// Esta es una variante de la clase que no utiliza
+    /// ni necesita Las bibliotecas de ClearQuest.
+    CQJSONdummy* cqSession;
+#else
+    /// Puntero a Objeto que se comunica con el servidor
+    /// y que se implementa con el patrón Singleton. 
+    CQJSON* cqSession;
 #endif
 
-	// Return the mime type.
-//	virtual string mimeType() const {
-//		return ResultSetView::ItemSelectionMimeType;
-//	}
+    std::vector < std::string > form_data_vec_;
 };
 
 
