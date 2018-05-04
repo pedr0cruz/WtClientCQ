@@ -3,6 +3,8 @@
 /// Implementa el Modelo del Workspace según el patrón MVC
 /// Se conecta con el CQ y contruye el árbol de elementos JSON del WorkSpace
 
+#include "stdafx.h"
+
 #include <boost/algorithm/string/replace.hpp>
 
 #include "WorkSpaceModel.h"
@@ -41,6 +43,10 @@ WorkSpaceModel::WorkSpaceModel(WObject* parent) : WStandardItemModel(0, 1, paren
 	cqSession = CQJSON::getInstance();
 #endif
 	cqSession->UserLogon("admin", "", "SAMPL", "SAMPLCNX");
+}
+
+WorkSpaceModel::~WorkSpaceModel()
+{
 }
 
 /// Llena el WorkSpace desde el CQ

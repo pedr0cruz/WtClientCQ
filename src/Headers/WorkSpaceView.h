@@ -1,7 +1,9 @@
 // WorkspaceView.h
-// 
+
 #ifndef WORKSPACE_VIEW_H_
 #define WORKSPACE_VIEW_H_
+
+#pragma once
 
 #include <Wt/WTreeView>
 

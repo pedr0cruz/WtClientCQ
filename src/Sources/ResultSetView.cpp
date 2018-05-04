@@ -1,5 +1,6 @@
-//	ResultSet2View.cpp
-//
+//	ResultSetView.cpp
+
+#include "stdafx.h"
 
 #include <Wt/WContainerWidget>
 #include <Wt/WStackedWidget>
@@ -11,7 +12,14 @@
 #include <Wt/WLineEdit>
 #include <Wt/WBreak>
 
-#include "ResultSet2View.h"
+#include <string>
+#include <vector>
+
+#include "ResultSetView.h"
+
+using std::string;
+using std::vector;
+using namespace Wt;
 
 // ejemplo tomado de stack overflow
 #if 0
@@ -50,7 +58,7 @@ tableView->setWidth((WIDTH + 7) * tableView->model()->columnCount() + 2);
 
 #if 1
 
-TableView2::TableView2(Wt::WContainerWidget* parent) : Wt::WTableView(parent)
+TableView::TableView(Wt::WContainerWidget* parent) : Wt::WTableView(parent)
 {
 	setStyleClass(Wt::WString::fromUTF8("table-striped table table-hover table-bordered tableCQ"));
 	setInline(0);
@@ -60,7 +68,7 @@ TableView2::TableView2(Wt::WContainerWidget* parent) : Wt::WTableView(parent)
 	selectedHeader = 1;
 }
 
-void TableView2::setHeader(vector<string> headers)
+void TableView::setHeader(vector <string> headers)
 {
 #if 0
 	sortOrder.resize(headers.size());
@@ -107,30 +115,30 @@ void TableView2::setHeader(vector<string> headers)
 #endif
 }
 
-void TableView2::setHeaderCount(int headers_count, Wt::Orientation headers_orientation)
+void TableView::setHeaderCount(int headers_count, Wt::Orientation headers_orientation)
 {
 }
 
-void TableView2::addRow(vector<string> content)
+void TableView::addRow(vector<string> content)
 {
 #if 0
 	int row = rowCount();
 	new Wt::WText(Wt::WString("<b>{1}</b>").arg(row), elementAt(row, 0));
 
-	elementAt(row, 0)->clicked().connect(boost::bind(&TableView2::s_selectRow, this, row));
+	elementAt(row, 0)->clicked().connect(boost::bind(&TableView::s_selectRow, this, row));
 	elementAt(row, 0)->decorationStyle().setCursor(Wt::PointingHandCursor);
 
 
 	for (int i = 1; i < content.size(); i++){
 		new Wt::WText(Wt::WString(content[i]), elementAt(row, i));
-		elementAt(row, i)->clicked().connect(boost::bind(&TableView2::s_selectRow, this, row));
+		elementAt(row, i)->clicked().connect(boost::bind(&TableView::s_selectRow, this, row));
 		elementAt(row, i)->decorationStyle().setCursor(Wt::PointingHandCursor);
 
 	}
 #endif
 }
 
-void TableView2::setHidden(bool hide, const Wt::WAnimation &animation)
+void TableView::setHidden(bool hide, const Wt::WAnimation &animation)
 {
 #if 0
 	if (hide) rowAt(selectedRow)->setStyleClass("");
@@ -140,7 +148,7 @@ void TableView2::setHidden(bool hide, const Wt::WAnimation &animation)
 #endif
 }
 
-void TableView2::s_selectRow(int row)
+void TableView::s_selectRow(int row)
 {
 #if 0
 	//restaurar estilo fila seleccionada anteriormente
@@ -153,7 +161,7 @@ void TableView2::s_selectRow(int row)
 #endif
 }
 
-TableView2::~TableView2()
+TableView::~TableView()
 {
 }
 
@@ -161,10 +169,10 @@ TableView2::~TableView2()
 
 
 
-////////////////////////// ResultSet2View /////////////////////////////////////////
+////////////////////////// ResultSetView /////////////////////////////////////////
 
 // Constructor: recibe el contenedor padre
-ResultSet2View::ResultSet2View( WContainerWidget *parent) : WContainerWidget(parent)
+ResultSetView::ResultSetView( WContainerWidget *parent) : WContainerWidget(parent)
 {
 	// Limpia el estilo	
 	this->setStyleClass(Wt::WString::fromUTF8(""));
@@ -173,10 +181,10 @@ ResultSet2View::ResultSet2View( WContainerWidget *parent) : WContainerWidget(par
 	this->setHtmlTagName("div");
 	{
 		//inicializacion de las tablas dentro del stack y los signals
-		table = new TableView2(this);
-		table->rowSelected().connect(SLOT(this, ResultSet2View::s_rowSelected));
-		table->onFindByColumn().connect(SLOT(this, ResultSet2View::s_findByColumn));
-		table->onSortByColumn().connect(SLOT(this, ResultSet2View::sortByColumn));
+		table = new TableView(this);
+		table->rowSelected().connect(SLOT(this, ResultSetView::s_rowSelected));
+		table->onFindByColumn().connect(SLOT(this, ResultSetView::s_findByColumn));
+		table->onSortByColumn().connect(SLOT(this, ResultSetView::sortByColumn));
 		actualPage = 1;
 
 		divPager = new Wt::WContainerWidget(this);
@@ -249,32 +257,32 @@ ResultSet2View::ResultSet2View( WContainerWidget *parent) : WContainerWidget(par
 	totalRows = 1;
 	maxPages = 1;
 	//connections
-	firstItem_mi->clicked().connect(SLOT(this, ResultSet2View::s_firstTablaCliente));
-	lastItem_mi->clicked().connect(SLOT(this, ResultSet2View::s_lastTablaCliente));
-	previousItem_mi->clicked().connect(SLOT(this, ResultSet2View::s_prevTablaCliente));
-	nextItem_mi->clicked().connect(SLOT(this, ResultSet2View::s_nextTablaCliente));
+	firstItem_mi->clicked().connect(SLOT(this, ResultSetView::s_firstTablaCliente));
+	lastItem_mi->clicked().connect(SLOT(this, ResultSetView::s_lastTablaCliente));
+	previousItem_mi->clicked().connect(SLOT(this, ResultSetView::s_prevTablaCliente));
+	nextItem_mi->clicked().connect(SLOT(this, ResultSetView::s_nextTablaCliente));
 
 }
 
-ResultSet2View::ResultSet2View(vector<string>, Wt::WContainerWidget *parent)
+ResultSetView::ResultSetView(vector<string>, Wt::WContainerWidget *parent)
 {
 }
 
-void ResultSet2View::setHeader(vector<string> m_header)
+void ResultSetView::setHeader(vector<string> m_header)
 {
 	header = m_header;
 	table->setHeader(header);
 	fillTable();
 }
 
-void ResultSet2View::setData(vector < vector<string> > m_data)
+void ResultSetView::setData(vector < vector<string> > m_data)
 {
 	data = m_data;
 	filterData = data;
 	fillTable();
 }
 
-void ResultSet2View::fillTable()
+void ResultSetView::fillTable()
 {
 	totalRows = static_cast<int> (filterData.size());
 	maxPages = (totalRows - 1) / maxRows + 1;
@@ -286,7 +294,7 @@ void ResultSet2View::fillTable()
 	s_firstTablaCliente();
 }
 
-void ResultSet2View::clearTable()
+void ResultSetView::clearTable()
 {
 #if 0
 	int total = table->rowCount();
@@ -295,12 +303,12 @@ void ResultSet2View::clearTable()
 #endif
 }
 
-void ResultSet2View::createData()
+void ResultSetView::createData()
 {
 	vector<string> m_header;
 	vector < vector<string> > m_data;
 
-	int numColumns = Model_->columnCount();
+	int numColumns = model_->columnCount();
 
 	for (int col = 0; col < numColumns; col++){
 //		m_header.push_back( Model_->data(0, col));
@@ -308,19 +316,18 @@ void ResultSet2View::createData()
 //		setHeaderData(col, colname.toUTF8());
 	}
 
-
 	data = m_data;
 	filterData = data;
 	fillTable();
 }
 
-void ResultSet2View::s_rowSelected(int row)
+void ResultSetView::s_rowSelected(int row)
 {
 	//TODO / HACK / FIXME
 	//rowSelect.emit(filterData[row - 1][0]);
 }
 
-void ResultSet2View::s_findByColumn(int column)
+void ResultSetView::s_findByColumn(int column)
 {
 	Wt::WDialog *dialog = new Wt::WDialog(Wt::WString("Buscar por " + header[column] + ":"));
 
@@ -377,7 +384,7 @@ void ResultSet2View::s_findByColumn(int column)
 	dialog->show();
 }
 
-void ResultSet2View::filterBy(int column, Wt::WString value)
+void ResultSetView::filterBy(int column, Wt::WString value)
 {
 	filterData.clear();
 	for (int i = 0; i < data.size(); i++)
@@ -386,7 +393,7 @@ void ResultSet2View::filterBy(int column, Wt::WString value)
 	fillTable();
 }
 
-void ResultSet2View::sortByColumn(int column, bool order)
+void ResultSetView::sortByColumn(int column, bool order)
 {
 	//filterData = data;
 
@@ -401,35 +408,35 @@ void ResultSet2View::sortByColumn(int column, bool order)
 	fillTable();
 }
 
-void ResultSet2View::s_firstTablaCliente()
+void ResultSetView::s_firstTablaCliente()
 {
 	actualPage = 1;
 	updatePagination();
 	showRows();
 }
 
-void ResultSet2View::s_prevTablaCliente()
+void ResultSetView::s_prevTablaCliente()
 {
 	actualPage--;
 	updatePagination();
 	showRows();
 }
 
-void ResultSet2View::s_lastTablaCliente()
+void ResultSetView::s_lastTablaCliente()
 {
 	actualPage = maxPages;
 	updatePagination();
 	showRows();
 }
 
-void ResultSet2View::s_nextTablaCliente()
+void ResultSetView::s_nextTablaCliente()
 {
 	actualPage++;
 	updatePagination();
 	showRows();
 }
 
-void ResultSet2View::updatePagination()
+void ResultSetView::updatePagination()
 {
 	if (actualPage == 1){
 		firstItem_mi->setDisabled(true);
@@ -456,7 +463,7 @@ void ResultSet2View::updatePagination()
 	totalPages->setText(Wt::WString("Página {1} de {2}").arg(actualPage).arg(maxPages));
 }
 
-void ResultSet2View::showRows()
+void ResultSetView::showRows()
 {
 #if 0
 	int ini = (actualPage - 1)*maxRows + 1;
@@ -469,6 +476,6 @@ void ResultSet2View::showRows()
 #endif
 }
 
-ResultSet2View::~ResultSet2View()
+ResultSetView::~ResultSetView()
 {
 }

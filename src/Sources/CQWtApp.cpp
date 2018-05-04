@@ -1,5 +1,4 @@
 //  CQWtApp.cpp
-//
 
 #include "stdafx.h"
 
@@ -12,6 +11,11 @@
 #include <Wt/WTemplate>
 #include <Wt/WText>
 #include <boost/filesystem.hpp>
+
+#include <string>
+
+using std::string;
+using namespace Wt;
 
 /// Application class Constructor  
 CQWtApplication::CQWtApplication(const Wt::WEnvironment& env) : Wt::WApplication(env)
@@ -34,7 +38,9 @@ CQWtApplication::CQWtApplication(const Wt::WEnvironment& env) : Wt::WApplication
     //resultSetCtrl->attach(std::shared_ptr <ObserverGoF>(this)); ///< GoF: conecta sujeto con Observador
     /// Crea la controladora de los ResultSets
     resultSetsCtrl = new ResultSetsController("ResultSetsCtrl");
-    resultSetsCtrl->createView(mainView->resultSetsTabsContainer()); ///< Indica en que vista trabajará
+    //resultSetsCtrl->createView(mainView->resultSetsTabsContainer()); ///< Indica en que vista trabajará
+    resultSetsCtrl->createView(mainView->resultSetsViewContainer()); ///< Indica en que vista trabajará
+
     //resultSetsCtrl->attach(std::shared_ptr <ObserverGoF>(this)); ///< GoF: conecta sujeto con Observador
     resultSetsCtrl->attach(this); ///< GoF: conecta sujeto con Observador
 
@@ -43,7 +49,7 @@ CQWtApplication::CQWtApplication(const Wt::WEnvironment& env) : Wt::WApplication
 	//recordSetCtrl->createView(mainView->workSpaceContainer()); ///< Indica en que vista trabajará
     //recordSetCtrl->createView(mainView->recordSetTabsContainer()); ///< Indica en que vista trabajará
     recordSetsCtrl = new RecordSetsController("RecordSetsCtrl");
-    recordSetsCtrl->createView(mainView->recordSetsTabsContainer()); ///< Indica en que vista trabajará
+    recordSetsCtrl->createView(mainView->recordSetsViewContainer()); ///< Indica en que vista trabajará
 
 	//workSpaceCtrl->attach(this); ///< GoF: conecta sujeto con Observador
 	//workSpaceCtrl->attach(std::shared_ptr <ObserverGoF>(this)); ///< GoF: conecta sujeto con Observador
@@ -59,16 +65,11 @@ void CQWtApplication::update(SubjectGoF* aController)
 	/// Evento en el WorkSpace
     const std::string subjectName(aController->subjectName());
     if (subjectName == "WorkSpaceCtrl"){
-		//WorkSpaceController *ws = (WorkSpaceController*)aController;
-        //WorkSpaceController* ws = reinterpret_cast <decltype (ws)> (aController);
-        //std::shared_ptr <WorkSpaceController> ws = std::shared_ptr <WorkSpaceController> (
-        //  reinterpret_cast <WorkSpaceController*> (aController)
-        //);
-        WorkSpaceController* ws = reinterpret_cast <decltype (ws)> (aController);
+        WorkSpaceController* ws = dynamic_cast <decltype (ws)> (aController);
         //	TODO FIXME HACK
 //		resultSetCtrl->recordChanged(ws->selectedItem());
-        string selectedItem(ws->selectedItem());
-        resultSetsCtrl->newController(selectedItem);
+        string tabName(ws->selectedItem());
+        resultSetsCtrl->getNewControllerIfNeeded(tabName);
     }
 }
 

@@ -2,6 +2,8 @@
 // Representa el Modelo en el MVC del ResultSet
 // Se conecta con el CQ y contruye la tabla de elementos JSON del RS
 
+#include "stdafx.h"
+
 #include <boost/algorithm/string/replace.hpp>
 
 #include "RecordSetsModel.h"
@@ -13,6 +15,7 @@
 #	include "CQJSON.h"
 #endif
 
+/// Cuando se incluye CQJSONdummy.h no se definen esas constantes
 #if !defined (FALSE_DEFINED)
 #	define FALSE         0
 #	define FALSE_DEFINED 1
@@ -36,5 +39,13 @@ RecordSetsModel::RecordSetsModel(WObject* parent) : WStandardItemModel(parent)
 /// Destructor
 RecordSetsModel::~RecordSetsModel()
 {
+}
+
+/// Actualiza el modelo
+bool RecordSetsModel::fillModel(int selectedTabIndex)
+{
+    bool changed = (currentTabIndex_ != selectedTabIndex);
+    currentTabIndex_ = selectedTabIndex;
+    return changed;
 }
 

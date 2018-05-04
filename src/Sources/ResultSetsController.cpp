@@ -1,5 +1,6 @@
 //	ResultSetsController.cpp
-//
+
+#include "stdafx.h"
 
 #include <boost/algorithm/string/replace.hpp>
 
@@ -7,6 +8,8 @@
 #include <Wt/WContainerWidget>
 #include <Wt/WStandardItem>
 #include <Wt/WTemplateFormView>
+#include <Wt/WStackedWidget>
+#include <Wt/WMenuItem>
 
 #include <string>
 #include <vector>
@@ -15,8 +18,6 @@
 
 #include "ResultSetController.h"
 
-//#include "ResultSetsModel.h"
-//#include "ResultSetsView.h"
 #include "ResultSetsController.h"
 
 #ifdef MyDEBUG
@@ -27,16 +28,14 @@
 
 using std::string;
 using std::vector;
-
 using namespace Wt;
 
 static const string s_resultSetsTabsWidget("resultSetsTabWidget");
 
 /// Constructor
-ResultSetsController::ResultSetsController(const string & name)
-    : SubjectGoF(name)
-    , rssTabWidget_(nullptr)
-    , rssTabWidgetContainer_(nullptr)
+ResultSetsController::ResultSetsController(const string & name) : SubjectGoF(name)
+//    , tabWidget_(nullptr)
+//    , tabWidgetContainer_(nullptr)
 {
     model_ = new ResultSetsModel(this);
 }
@@ -52,39 +51,66 @@ ResultSetsController::~ResultSetsController()
 }
 
 /// Crea la vista que contiene todas las pestañas
-WContainerWidget* ResultSetsController::createView(WContainerWidget* parentContainer)
+//WContainerWidget* ResultSetsController::createView(WContainerWidget* parentContainer)
+ResultSetsView* ResultSetsController::createView(WContainerWidget* parentContainer)
 {
-    rssTabWidgetContainer_ = parentContainer;
-    //rssTabWidget_ = new ResultSetsView(rssTabWidgetContainer_);
-    //rssTabWidgetContainer_ = ResultSetsView::createView(rssTabWidgetContainer_);
-    rssTabWidgetContainer_ = new ResultSetsView(rssTabWidgetContainer_);
-    //rssTabWidget_->setModel(rsModel_);
+    //tabWidgetContainer_ = parentContainer;
+    //tabWidget_ = new ResultSetsView(tabWidgetContainer_);
+    //tabWidgetContainer_ = ResultSetsView::createView(tabWidgetContainer_);
+    //view_ = new ResultSetsView(tabWidgetContainer_);
+    view_ = new ResultSetsView(parentContainer);
+    view_->setModel(model_);
 
     //	rsView_->selectionChanged()
     //		.connect(this, &ResultSetController::recordChanged);
     //treeView->mouseWentUp().connect(this, &WorkSpaceController::showPopup);
 
-    return rssTabWidgetContainer_;
+    view_->currentChanged().connect(this, &ResultSetsController::tabChanged);
+
+    return view_;
 }
 
-ResultSet2Controller* ResultSetsController::newController(const string & name)
+
+ResultSetController* ResultSetsController::getNewControllerIfNeeded(const string & name)
 {
-    ResultSet2Controller* controller = new ResultSet2Controller(name);
-    WTableView* table = new WTableView();
-    int newTabIndex = rssTabWidget_->count();
-    WMenuItem* menuItem = rssTabWidget_->addTab(table, name);
-    controllersMap_[newTabIndex] = controller;
-    return controller;
+    ResultSetController* controller = nullptr;
+
+    auto itIndex = indexesMap_.find(name);
+    if (indexesMap_.end() == itIndex) {
+        controller = new ResultSetController(name);
+        ResultSetView* rsView = new ResultSetView();
+        Wt::WMenuItem* tabMenuItem = view_->addTab(rsView, name);
+        int new_tab_index = static_cast <int> (indexesMap_.size());
+        indexesMap_[name] = new_tab_index;
+        controllersMap_[new_tab_index] = controller;
+    }
+    else {
+        int selected_tab_index = itIndex->second;
+        view_->setCurrentIndex(selected_tab_index);
+        auto itController = controllersMap_.find(selected_tab_index);
+        controller = itController->second;
+    }
+
+    currentController_ = controller;
+
+    return currentController_;
 }
 
 #if 0
-ResultSet2Controller* ResultSetsController::currentController()
+ResultSetController* ResultSetsController::currentController()
 {
-    auto currentTabIndex = rssTabWidget_->currentIndex();
+    auto currentTabIndex = tabWidget_->currentIndex();
     /*
-    auto tabObject = rssTabWidget_->children()[currentTabIndex];
+    auto tabObject = tabWidget_->children()[currentTabIndex];
     WTabWidget = tab->
     */
     return controllersMap_[currentTabIndex];
 }
 #endif
+
+void ResultSetsController::tabChanged(int currentTab)
+{
+    model_->fillModel(currentTab);
+    controllersMap_[currentTab]->notify();
+}
+

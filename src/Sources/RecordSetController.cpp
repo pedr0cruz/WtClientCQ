@@ -1,5 +1,6 @@
 //	RecordSetController.cpp
-//
+
+#include "stdafx.h"
 
 #include <boost/algorithm/string/replace.hpp>
 
@@ -10,59 +11,64 @@
 #include "RecordSetController.h"
 #include "RecordSetView.h"
 
-//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else
 #	include "CQJSON.h"
 #endif
 
+using std::string;
 using namespace Wt;
 
-// Constructor
+/// Constructor
 RecordSetController::RecordSetController(const string & name) : SubjectGoF(name)
 {
-    recModel_ = new RecordSetModel(this);
+    model_ = new RecordSetModel(this);
 }
 
-// Crea y configura la vista
+/// Crea y configura la vista
 WWidget* RecordSetController::createView(WContainerWidget* recordsetContainer)
 {
-    recViewContainer_ = recordsetContainer;
+    viewContainer_ = recordsetContainer;
 
-    recView_ = new RecordSetView(recordsetContainer);
-    recView_->setModel(recModel_);
+    view_ = new RecordSetView(recordsetContainer);
+    view_->setModel(model_);
 
-//	recView_->selectionChanged()
+    /// Conecta los generadores de eventos a las funciones receptoras
+
+//	view_->selectionChanged()
 //		.connect(this, &RecordSetController::recordChanged);
 	//treeView->mouseWentUp().connect(this, &WorkSpaceController::showPopup);
 
-	recView_->clicked().connect(this, &RecordSetController::clicked);
-	recView_->doubleClicked().connect(this, &RecordSetController::doubleClicked);
-	recView_->enterPressed().connect(this, &RecordSetController::enterPressed);
-	recView_->escapePressed().connect(this, &RecordSetController::escapePressed);
-	recView_->focussed().connect(this, &RecordSetController::focussed);
-	recView_->keyPressed().connect(this, &RecordSetController::keyPressed);
-	recView_->mouseWheel().connect(this, &RecordSetController::mouseWheel);
-	//recView_->scrolled().connect(this, &RecordSetController::scrolled);
+	view_->clicked().connect(this, &RecordSetController::clicked);
+	view_->doubleClicked().connect(this, &RecordSetController::doubleClicked);
+	view_->enterPressed().connect(this, &RecordSetController::enterPressed);
+	view_->escapePressed().connect(this, &RecordSetController::escapePressed);
+	view_->focussed().connect(this, &RecordSetController::focussed);
+	view_->keyPressed().connect(this, &RecordSetController::keyPressed);
+	view_->mouseWheel().connect(this, &RecordSetController::mouseWheel);
+	//view_->scrolled().connect(this, &RecordSetController::scrolled);
 
 	//TODO FIXME HACK
-//	recView_->onSelectedRow()
+//	view_->onSelectedRow()
 //		.connect(this, &RecordSetController::recordChanged);
 
-	recViewContainer_->addWidget(recView_);
-	return recView_;
+    /// Agrega la vista creada al contenedor superior
+	viewContainer_->addWidget(view_);
+
+	return view_;
 }
 
+#if 0
 void RecordSetController::recordChanged( string sQuery ) 
 {
-	recModels_->fillModel( sQuery );
-	recView_->fillTable();
-	recView_->refresh();
+	models_->fillModel( sQuery );
+	view_->fillTable();
+	view_->refresh();
 
-/*	if (recView_->selectedIndexes().empty())
+/*	if (view_->selectedIndexes().empty())
 		return;
-	WModelIndex selected = *recView_->selectedIndexes().begin();
+	WModelIndex selected = *view_->selectedIndexes().begin();
 	boost::any d = selected.data(UserRole);
 	if (!d.empty()) {
 		selectedItem_ = boost::any_cast<std::string>(d);
@@ -73,7 +79,6 @@ void RecordSetController::recordChanged( string sQuery )
 	*/
 }
 
-#if 0
 void RecordSetController::rowChanged()
 {
 }
@@ -97,6 +102,11 @@ void RecordSetController::enterPressed()
     auto b = a;
 }
 
+void RecordSetController::escapePressed()
+{
+    int a = 0;
+}
+
 void RecordSetController::focussed()
 {
 	auto a = 0;
@@ -117,6 +127,6 @@ void RecordSetController::mouseWheel()
 
 RecordSetController::~RecordSetController()
 {
-	delete recModel_;
+    delete model_;
 }
 

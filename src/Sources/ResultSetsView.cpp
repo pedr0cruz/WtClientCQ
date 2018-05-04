@@ -1,5 +1,6 @@
 //	ResultSetsView.cpp
-//
+
+#include "stdafx.h"
 
 #include <Wt/WContainerWidget>
 #include <Wt/WStackedWidget>
@@ -13,6 +14,11 @@
 #include <Wt/WBreak>
 
 #include "ResultSetsView.h"
+
+#include <string>
+
+using std::string;
+using namespace Wt;
 
 // ejemplo tomado de stack overflow
 #if 0
@@ -133,7 +139,8 @@ ResultSetsView::~ResultSetsView()
 
 /// Constructor de la clase ResultSetsView
 /// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
-ResultSetsView::ResultSetsView(WContainerWidget *parent): WContainerWidget(parent)
+//ResultSetsView::ResultSetsView(WContainerWidget *parent) : WContainerWidget(parent)
+ResultSetsView::ResultSetsView(WContainerWidget *parent) : WTabWidget(parent)
 {
 }
 

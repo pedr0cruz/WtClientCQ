@@ -163,7 +163,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MyDeb|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;MyDEBUG=1;USE_RESULTSET2=1;_SCL_SECURE_NO_WARNINGS=1;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -241,16 +241,15 @@
     <ClInclude Include="..\..\src\Headers\ResultSetController.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetModel.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetView.h" />
-    <ClInclude Include="..\..\src\Headers\ResultSetController-.h" />
-    <ClInclude Include="..\..\src\Headers\ResultSetModel-.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetsController.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetsModel.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetsView.h" />
-    <ClInclude Include="..\..\src\Headers\ResultSetView-.h" />
     <ClInclude Include="..\..\src\Headers\TabWidget.h" />
     <ClInclude Include="..\..\src\Headers\WorkSpaceController.h" />
     <ClInclude Include="..\..\src\Headers\WorkSpaceModel.h" />
     <ClInclude Include="..\..\src\Headers\WorkSpaceView.h" />
+    <ClInclude Include="..\..\src\Utils\ChainOfResponsibilityGoF.h" />
+    <ClInclude Include="..\..\src\Utils\DecoratorGoF.h" />
     <ClInclude Include="..\..\src\Utils\MediatorGoF.h" />
     <ClInclude Include="..\..\src\Utils\ObserverGoF.h" />
     <ClInclude Include="stdafx.h" />
@@ -269,7 +268,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\src\Sources\CQWtApp.cpp" />
-    <ClCompile Include="..\..\src\Sources\CQWtAppView2.cpp" />
+    <ClCompile Include="..\..\src\Sources\CQWtAppView.cpp" />
     <ClCompile Include="..\..\src\Sources\CsvUtil.C">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MyDeb|x64'">true</ExcludedFromBuild>
@@ -287,16 +286,14 @@
     <ClCompile Include="..\..\src\Sources\RecordSetModel.cpp" />
     <ClCompile Include="..\..\src\Sources\RecordSetsController.cpp" />
     <ClCompile Include="..\..\src\Sources\RecordSetsModel.cpp" />
+    <ClCompile Include="..\..\src\Sources\RecordSetsView.cpp" />
     <ClCompile Include="..\..\src\Sources\RecordSetView.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetController.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetModel.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetView.cpp" />
-    <ClCompile Include="..\..\src\Sources\ResultSetController-.cpp" />
-    <ClCompile Include="..\..\src\Sources\ResultSetModel-.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetsController.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetsModel.cpp" />
     <ClCompile Include="..\..\src\Sources\ResultSetsView.cpp" />
-    <ClCompile Include="..\..\src\Sources\ResultSetView-.cpp" />
     <ClCompile Include="..\..\src\Sources\TreeViewDragDrop.C">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MyDeb|x64'">true</ExcludedFromBuild>

@@ -95,15 +95,6 @@
     <ClInclude Include="..\..\src\Headers\ResultSetsView.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Headers\ResultSetModel-.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Headers\ResultSetView-.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Headers\ResultSetController-.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Headers\ResultSetView.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -112,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Headers\ResultSetController.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\DecoratorGoF.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\ChainOfResponsibilityGoF.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -160,9 +157,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Sources\CQWtAppView2.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Utils\MediatorGoF.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
@@ -190,15 +184,6 @@
     <ClCompile Include="..\..\src\Sources\RecordSetController.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Sources\ResultSetController-.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Sources\ResultSetModel-.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Sources\ResultSetView-.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Sources\ResultSetView.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -206,6 +191,12 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Sources\ResultSetController.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\CQWtAppView.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sources\RecordSetsView.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -36,6 +36,7 @@ public:
     bool fillModel(int selectedTabIndex = 0);
 
 protected:
+    ///  DATOS ESPECÍFICOS de cada modelo
 
 #ifdef MyDEBUG
     /// Puntero a Objeto que se comunica con el servidor
@@ -52,6 +53,8 @@ protected:
     /// Solamente es necesario guardar la pestaña activa, 
     /// el modelo de cada pestaña guarda su estado.
     int currentTabIndex_;
+
+    /// FIN de DATOS ESPECÍFICOS de cada modelo
 };
 
 #endif /// RESULTSETS_MODEL_H

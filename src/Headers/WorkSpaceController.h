@@ -1,5 +1,9 @@
+//  WorkSpaceController.h
+
 #ifndef WORKSPACECTRL_H
 #define WORKSPACECTRL_H
+
+#pragma once
 
 #include <Wt/WObject>
 #include <Wt/WContainerWidget>
@@ -23,7 +27,7 @@ class WorkSpaceController : public Wt::WObject, public SubjectGoF
 {
 public:
 	/// Constructor
-	WorkSpaceController(string name);
+	WorkSpaceController(const std::string & name);
 
     /// Crea una vista (pudiera haber varias para el mismo modelo)
     Wt::WTreeView *createView(Wt::WContainerWidget* wsContainer);
@@ -45,17 +49,21 @@ public:
     ~WorkSpaceController();
 
 protected:
+    ///  DATOS ESPECÍFICOS de cada controlador
+
     ///  Contenedor de la vista
     Wt::WContainerWidget* viewContainer_;
 
     /// Modelo asociado a este controlador
-    WorkSpaceModel *model_;
+    WorkSpaceModel* model_;
     /// Vista asociada a este controlador
     WorkSpaceView* view_;
 
     ///  Datos particulares de cada tipo de vista
     std::string selectedItem_;
     /// FIN de datos particulares de cada tipo de vista
+
+    /// FIN de DATOS ESPECÍFICOS de cada controlador
 
     void fillModel();
 };

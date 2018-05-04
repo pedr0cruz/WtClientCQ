@@ -1,5 +1,6 @@
 //	RecordSetsView.cpp
-//
+
+#include "stdafx.h"
 
 #include <Wt/WContainerWidget>
 #include <Wt/WStackedWidget>
@@ -12,7 +13,14 @@
 #include <Wt/WLineEdit>
 #include <Wt/WBreak>
 
+#include <string>
+#include <vector>
+
 #include "RecordSetsView.h"
+
+using std::string;
+using std::vector;
+using namespace Wt;
 
 // ejemplo tomado de stack overflow
 #if 0
@@ -131,9 +139,19 @@ RecordSetsView::~RecordSetsView()
 
 ////////////////////////// RecordSetsView /////////////////////////////////////////
 
+#if 0
+/// Patrón Factory para crear esta vista
+/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+RecordSetsView* RecordSetsView::createView(Wt::WContainerWidget* parentContainer)
+{
+    return new RecordSetsView(parentContainer);
+}
+#endif
+
 /// Constructor de la clase RecordSetsView
 /// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
-RecordSetsView::RecordSetsView(WContainerWidget *parent): WContainerWidget(parent)
+//RecordSetsView::RecordSetsView(WContainerWidget *parent) : WContainerWidget(parent)
+RecordSetsView::RecordSetsView(WContainerWidget *parent) : WTabWidget(parent)
 {
     tabWidgetContainer_ = parent;
     tabWidget_ = new WTabWidget(tabWidgetContainer_);
@@ -146,6 +164,8 @@ RecordSetsView::~RecordSetsView()
     delete tabWidgetContainer_;
 }
 
+#if 0
+
 WTabWidget* RecordSetsView::getTabWidget()
 {
     return tabWidget_;
@@ -156,9 +176,11 @@ WContainerWidget* RecordSetsView::getTabWidgetContainer()
     return tabWidgetContainer_;
 }
 
+#endif
+
 /// Establece el modelo usado para esta vista
 /// @param model Puntero al modelo que a utilizar
-void RecordSetsView::setModel(ResultSetsModel* model)
+void RecordSetsView::setModel(RecordSetsModel* model)
 {
     model_ = model;
 }

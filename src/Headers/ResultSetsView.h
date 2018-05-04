@@ -1,31 +1,15 @@
+//  ResultSetsView
+
 #ifndef RESULTSETS_VIEW_H
 #define RESULTSETS_VIEW_H
 
+#pragma once
+
 #include <Wt/WContainerWidget>
 #include <Wt/WTabWidget>
-/*
-#include <Wt/WText>
-#include <Wt/WTable>
-#include <Wt/WTemplate>
-#include <Wt/WCssDecorationStyle>
-#include <Wt/WAnimation>
-#include <Wt/WDialog>
-#include <Wt/WLabel>
-#include <Wt/WFormModel>
-#include <Wt/WTemplateFormView>
-*/
 
-/*
-#include <vector>
-#include <string>
-#include <Wt/WSignal>
-#include <Wt/WImage>
-*/
-
-//#include "ResultSetsModel.h"
-class ResultSetsModel;
-
-using namespace Wt;
+#include "TabWidget.h"
+#include "ResultSetsModel.h"
 
 #if 0
 
@@ -135,19 +119,17 @@ public:
 ///	ResultSetsView: Shows the data from the associated model.
 /// Inherits from WContainerWidget and from WTabWidget to implement 
 //  a Tab widget and its inner container.
-class ResultSetsView : public WContainerWidget
+//class ResultSetsView : public Wt::WContainerWidget
+class ResultSetsView : /* public Wt::WContainerWidget, */ public TabWidget
 {
 public:
     //static ResultSetsView* createView(WContainerWidget* parentContainer);
-    ResultSetsView(WContainerWidget* parentContainer = nullptr);
+    ResultSetsView(Wt::WContainerWidget* parentContainer = nullptr);
     
-    //void setHeader(vector<string>);
-	//void addRow(vector<string>);
-
-    int currentTabIndex() { return currentTabIndex_; }
+    // No hace falta, WTabWidget tiene la funcion currentIndex() que hace eso mismo
+    //int currentTabIndex() { return currentTabIndex_; }
 
     void setModel(ResultSetsModel* model);
-	//void setModel(std::shared_ptr <ResultSetModel> model);
 
 //	void setHidden(bool, const Wt::WAnimation &animation = Wt::WAnimation());
 
@@ -159,19 +141,23 @@ public:
 
 private:
     //ResultSetsView(Wt::WContainerWidget *parent = 0);
-
     //ResultSetView(std::shared_ptr <Wt::WContainerWidget> parent = nullptr);
-    ResultSetsModel* model_;
-    int currentTabIndex_;
-    //string selectedTab;
-    //int selectedHeader;
+
     //Signal<int> rowSelect;
     //Signal<int> findByColumn;
     //Signal<int, bool> sortByColumn;
 
+    //void s_selectRow(int);
+
+    ///  DATOS ESPECÍFICOS de cada vista
+
+    ResultSetsModel* model_;
+    //int currentTabIndex_;
+    //string selectedTab;
+    //int selectedHeader;
     //vector<bool> sortOrder;
 
-    //void s_selectRow(int);
+    /// FIN de DATOS ESPECÍFICOS de cada controlador
 };
 
 #endif /// RESULTSETS_VIEW_H

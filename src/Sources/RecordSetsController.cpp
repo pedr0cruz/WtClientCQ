@@ -1,5 +1,6 @@
 //	RecordSetsController.cpp
-//
+
+#include "stdafx.h"
 
 #include <boost/algorithm/string/replace.hpp>
 
@@ -18,7 +19,6 @@
 
 #include "RecordSetController.h"
 
-//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else
@@ -27,7 +27,6 @@
 
 using std::string;
 using std::vector;
-
 using namespace Wt;
 
 static const string s_recordSetsTabsWidget("recordSetsTabWidget");
@@ -38,6 +37,7 @@ RecordSetsController::RecordSetsController(const string & name) : SubjectGoF(nam
     model_ = new RecordSetsModel(this);
 }
 
+/// Destructor
 RecordSetsController::~RecordSetsController()
 {
     for each (auto key_value_pair in controllersMap_) {
@@ -47,33 +47,32 @@ RecordSetsController::~RecordSetsController()
     delete model_;
 }
 
+/// Crea un nuevo controlador
 RecordSetController* RecordSetsController::newController(const string & name)
 {
     auto controller = new RecordSetController(name);
-/*
-    auto form = new WTemplateFormView();
-    auto newTabIndex = recTabWidget_->count();
-    auto menuItem = view_->addTab(form, name);
-*/
     auto newControllerIndex = controllersMap_.size();
-    controllersMap_[newControllerIndex] = controller;
+    auto index = static_cast <int> (newControllerIndex);
+    controllersMap_[index] = controller;
     return controller;
 }
 
-// Crea y configura la vista
+/// Crea y configura la vista
 WWidget* RecordSetsController::createView(WContainerWidget* recordSetsContainer)
 {
     view_ = new RecordSetsView(recordSetsContainer);
+    //view_ = RecordSetsView::createView(recordSetsContainer);
+
     view_->setModel(model_);
 
     view_->currentChanged().connect(this, &RecordSetsController::tabChanged);
 
-    return view_->getTabWidgetContainer();
+    return view_;
 }
 
 void RecordSetsController::tabChanged(int currentTab)
 {
-    model_->setCurrentTab(currentTab);
+    model_->fillModel(currentTab);
     controllersMap_[currentTab]->notify();
 }
 

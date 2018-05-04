@@ -1,36 +1,42 @@
+//  RecordSetsView.h
+
 #ifndef RECORDSETS_VIEW_H
 #define RECORDSETS_VIEW_H
 
 #include <Wt/WContainerWidget>
 #include <Wt/WTabWidget>
 
-//#include <memory>
-
+#include "TabWidget.h"
 #include "RecordSetsModel.h"
 
 ///	RecordSetsView: Shows the data from the associated model.
 /// Inherits from WContainerWidget and from WTabWidget to implement 
 //  a Tab widget and its inner container.
-class RecordSetsView : public Wt::WContainerWidget, public Wt::WTabWidget
+class RecordSetsView : /* public Wt::WContainerWidget, */ public TabWidget
 {
 public:
-    static RecordSetsView* createView(Wt::WContainerWidget* parentContainer);
+//    static RecordSetsView* createView(Wt::WContainerWidget* parentContainer);
 	
-	virtual ~RecordSetsView();
+    RecordSetsView(Wt::WContainerWidget *parent = 0);
 
-    Wt::WTabWidget* getTabWidget();
-    Wt::WContainerWidget* getTabWidgetContainer();
+    virtual ~RecordSetsView();
+
+//    Wt::WTabWidget* getTabWidget();
+//    Wt::WContainerWidget* getTabWidgetContainer();
 
     void setModel(RecordSetsModel* model);
     //void setModel(std::shared_ptr <RecordSetModel> model);
 
 private:
-    RecordSetsView(Wt::WContainerWidget *parent = 0);
-    //RecordSetView(std::shared_ptr <Wt::WContainerWidget> parent = nullptr);
+    ///  DATOS ESPECÍFICOS de cada tipo de vista
+
+//    RecordSetsView(Wt::WContainerWidget *parent = 0);
 
     RecordSetsModel* model_;
-    Wt::WTabWidget* tabWidget_;
-    Wt::WContainerWidget* tabWidgetContainer_;
+    //Wt::WTabWidget* tabWidget_;
+    //Wt::WContainerWidget* tabWidgetContainer_;
+
+    /// FIN de DATOS ESPECÍFICOS de cada tipo de vista
 };
 
 #endif /// RECORDSETS_VIEW_H

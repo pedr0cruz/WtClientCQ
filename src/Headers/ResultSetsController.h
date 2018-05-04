@@ -1,5 +1,9 @@
+//  ResultSetsController
+
 #ifndef RESULTSETS_CTRL_H
 #define RESULTSETS_CTRL_H
+
+#pragma once
 
 #include <Wt/WObject>
 
@@ -17,10 +21,6 @@
 
 #include "ObserverGoF.h"
 
-//class ResultSetsModel;
-//class ResultSetsView;
-//class ResultSetController;
-
 ///	Esta clase funciona como contenedor para todas las tuplas MVC
 /// conectadas a cada una de las pestañas. Además, incluye punteros
 /// a la vista y al modelo correspondientes a este controlador.
@@ -31,15 +31,18 @@ public:
     ResultSetsController(const std::string & parent);
 
     /// Crea la vista
-    Wt::WContainerWidget* createView(Wt::WContainerWidget* recParentContainer);
+    //Wt::WContainerWidget* createView(Wt::WContainerWidget* parentContainer);
+    ResultSetsView* createView(Wt::WContainerWidget* parentContainer);
 
     /// Crea un nuevo controlador para una nueva pestaña
-    ResultSetController* newController(const std::string & name);
+    ResultSetController* getNewControllerIfNeeded(const std::string & name);
 
     /// Eventos a los que debe reaccionar este controlador
 
-    /// Cambia la pestaña activa
-    void tabChanged(const std::string s);
+    /// Ha cambiado la pestaña activa, se recibe como 
+    /// argumento el indice de la nueva pestaña.
+    void tabChanged(int currentTab);
+
     /// Se ha movido la vista dentro de la ventana
     //EventSignal<WScrollEvent>& scrolled();
 
@@ -54,27 +57,32 @@ public:
 
 
 
-    /// Devuelve el indice numerico de la pestaña seleccionada
-    int currentTabIndex() { return view_->currentTabIndex(); }
-
     /// Destructor
     ~ResultSetsController();
 
 protected:
+    ///  DATOS ESPECÍFICOS de cada controlador
+
     ///  Control de pestañas
-    Wt::WTabWidget* rssTabWidget_;
+    //Wt::WTabWidget* tabWidget_;
+
     ///  Contenedor del control de pestañas
-    Wt::WContainerWidget* rssTabWidgetContainer_;
+    //Wt::WContainerWidget* tabWidgetContainer_;
+
     /// Modelo asociado a este controlador
     ResultSetsModel* model_;
     /// Vista asociada a este controlador
     ResultSetsView* view_;
 
-    /// Datos particulares de cada tipo de vista
     /// Mapa de indices (enteros) a controladores (uno por pestaña)
     typedef std::map<int, ResultSetController*> ControllersMap;
     ControllersMap controllersMap_;
-    /// FIN de datos particulares de cada tipo de vista
+    typedef std::map<const std::string, int> IndexesMap;
+    IndexesMap indexesMap_;
+
+    ResultSetController* currentController_;
+
+    /// FIN de DATOS ESPECÍFICOS de cada controlador
 
     void fillModel();
 };

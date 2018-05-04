@@ -1,3 +1,5 @@
+//  RecordSetsController.h
+
 #ifndef RECORDSETS_CTRL_H
 #define RECORDSETS_CTRL_H
 
@@ -29,7 +31,7 @@ public:
     Wt::WWidget* createView(Wt::WContainerWidget* rssParentContainer);
 
     /// Crea un nuevo controlador para una nueva pestaña
-    RecordSetController* newController(const string & name);
+    RecordSetController* newController(const std::string & name);
 
     /// Evento que ocurre al cambiar la pestaña activa
 	void tabChanged(int currentTab);
@@ -43,9 +45,13 @@ protected:
     /// Vista asociada a este controlador
     RecordSetsView* view_;
 
+    ///  DATOS ESPECÍFICOS de cada controlador
+
     /// Mapa de indices (enteros) a controladores (uno por pestaña)
     typedef std::map<int, RecordSetController*> ControllersMap;
     ControllersMap controllersMap_;
+
+    /// FIN de DATOS ESPECÍFICOS de cada controlador
 };
 
 #endif /// RECORDSETS_CTRL_H

@@ -33,9 +33,13 @@ public:
     virtual ~ResultSetModel();
 
     /// Llena el modelo con los datos de la consulta
-    bool fillModel(string QueryName);
+    bool fillModel(const std::string & QueryName);
+
+private:
+    static const char *ItemSelectionMimeType;
 
 protected:
+    ///  DATOS ESPECÍFICOS de cada modelo
 
 #ifdef MyDEBUG
     CQJSONdummy* cqSession;
@@ -48,14 +52,13 @@ protected:
     std::vector < std::vector <std::string> > wTableData;
     std::vector < std::vector <std::string> > wTableFilterData;
 
+    /// FIN de DATOS ESPECÍFICOS de cada modelo
+
 	/// Return the mime type.
 	virtual std::string mimeType() const
     {
         return ItemSelectionMimeType;
 	}
-
-private:
-    static const char *ItemSelectionMimeType;
 };
 
 #endif /// RESULTSET_MODEL_H

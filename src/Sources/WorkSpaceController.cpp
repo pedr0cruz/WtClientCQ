@@ -1,3 +1,6 @@
+//  WorkSpaceController.cpp
+
+#include "stdafx.h"
 
 #include <boost/algorithm/string/replace.hpp>
 
@@ -8,46 +11,48 @@
 #include "WorkSpaceController.h"
 #include "WorkSpaceView.h"
 
-//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else
 #	include "CQJSON.h"
 #endif
 
+#include <string>
+
+using std::string;
 using namespace Wt;
 
 // Constructor
-WorkSpaceController::WorkSpaceController(string name) :SubjectGoF(name)
+WorkSpaceController::WorkSpaceController(const string & name) :SubjectGoF(name)
 {
-	wsModel_ = new WorkSpaceModel(this);
-	wsModel_->fillModel();
+	model_ = new WorkSpaceModel(this);
+	model_->fillModel();
 }
 
 // Crea y configura la vista
 WTreeView *WorkSpaceController::createView(WContainerWidget* workSpaceContainer) 
 {
-	wsViewContainer_ = workSpaceContainer;
+	viewContainer_ = workSpaceContainer;
 
-	wsView_ = new WorkSpaceView();
-	wsView_->setModel(wsModel_);
-	wsView_->expandToDepth(1);
+	view_ = new WorkSpaceView();
+	view_->setModel(model_);
+	view_->expandToDepth(1);
 
-	wsView_->selectionChanged()
+	view_->selectionChanged()
 		.connect(this, &WorkSpaceController::folderChanged);
 	//treeView->mouseWentUp().connect(this, &WorkSpaceController::showPopup);
 
-	wsViewContainer_->addWidget(wsView_);
+	viewContainer_->addWidget(view_);
 
-	return wsView_;
+	return view_;
 }
 
 void WorkSpaceController::folderChanged()
 {
-    if (wsView_->selectedIndexes().empty()) {
+    if (view_->selectedIndexes().empty()) {
         return;
     }
-	WModelIndex selected = *wsView_->selectedIndexes().begin();
+	WModelIndex selected = *view_->selectedIndexes().begin();
 	boost::any d = selected.data(UserRole);
 	if (!d.empty()) {
 		selectedItem_ = boost::any_cast<std::string>(d);
@@ -59,6 +64,6 @@ void WorkSpaceController::folderChanged()
 
 WorkSpaceController::~WorkSpaceController()
 {
-	delete wsModel_;
+	delete model_;
 }
 

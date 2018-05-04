@@ -1,8 +1,9 @@
 // WorskSpaceModel.h
-//
 
 #ifndef WORKSPACE_MODEL_H
 #define WORKSPACE_MODEL_H
+
+#pragma once
 
 #include <Wt/WObject>
 #include <Wt/WStandardItemModel>
@@ -15,9 +16,9 @@
 #include <Wt/Json/Value>
 
 #ifdef MyDEBUG
-#include "CQJSONdummy.h"
+#   include "CQJSONdummy.h"
 #else
-#include "CQJSON.h"
+#   include "CQJSON.h"
 #endif
 
 ///	WorkSpaceModel: Main Application Model.
@@ -36,6 +37,7 @@ public:
     bool fillModel();
 
 protected:
+    ///  DATOS ESPECÍFICOS de cada vista
 
 #ifdef MyDEBUG
     /// Puntero a Objeto que se comunica con el servidor
@@ -55,6 +57,8 @@ protected:
 	std::map<std::string, Wt::WString> wsNameMap_;
     std::map<std::string, Wt::WStandardItem*> wsItemMap_;
     std::map<std::string, Wt::Json::Object*> jsonObjectMap_;
+
+    /// FIN de DATOS ESPECÍFICOS de cada vista
 
 private:
     Wt::WStandardItem* createFolderItem(const Wt::WString& location, const std::string& wsId = std::string());

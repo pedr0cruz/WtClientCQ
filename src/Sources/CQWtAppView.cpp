@@ -1,4 +1,6 @@
-//	CQWtAppView2.cpp
+//	CQWtAppView.cpp
+
+#include "stdafx.h"
 
 #include <Wt/WApplication>
 #include <Wt/WFileResource>
@@ -10,12 +12,15 @@
 #include <Wt/WText>
 #include <Wt/WLength>
 
-#include <CQWtAppView2.h>
+#include <CQWtAppView.h>
+
+#include <ResultSetsView.h>
+#include <RecordSetsView.h>
 
 using namespace Wt;
 
 /// Constructor: crea toda la vista exterior de la App
-CQWtAppView2::CQWtAppView2(Wt::WContainerWidget *PageRoot)
+CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
 {
 	Wt::WBootstrapTheme * p_wtTheme = new Wt::WBootstrapTheme();
 	p_wtTheme->setVersion(Wt::WBootstrapTheme::Version3);
@@ -42,14 +47,31 @@ CQWtAppView2::CQWtAppView2(Wt::WContainerWidget *PageRoot)
 	appContainer_->setHeight(WLength("100%")); // ó (100, WLength::Percentage));
 
 	///////////////// Interiores
+
 	/// Panel Detalles
 	Wt::WGridLayout *layoutDetalles = new Wt::WGridLayout();
 	layoutDetalles->setRowResizable(0); // No cambia de tamaño externo
 
-	//resultSetContainer_ = new Wt::WContainerWidget(appContainer_);
-	resultSetsContainer_ = dynamic_cast <Wt::WContainerWidget*> (new Wt::WTabWidget(appContainer_));
+    /// Panel contenedor de pestañas con tablas (panel derecho superior)
+    //resultSetsTabsContainer_ = new Wt::WContainerWidget(appContainer_);
+    /// Panel con las pestañas de las tablas
+    //resultSetsTabWidget_ = ResultSetsView(resultSetsTabsContainer_);
 
-	layoutDetalles->addWidget(resultSetsContainer_, 0, 0);
+    /// Panel contenedor de pestañas con tablas (panel derecho superior)
+    //resultSetsTabsContainer_ = new ResultSetsView(resultSetsTabsContainer_);
+
+    /// Panel con las pestañas de las tablas
+    //resultSetsTabWidget_ = new Wt::WTabWidget(resultSetsTabsContainer_);
+
+    /// Agrega el panel con las pestañas al contenedor creado antes
+    //resultSetsTabsContainer_->addWidget(resultSetsTabWidget_);
+
+    resultSetsViewContainer_ = new Wt::WContainerWidget(appContainer_);
+    resultSetsView_ = new ResultSetsView(resultSetsViewContainer_);
+
+    /// Agrega el contenedor (que contiene el panel con las pestañas) al contenedor interior
+    //layoutDetalles->addWidget(resultSetsTabsContainer_, 0, 0);
+    layoutDetalles->addWidget(resultSetsViewContainer_, 0, 0);
 
 #ifdef MYTEST
 
@@ -60,70 +82,94 @@ CQWtAppView2::CQWtAppView2(Wt::WContainerWidget *PageRoot)
 	resultSetContainer_->addWidget(item);
 #endif
 
-	auto newTab = new Wt::WTemplateFormView ();
-
-	resultSetsContainer_->setStyleClass("green-box");
+	auto newTabForResultSets = new Wt::WTableView();
+    resultSetsViewContainer_->setStyleClass("green-box");
 	//item = new Wt::WText(Wt::WString(cell).arg("TABLE"));
-	Wt::WString tab_text("tab1-form1");
-
-	WTabWidget* tabWidget = dynamic_cast <WTabWidget*> (resultSetsContainer_);
-	auto menu_for_tab = tabWidget->addTab(newTab, tab_text);
-	recordTabsVec_.push_back(menu_for_tab);
+	Wt::WString tab_text("tab1-tableview1");
+    //auto menu_for_tab = resultSetsTabWidget_->addTab(newTabForResultSets, tab_text);
+    auto menu_for_tab = resultSetsView_->addTab(newTabForResultSets, tab_text);
 
 #endif
-	/// Panel Formularios
 
-	recordFormContainer_ = new Wt::WContainerWidget(appContainer_);
+    /// Panel contenedor de pestañas con formularios (panel derecho inferior)
+	//recordSetsTabsContainer_ = new Wt::WContainerWidget(appContainer_);
+    /// Panel con las pestañas de las planillas
+    //recordSetsTabWidget_ = new RecordSetsView(recordSetsTabsContainer_);
 
-	//	CHECK: the argument should be recordFormContainer_ OR appContainer_ ???
-	//recordFormContainer_->addTab(new Wt::WContainerWidget(recordFormContainer_), Wt::WString ("tab1"));
+    /// Panel contenedor de pestañas con formularios (panel derecho inferior)
+    //recordSetsTabsContainer_ = RecordSetsView::createView(appContainer_);
+    /// Panel con las pestañas de las planillas
+    //recordSetsTabWidget_ = new Wt::WTabWidget(recordSetsTabsContainer_);
+    recordSetsViewContainer_ = new Wt::WContainerWidget(appContainer_);
+    recordSetsView_ = new RecordSetsView(recordSetsViewContainer_);
 
-	layoutDetalles->addWidget(recordFormContainer_, 1, 0);
+    //	CHECK: the argument should be recordFormContainer_ OR appContainer_ ???
+    //recordFormContainer_->addTab(new Wt::WContainerWidget(recordFormContainer_), Wt::WString ("tab1"));
+    //layoutDetalles->addWidget(recordFormContainer_, 1, 0);
+
+    /// Agrega el panel con las planillas (formularios) al contenedor creado antes
+    //recordSetsTabsContainer_->addWidget(recordSetsTabWidget_);
+
+    /// Agrega el contenedor (que contiene el panel con las pestañas) al contenedor interior
+    //layoutDetalles->addWidget(recordSetsTabsContainer_, 1, 0);
+    layoutDetalles->addWidget(recordSetsViewContainer_, 1, 0);
 
 #ifdef MYTEST
 	/// Imprime el texto "Panel DETAILS" 	
 	item = new Wt::WText(Wt::WString(cell).arg("DETAILS"));
-	recordFormContainer_->setStyleClass("green-box");
+    //recordSetsTabsContainer_->setStyleClass("green-box");
+    recordSetsViewContainer_->setStyleClass("green-box");
+
 	//recordFormContainer_->addWidget(item);
 	//	CHECK: the argument should be recordFormContainer_ OR appContainer_ ???
-	//recordFormContainer_->addTab(new Wt::WContainerWidget(recordFormContainer_), Wt::WString ("tab1"));
+    //recordSetsTabWidget_->addTab(new Wt::WTemplateFormView(recordSetsTabsContainer_), Wt::WString("tab1"));
+    recordSetsView_->addTab(new Wt::WTemplateFormView(recordSetsViewContainer_), Wt::WString("tab1-form1"));
 #endif
+
 	///////////////// Interior (Izquierdo)
 	Wt::WGridLayout *layoutInterior = new Wt::WGridLayout();
 	layoutInterior->addLayout(layoutDetalles, 0, 1); ///< Coloco el detalle(tabla y formularios)
 	layoutInterior->setColumnStretch(1, 1); ///< La segunda columna ocupa todo el espacio posible
 	layoutInterior->setColumnResizable(0);
+
 	/// Panel WorkSpace
 	workSpaceContainer_ = new Wt::WContainerWidget(appContainer_);
 	layoutInterior->addWidget(workSpaceContainer_, 0, 0);
+
 #ifdef MYTEST
 	/// Imprime el texto "Panel LEFT" 	
 	item = new Wt::WText(Wt::WString(cell).arg("LEFT"));
 	workSpaceContainer_->setStyleClass("green-box");
 	workSpaceContainer_->addWidget(item);
 #endif
+
 	///////////////// Exteriores (Superior e Inferior)
 	Wt::WGridLayout *layoutExterior = new Wt::WGridLayout();
 	layoutExterior->addLayout(layoutInterior, 1, 0); // Coloco el centro
 	layoutExterior->setRowStretch(1, 1);
+
 	/// Panel Superior
 	topPanelContainer_ = new Wt::WContainerWidget(appContainer_);
 	layoutExterior->addWidget(topPanelContainer_, 0, 0);
+
 #ifdef MYTEST
 	/// Imprime el texto "Panel TOP" 	
 	item = new Wt::WText(Wt::WString(cell).arg("TOP"));
 	topPanelContainer_->addWidget(item);
 	topPanelContainer_->setStyleClass("green-box");
 #endif
+
 	/// Panel inferior
 	footerContainer_ = new Wt::WContainerWidget(appContainer_);
 	layoutExterior->addWidget(footerContainer_, 2, 0);
+
 #ifdef MYTEST
 	/// Imprime el texto "Panel DOWN" 	
 	item = new Wt::WText(Wt::WString(cell).arg("DOWN"));
 	footerContainer_->setStyleClass("green-box");
 	footerContainer_->addWidget(item);
 #endif
+
 	/// Ingresa el layout al container principal de la app
 	appContainer_->setLayout(layoutExterior); 
 
@@ -133,59 +179,64 @@ CQWtAppView2::CQWtAppView2(Wt::WContainerWidget *PageRoot)
 	addAllJavaScripts();
 }
 
-void CQWtAppView2::addAllStyleSheets()
+void CQWtAppView::addAllStyleSheets()
 {
 	Wt::WApplication::instance()->useStyleSheet(Wt::WLink("resources/main.css"));
 }
 
-void CQWtAppView2::addAllJavaScripts()
+void CQWtAppView::addAllJavaScripts()
 {
 }
 
-void CQWtAppView2::connectAllSignals()
+void CQWtAppView::connectAllSignals()
 {
 }
 
-CQWtAppView2::~CQWtAppView2()
+CQWtAppView::~CQWtAppView()
 {
 	/// Al eliminar el Contendor exterior, se borran recursivamente todo lo interior
 	delete appContainer_;		
 }
 
 // Gets
-WContainerWidget* CQWtAppView2::appContainer()
+WContainerWidget* CQWtAppView::appContainer()
 {
 	return appContainer_;
 }
 
-WContainerWidget* CQWtAppView2::topPanelContainer()
+WContainerWidget* CQWtAppView::topPanelContainer()
 {
 	return topPanelContainer_;
 }
 
-WContainerWidget* CQWtAppView2::workSpaceContainer()
+WContainerWidget* CQWtAppView::workSpaceContainer()
 {
 	return workSpaceContainer_;
 }
 
 #if 0
-WContainerWidget* CQWtAppView2::resultSetContainer()
+WContainerWidget* CQWtAppView::resultSetsTabsContainer()
 {
-	return resultSetContainer_;
+	return resultSetsTabsContainer_;
+}
+
+WContainerWidget* CQWtAppView::recordSetsTabsContainer()
+{
+	return recordSetsTabsContainer_;
 }
 #endif
 
-WContainerWidget* CQWtAppView2::resultSetsContainer()
+WContainerWidget* CQWtAppView::resultSetsViewContainer()
 {
-	return resultSetsContainer_;
+    return resultSetsViewContainer_;
 }
 
-WContainerWidget* CQWtAppView2::recordFormsContainer()
+WContainerWidget* CQWtAppView::recordSetsViewContainer()
 {
-	return recordFormContainer_;
+    return recordSetsViewContainer_;
 }
 
-WContainerWidget* CQWtAppView2::footerContainer()
+WContainerWidget* CQWtAppView::footerContainer()
 {
 	return footerContainer_;
 }

@@ -1,3 +1,7 @@
+// TreeViewDragDrop.cpp
+
+#include "stdafx.h"
+
 /*
  * Copyright (C) 2008 Emweb bvba, Kessel-Lo, Belgium.
  *
@@ -58,6 +62,7 @@
 #	define TRUE_DEFINED  1
 #endif
 
+using std::string;
 using namespace Wt;
 
 /**
@@ -82,7 +87,7 @@ public:
 
   /*! \brief Return the mime type.
    */
-  virtual std::string mimeType() const {
+  virtual string mimeType() const {
     return FolderView::FileSelectionMimeType;
   }
 
@@ -287,7 +292,7 @@ public:
 
       fileModel_->setHeaderFlags(0, Horizontal, HeaderIsUserCheckable);
       fileModel_->setHeaderData(0, Horizontal,
-                                std::string("icons/file.gif"),
+                                string("icons/file.gif"),
 			        Wt::DecorationRole);
     */
     fileFilterModel_ = new WSortFilterProxyModel(this);
@@ -319,9 +324,9 @@ private:
   WSortFilterProxyModel *fileFilterModel_;
 
   /// Maps folder id's to folder descriptions.
-  std::map<std::string, WString> folderNameMap_;
-  std::map<std::string, WStandardItem*> folderItemMap_;
-  std::map<std::string, Json::Object*> jsonObjectMap_;
+  std::map<string, WString> folderNameMap_;
+  std::map<string, WStandardItem*> folderItemMap_;
+  std::map<string, Json::Object*> jsonObjectMap_;
 
   /// The folder view.
   WTreeView *folderView_;
@@ -499,7 +504,7 @@ private:
     WModelIndex selected = *folderView_->selectedIndexes().begin();
     boost::any d = selected.data(UserRole);
     if (!d.empty()) {
-      std::string folder = boost::any_cast<std::string>(d);
+      string folder = boost::any_cast<string>(d);
 
       // For simplicity, we assume here that the folder-id does not
       // contain special regexp characters, otherwise these need to be
@@ -588,7 +593,7 @@ private:
    * actual folder name, and configure item flags, and parse date
    * values.
    */
-  bool populateFiles(string QueryName ) {
+  bool populateFiles(const string & QueryName ) {
 
 #ifdef MyDEBUG
 	  CQJSONdummy cqSession;
@@ -657,7 +662,7 @@ private:
       item->setFlags(item->flags() | ItemIsDragEnabled);
       item->setIcon("icons/file.gif");
 
-      std::string folderId = item->text().toUTF8();
+      string folderId = item->text().toUTF8();
 
       item->setData(boost::any(folderId), UserRole);
       item->setText(folderNameMap_[folderId]);
@@ -798,16 +803,14 @@ private:
     level1->appendRow(level2 = createFolderItem("Investors", "sf-investors"));
     level1->appendRow(level2 = createFolderItem("Fellows", "sf-fellows"));
 
-    folderModel_->setHeaderData(0, Horizontal,
-				 boost::any(std::string("Explorador")));
+    folderModel_->setHeaderData(0, Horizontal, boost::any(string("Explorador")));
   }
 
   /*! \brief Create a folder item.
    *
    * Configures flags for drag and drop support.
    */
-  WStandardItem *createFolderItem(const WString& location,
-				  const std::string& folderId = std::string())
+  WStandardItem *createFolderItem(const WString& location, const string & folderId = string())
   {
     WStandardItem *result = new WStandardItem(location);
 
@@ -824,8 +827,9 @@ private:
     return result;
   }
 
-  WStandardItem *createElementItem(const WString& location,
-	  const std::string& folderId = std::string(), Json::Object &joItem = Json::Value() )
+  WStandardItem *createElementItem(
+      const WString& location, 
+      const string& folderId = string(), Json::Object &joItem = Json::Value() )
   {
 	  WStandardItem *result = new WStandardItem(location);
 	  Json::Object *json = new Json::Object(joItem);

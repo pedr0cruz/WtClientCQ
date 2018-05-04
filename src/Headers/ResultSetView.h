@@ -1,5 +1,4 @@
 // ResultSetView
-//
 
 #ifndef RESULTSET_VIEW_H
 #define RESULTSET_VIEW_H
@@ -41,7 +40,7 @@ private:
     Wt::Signal<int, bool> sortByColumn;
 
     /// Indica orden ascendente o descendente por cada columna
-	vector<bool> sortOrder;
+	std::vector<bool> sortOrder;
 
     /// FIX ME HACK PENDIENTE TODO
 	void s_selectRow(int);
@@ -86,6 +85,8 @@ public:
 class ResultSetView : public Wt::WContainerWidget
 {
 private:
+    ///  DATOS ESPECÍFICOS de cada vista
+
     static const char* ItemSelectionMimeType;
 
     ResultSetModel* model_;
@@ -114,6 +115,10 @@ private:
 	Wt::WContainerWidget * lastItem;
 	Wt::WMenuItem * lastItem_mi;
 
+    //	Wt::Signal<string> rowSelect;
+
+    /// FIN de DATOS ESPECÍFICOS de cada vista
+
 	void s_nextTablaCliente();
 	void s_lastTablaCliente();
 	void s_prevTablaCliente();
@@ -121,7 +126,6 @@ private:
 	void s_findByColumn(int);
 	void s_rowSelected(int);
 
-//	Wt::Signal<string> rowSelect;
 
 //	Wt::EventSignal<WScrollEvent>& Wt::WContainerWidget::scrolled();
 

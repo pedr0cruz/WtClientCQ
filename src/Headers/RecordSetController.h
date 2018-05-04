@@ -1,5 +1,9 @@
+// RecordSetController.h
+
 #ifndef RECORDSET_CTRL_H
 #define RECORDSET_CTRL_H
+
+#pragma once
 
 #include <Wt/WObject>
 #include <Wt/WContainerWidget>
@@ -33,7 +37,7 @@ public:
     ///  Eventos a los que debe reaccionar este controlador
 
     /// Cambia el control que tiene el foco
-    void itemChanged(string s);
+    void itemChanged(const std::string & s);
     /// Se ha movido la vista dentro de la ventana
     //EventSignal<WScrollEvent>& scrolled();
 
@@ -62,9 +66,11 @@ protected:
     /// Vista asociada a este controlador
     RecordSetView*  view_;
 
-    ///  Datos particulares de cada tipo de vista
-    string selectedItem_;
-    /// FIN de datos particulares de cada tipo de vista
+    ///  DATOS ESPECÍFICOS de cada tipo de vista
+
+    std::string selectedItem_;
+
+    /// FIN de DATOS ESPECÍFICOS de cada tipo de vista
 
 	void fillModel();
 };

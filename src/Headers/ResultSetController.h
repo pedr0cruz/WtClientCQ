@@ -1,3 +1,5 @@
+//  ResultSetController.h
+
 #ifndef RESULTSET_CTRL_H
 #define RESULTSET_CTRL_H
 
@@ -26,7 +28,8 @@ public:
     ResultSetController(const std::string & name);
 
     /// Crea una vista (pudiera haber varias para el mismo modelo)
-    Wt::WContainerWidget* createView(Wt::WContainerWidget* container);
+    //Wt::WContainerWidget* createView(Wt::WContainerWidget* container);
+    ResultSetView* createView(Wt::WContainerWidget* container);
 
     ///  Eventos a los que debe reaccionar este controlador
 
@@ -51,6 +54,8 @@ public:
     ~ResultSetController();
 
 protected:
+    ///  DATOS ESPECÍFICOS de cada tipo de vista
+
     ///  Contenedor de la vista
     Wt::WContainerWidget* viewContainer_;
 
@@ -61,7 +66,8 @@ protected:
 
     ///  Datos particulares de cada tipo de vista
     std::string selectedItem_;
-    /// FIN de datos particulares de cada tipo de vista
+
+    /// FIN de DATOS ESPECÍFICOS de cada tipo de vista
 
     void fillModel();
 };

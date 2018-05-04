@@ -2,17 +2,19 @@
 // Representa el Modelo en el MVC del ResultSet
 // Se conecta con el CQ y contruye la tabla de elementos JSON del RS
 
+#include "stdafx.h"
+
 #include <boost/algorithm/string/replace.hpp>
 
 #include "RecordSetModel.h"
 
-//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else
 #	include "CQJSON.h"
 #endif
 
+/// Cuando se incluye CQJSONdummy.h no se definen esas constantes
 #if !defined (FALSE_DEFINED)
 #	define FALSE         0
 #	define FALSE_DEFINED 1
@@ -22,7 +24,10 @@
 #	define TRUE_DEFINED  1
 #endif
 
-// Constructor
+using std::string;
+using namespace Wt;
+
+/// Constructor
 RecordSetModel::RecordSetModel(WObject* parent) : WStandardItemModel(parent)
 {
 #ifdef MyDEBUG
@@ -34,7 +39,7 @@ RecordSetModel::RecordSetModel(WObject* parent) : WStandardItemModel(parent)
 }
 
 // Llena el WorkSpace desde el CQ
-bool RecordSetModel::fillModel(string QueryName)
+bool RecordSetModel::fillModel(const string & QueryName)
 {
 	Json::Object JsonObject, JsonCQ, JsonQuery, JsonColumn, JsonRow, result;
 

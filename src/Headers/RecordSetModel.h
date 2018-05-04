@@ -1,5 +1,9 @@
+// RecordSetModel.h
+
 #ifndef RECORDSET_MODEL_H
 #define RECORDSET_MODEL_H
+
+#pragma once
 
 #include <Wt/WObject>
 #include <Wt/WStandardItemModel>
@@ -31,7 +35,7 @@ public:
 	RecordSetModel(Wt::WObject *parent);
 
 	/// Llena modelo con datos para el elemento dado
-    bool fillModel(const std::string result_set);
+    bool fillModel(const std::string & result_set);
 
 protected:
 
@@ -47,8 +51,11 @@ protected:
     CQJSON* cqSession;
 #endif
 
-    std::vector < std::string > form_data_vec_;
-};
+    ///  DATOS del modelo
 
+    std::vector < std::string > form_data_vec_;
+
+    /// FIN de DATOS del modelo
+};
 
 #endif /// RECORDSET_MODEL_H

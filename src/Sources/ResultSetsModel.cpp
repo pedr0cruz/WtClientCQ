@@ -2,6 +2,8 @@
 // Representa el Modelo en el MVC del ResultSet
 // Se conecta con el CQ y contruye la tabla de elementos JSON del RS
 
+#include "stdafx.h"
+
 #include <boost/algorithm/string/replace.hpp>
 
 #include "ResultSetsModel.h"
@@ -30,5 +32,13 @@ ResultSetsModel::ResultSetsModel(WObject* parent) : WStandardItemModel(parent)
 
 ResultSetsModel::~ResultSetsModel()
 {
+}
+
+/// Actualiza el modelo
+bool ResultSetsModel::fillModel(int selectedTabIndex)
+{
+    bool changed = (currentTabIndex_ != selectedTabIndex);
+    currentTabIndex_ = selectedTabIndex;
+    return changed;
 }
 

@@ -26,7 +26,6 @@
 class RecordSetsModel : public Wt::WStandardItemModel ///< Guarda un modelo personalizado
 {
 public:
-
     /// Constructor
 	RecordSetsModel(Wt::WObject *parent);
 
@@ -38,6 +37,8 @@ public:
 
 protected:
 
+    /// DATOS ESPECÍFICOS de cada modelo
+
 #ifdef MyDEBUG
     CQJSONdummy* cqSession;
 #else
@@ -47,6 +48,8 @@ protected:
     /// Solamente es necesario guardar la pestaña activa, 
     /// el modelo de cada pestaña guarda su estado.
     int currentTabIndex_;
+
+    /// FIN de DATOS ESPECÍFICOS de cada modelo
 };
 
 #endif /// RECORDSETS_MODEL_H

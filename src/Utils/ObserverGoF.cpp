@@ -1,10 +1,13 @@
-// Patron de Diseño Observer
+//  ObserverGoF.h
+//  Patron de Diseño Observer
 
 #include "stdafx.h"
 
 #include "ObserverGoF.h"
 
-using namespace std;
+#include <string>
+
+using std::string;
 
 /////// Clase Observador: recibe una llamada a "update" cuando un Sujeto cambia
 
@@ -19,7 +22,6 @@ ObserverGoF::ObserverGoF()
 /////// Clase Sujeto: cuando cambia, invoca a notify para que se enteren los Observadores
 
 // Obtiene y almacena un objeto Observador
-//void SubjectGoF::attach(std::shared_ptr <ObserverGoF> o)
 void SubjectGoF::attach(ObserverGoF *o)
 {
 	vecObservers.push_back (o); 
@@ -30,7 +32,7 @@ void SubjectGoF::notify()
 {
 	int size = static_cast <int> (vecObservers.size());
 	for (int i = 0; i < size; i++) {
-		vecObservers[i]->update(this);
+        vecObservers[i]->update(this);
 	}
 }
 
@@ -45,7 +47,7 @@ SubjectGoF::~SubjectGoF()
 {
 }
 
-SubjectGoF::SubjectGoF(string name) : name_(name)
+SubjectGoF::SubjectGoF(const string & name) : name_(name)
 {
 }
 

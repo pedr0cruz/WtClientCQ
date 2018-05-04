@@ -1,5 +1,6 @@
 //	RecordSetView.cpp
-//
+
+#include "stdafx.h"
 
 #include <Wt/WContainerWidget>
 #include <Wt/WStackedWidget>
@@ -12,6 +13,8 @@
 #include <Wt/WBreak>
 
 #include "RecordSetView.h"
+
+using namespace Wt;
 
 // ejemplo tomado de stack overflow
 #if 0

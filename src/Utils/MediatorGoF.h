@@ -1,12 +1,13 @@
+//  MediatorGoF.h
+//  Patron de Diseño Mediator
+
 #ifndef MEDIATOR_H
 #define MEDIATOR_H
 
-// Patron de Diseño Mediator
+#pragma once
 
 #include <vector>
 #include <memory>
-
-using namespace std;
 
 class ColleagueGoF;
 
@@ -14,18 +15,16 @@ class ColleagueGoF;
 class MediatorGoF
 {
 public:
-    /// Registra un objeto cliente
-    //void registerClient(std::shared_ptr<ColleagueGoF> colleague_ptr);
-    void registerClient(ColleagueGoF* colleague_ptr);
+    /// Constructor
+    MediatorGoF();
 
     /// Virtual destructor
 	virtual ~MediatorGoF();
 
+    /// Registra un objeto cliente
+    void registerClient(ColleagueGoF* colleague_ptr);
+
 protected:
-	/// Protegido para obligar a utilizar el patrón Factory para su creación
-    MediatorGoF();
-protected:
-    //std::vector <std::shared_ptr<ColleagueGoF> > colleagues_vec_;
     std::vector <ColleagueGoF*> colleagues_vec_;
 };
 
@@ -33,11 +32,13 @@ class ColleagueGoF
 {
 public:
     /// Constructor que recibe puntero a mediador
-    //ColleagueGoF(std::shared_ptr<MediatorGoF>);
     ColleagueGoF(MediatorGoF*);
 
     /// virtual Destructor
     virtual ~ColleagueGoF();
+    
+protected:
+    MediatorGoF* mediator_;
 };
 
 #endif

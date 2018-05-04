@@ -1,3 +1,7 @@
+// WorkSpaceView.cpp
+
+#include "stdafx.h"
+
 #include <iostream>
 
 #include <Wt/WAbstractItemModel>

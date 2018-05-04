@@ -1,8 +1,11 @@
-/*
- * Copyright (C) 2008 Emweb bvba, Kessel-Lo, Belgium.
- *
- * See the LICENSE file for terms of use.
- */
+// FolderView.cpp
+
+// Copyright (C) 2008 Emweb bvba, Kessel-Lo, Belgium.
+//
+// See the LICENSE file for terms of use.
+
+#include "stdafx.h"
+
 #include <iostream>
 
 #include <Wt/WAbstractItemModel>

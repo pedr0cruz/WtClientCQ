@@ -1,7 +1,9 @@
-/* CQJSONdummy_CPP: Clase de integración con ClearQuest con protocolo JSON (JavaScript Object Notation) */
-/* TO-DO
-- Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
-*/
+/// CQJSONdummy_CPP: Clase de integración con ClearQuest con protocolo JSON (JavaScript Object Notation)
+/// TO-DO
+/// - Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
+
+#include "stdafx.h"
+
 #include <Wt/Json/Parser>
 #include <Wt/Json/Serializer>
 #include <Wt/Json/Object>

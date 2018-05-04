@@ -1,5 +1,6 @@
 //	ResultSetController.cpp
-//
+
+#include "stdafx.h"
 
 #include <boost/algorithm/string/replace.hpp>
 
@@ -8,7 +9,7 @@
 #include <Wt/WStandardItem>
 
 #include "ResultSetController.h"
-#include "ResultSet2View.h"
+#include "ResultSetView.h"
 
 //#include "CQJSON.h"
 #ifdef MyDEBUG
@@ -17,53 +18,55 @@
 #	include "CQJSON.h"
 #endif
 
+using std::string;
 using namespace Wt;
 
 /// Constructor
 ResultSetController::ResultSetController(const string & name) : SubjectGoF(name)
 {
-	rsModel_ = new ResultSet2Model(this);
+	model_ = new ResultSetModel(this);
 }
 
-// Crea y configura la vista
-WWidget* ResultSetController::createView(WContainerWidget* resultsetContainer)
+/// Crea y configura la vista
+//WWidget* ResultSetController::createView(WContainerWidget* resultsetContainer)
+ResultSetView* ResultSetController::createView(WContainerWidget* resultsetContainer)
 {
-	rsViewContainer_ = resultsetContainer;
+    viewContainer_ = resultsetContainer;
 
-	rsView_ = new ResultSet2View(rsViewContainer_);
-	rsView_->setModel(rsModel_);
+    view_ = new ResultSetView(viewContainer_);
+	view_->setModel(model_);
 
-//	rsView_->selectionChanged()
+//	view_->selectionChanged()
 //		.connect(this, &ResultSetController::recordChanged);
 	//treeView->mouseWentUp().connect(this, &WorkSpaceController::showPopup);
 
-	rsView_->clicked().connect(this, &ResultSetController::clicked);
-	rsView_->doubleClicked().connect(this, &ResultSetController::doubleClicked);
-	//rsView_->enterPressed().connect(this, &ResultSetController::enterPressed);
-	//rsView_->escapePressed().connect(this, &ResultSetController::escapePressed);
-	rsView_->focussed().connect(this, &ResultSetController::focussed);
-	rsView_->keyPressed().connect(this, &ResultSetController::keyPressed);
-	rsView_->mouseWheel().connect(this, &ResultSetController::mouseWheel);
-	rsView_->scrolled().connect(this, &ResultSetController::scrolled);
+	view_->clicked().connect(this, &ResultSetController::clicked);
+	view_->doubleClicked().connect(this, &ResultSetController::doubleClicked);
+	//view_->enterPressed().connect(this, &ResultSetController::enterPressed);
+	//view_->escapePressed().connect(this, &ResultSetController::escapePressed);
+	view_->focussed().connect(this, &ResultSetController::focussed);
+	view_->keyPressed().connect(this, &ResultSetController::keyPressed);
+	view_->mouseWheel().connect(this, &ResultSetController::mouseWheel);
+	view_->scrolled().connect(this, &ResultSetController::scrolled);
 
 	//TODO FIXME HACK
-//	rsView_->onSelectedRow()
+//	view_->onSelectedRow()
 //		.connect(this, &ResultSetController::recordChanged);
 
-	rsViewContainer_->addWidget(rsView_);
+	viewContainer_->addWidget(view_);
 
-	return rsView_;
+	return view_;
 }
 
 void ResultSetController::recordChanged(const string & sQuery)
 {
-	rsModel_->fillModel(sQuery);
-	rsView_->fillTable();
-	rsView_->refresh();
+	model_->fillModel(sQuery);
+	view_->fillTable();
+	view_->refresh();
 
-/*	if (rsView_->selectedIndexes().empty())
+/*	if (view_->selectedIndexes().empty())
 		return;
-	WModelIndex selected = *rsView_->selectedIndexes().begin();
+	WModelIndex selected = *view_->selectedIndexes().begin();
 	boost::any d = selected.data(UserRole);
 	if (!d.empty()) {
 		selectedItem_ = boost::any_cast<std::string>(d);
@@ -92,8 +95,8 @@ void ResultSetController::doubleClicked()
 	auto b = a;
 }
 
-//rsView_->enterPressed().connect(this, &ResultSetController::enterPressed);
-//rsView_->escapePressed().connect(this, &ResultSetController::escapePressed);()
+//view_->enterPressed().connect(this, &ResultSetController::enterPressed);
+//view_->escapePressed().connect(this, &ResultSetController::escapePressed);()
 
 void ResultSetController::focussed()
 {
@@ -121,6 +124,7 @@ void ResultSetController::scrolled(WScrollEvent e)
 
 ResultSetController::~ResultSetController()
 {
-	delete rsModel_;
+    delete view_;
+    delete model_;
 }
 

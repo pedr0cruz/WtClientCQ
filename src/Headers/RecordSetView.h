@@ -1,5 +1,9 @@
+//  RecordSetView.h
+
 #ifndef RECORDSET_VIEW_H
 #define RECORDSET_VIEW_H
+
+#pragma once
 
 #include <Wt/WContainerWidget>
 #include <Wt/WText>
@@ -19,16 +23,10 @@
 
 #include "RecordSetModel.h"
 
-//using namespace Wt;
-
 ///	RecordSetView: Shows the data from a model.
 /// Inherits from WTemplateFormView to implement the view associated to a form model.
 class RecordSetView : public Wt::WTemplateFormView
 {
-private:
-    RecordSetModel* model_;
-    std::string selectedInputCtrlId;
-
 public:
 	RecordSetView(Wt::WContainerWidget *parent = 0);
 
@@ -43,6 +41,14 @@ public:
     Wt::Signal<std::string> itemSelect;
 
 	~RecordSetView();
+
+private:
+    ///  DATOS ESPECÍFICOS de cada tipo de vista
+
+    RecordSetModel* model_;
+    std::string selectedInputCtrlId;
+
+    /// FIN de DATOS ESPECÍFICOS de cada tipo de vista
 };
 
 #endif /// RECORDSET_VIEW_H

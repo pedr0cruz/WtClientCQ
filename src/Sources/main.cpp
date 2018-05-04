@@ -1,6 +1,7 @@
-// CQWtClient: Cliente de ClearQuest en Wt C++
+/// main.cpp
+/// CQWtClient: Cliente de ClearQuest en Wt C++
 
-#include "CQWtApp.h"
+#include "stdafx.h"
 
 Wt::WApplication *createApplication(const Wt::WEnvironment& env)
 {
