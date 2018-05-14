@@ -34,7 +34,7 @@ ResultSetsModel::~ResultSetsModel()
 {
 }
 
-/// Actualiza el modelo
+// Actualiza el modelo
 bool ResultSetsModel::fillModel(int selectedTabIndex)
 {
     bool changed = (currentTabIndex_ != selectedTabIndex);

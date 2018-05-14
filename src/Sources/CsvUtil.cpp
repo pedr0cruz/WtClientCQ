@@ -14,42 +14,49 @@
 
 #include "CsvUtil.h"
 
+using std::string;
+using namespace Wt;
+
 /*
  * A standard item which converts text edits to numbers
  */
-class NumericItem : public Wt::WStandardItem {
+class NumericItem : public Wt::WStandardItem
+{
 public:
-  virtual NumericItem *clone() const {
-    return new NumericItem();
-  }
+    virtual NumericItem *clone() const
+    {
+        return new NumericItem();
+    }
 
-  virtual void setData(const boost::any &data, int role = Wt::UserRole) {
-    boost::any dt;
+    virtual void setData(const boost::any &data, int role = Wt::UserRole)
+    {
+        boost::any dt;
 
-    if (role == Wt::EditRole) {
-      std::string s = Wt::asString(data).toUTF8();
-
-      char *end;
-      double d = std::strtod(s.c_str(), &end);
-      if (*end == 0)
-		dt = boost::any(d);
-      else
-		dt = data;
-    } 
-	else
-      dt = data;
-    Wt::WStandardItem::setData(dt, role);
-  }
+        if (role == Wt::EditRole) {
+            string s = Wt::asString(data).toUTF8();
+            char *end;
+            double d = strtod(s.c_str(), &end);
+            if (*end == 0) {
+                dt = boost::any(d);
+            } else {
+                dt = data;
+            }
+        }
+        else {
+            dt = data;
+        }
+        Wt::WStandardItem::setData(dt, role);
+    }
 };
 
-Wt::WStandardItemModel *csvToModel(const std::string& csvFile,
-				   Wt::WObject *parent,
-				   bool firstLineIsHeaders)
+Wt::WStandardItemModel *csvToModel( const string& csvFile,
+                                    WObject *parent,
+                                    bool firstLineIsHeaders)
 {
   std::ifstream f(csvFile.c_str());
 
   if (f) {
-    Wt::WStandardItemModel *result = new Wt::WStandardItemModel(0, 0, parent);
+    WStandardItemModel *result = new Wt::WStandardItemModel(0, 0, parent);
     result->setItemPrototype(new NumericItem());
     readFromCsv(f, result, -1, firstLineIsHeaders);
     return result;
@@ -63,7 +70,7 @@ void readFromCsv(std::istream& f, Wt::WAbstractItemModel *model,
   int csvRow = 0;
 
   while (f) {
-    std::string line;
+    string line;
     getline(f, line);
 
 	if (f) {

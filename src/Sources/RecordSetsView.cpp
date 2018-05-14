@@ -58,8 +58,8 @@ tableView->setWidth((WIDTH + 7) * tableView->model()->columnCount() + 2);
 #endif
 
 #if 0
-/// Constructor de la clase RecordSetsView
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// Constructor de la clase RecordSetsView
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
 RecordSetsView::RecordSetsView(Wt::WContainerWidget* parent) : Wt::WTemplateFormView(parent)
 {
 	setStyleClass(Wt::WString::fromUTF8("table-striped table table-hover table-bordered tableCQ"));
@@ -72,8 +72,8 @@ RecordSetsView::RecordSetsView(Wt::WContainerWidget* parent) : Wt::WTemplateForm
 #endif
 
 #if 0
-/// Establece la fila de encabezamiento
-/// @param[in] headers Vector con cadenas de texto de encabezamiento de columnas
+// Establece la fila de encabezamiento
+// @param[in] headers Vector con cadenas de texto de encabezamiento de columnas
 void TableView2::setHeader(vector<string> headers)
 {
 #if 0
@@ -121,14 +121,14 @@ void TableView2::setHeader(vector<string> headers)
 #endif
 }
 
-/// Establece la cantidad de filas o columnas de encabezamiento
-/// @param[in] headers_count Entero con cantidad de filas (o columnas) de encabezamiento
-/// @param[in] headers_orientation Enumeración de tipo Wt::Orientation que establece si los encabezados son verticales u horizontales
+// Establece la cantidad de filas o columnas de encabezamiento
+// @param[in] headers_count Entero con cantidad de filas (o columnas) de encabezamiento
+// @param[in] headers_orientation Enumeración de tipo Wt::Orientation que establece si los encabezados son verticales u horizontales
 void TableView2::setHeaderCount(int headers_count, Wt::Orientation headers_orientation)
 {
 }
 
-/// Destructor 
+// Destructor 
 RecordSetsView::~RecordSetsView()
 {
 }
@@ -137,31 +137,31 @@ RecordSetsView::~RecordSetsView()
 
 
 
-////////////////////////// RecordSetsView /////////////////////////////////////////
+//**************************** RecordSetsView ***********************************
 
 #if 0
-/// Patrón Factory para crear esta vista
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// Patrón Factory para crear esta vista
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
 RecordSetsView* RecordSetsView::createView(Wt::WContainerWidget* parentContainer)
 {
     return new RecordSetsView(parentContainer);
 }
 #endif
 
-/// Constructor de la clase RecordSetsView
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// Constructor de la clase RecordSetsView
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
 //RecordSetsView::RecordSetsView(WContainerWidget *parent) : WContainerWidget(parent)
 RecordSetsView::RecordSetsView(WContainerWidget *parent) : WTabWidget(parent)
 {
-    tabWidgetContainer_ = parent;
-    tabWidget_ = new WTabWidget(tabWidgetContainer_);
+    //tabWidgetContainer_ = parent;
+    //tabWidget_ = new WTabWidget(tabWidgetContainer_);
 }
 
-/// Destructor
+// Destructor
 RecordSetsView::~RecordSetsView()
 {
-    delete tabWidget_;
-    delete tabWidgetContainer_;
+    //delete tabWidget_;
+    //delete tabWidgetContainer_;
 }
 
 #if 0
@@ -178,8 +178,8 @@ WContainerWidget* RecordSetsView::getTabWidgetContainer()
 
 #endif
 
-/// Establece el modelo usado para esta vista
-/// @param model Puntero al modelo que a utilizar
+// Establece el modelo usado para esta vista
+// @param model Puntero al modelo que a utilizar
 void RecordSetsView::setModel(RecordSetsModel* model)
 {
     model_ = model;

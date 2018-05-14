@@ -1,6 +1,6 @@
-/// CQJSONdummy_CPP: Clase de integración con ClearQuest con protocolo JSON (JavaScript Object Notation)
-/// TO-DO
-/// - Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
+// CQJSONdummy_CPP: Clase de integración con ClearQuest con protocolo JSON (JavaScript Object Notation)
+// TO-DO
+// - Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
 
 #include "stdafx.h"
 
@@ -11,8 +11,13 @@
 #include <Wt/Json/Value>
 #include <iostream>
 #include <vector>
-#include <algorithm>    // std::find
+
+// Included to use std::find
+#include <algorithm>
+
 #include <sstream>
+#include <array>
+
 #include "CQJSONdummy.h"
 
 using namespace std;
@@ -201,7 +206,20 @@ string CQJSONdummy::JSONGetFieldStringValues(const char* JSON_fields)
 /* GetFieldValue: Obtiene el campo del registro almancenado en entity */
 char* CQJSONdummy::GetFieldValue(const char* field)
 {
-	return "valor";
+    // Pointer to Array of Chars
+    static bool initialized = false;
+    static array<char, 100> char_array_value;
+    if (!initialized) {
+        initialized = true;
+        char_array_value.fill(0);
+    }
+    string value(string("valor de <") + string(field) + ">");
+    size_t value_len_to_copy = std::min <string::size_type>(value.length(), char_array_value.size());
+    if (value_len_to_copy > 0) {
+        value_len_to_copy = value_len_to_copy - 1;
+    }
+    strcpy_s(& char_array_value[0], char_array_value.size(), value.c_str());
+    return & char_array_value[0];
 }
 
 /* ExecuteQuery: Recibe una ruta de Query y devuelve una representacion del resultado */

@@ -56,8 +56,8 @@ tableView->setWidth((WIDTH + 7) * tableView->model()->columnCount() + 2);
 #endif
 
 #if 0
-/// Constructor de la clase ResultSetsView
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// Constructor de la clase ResultSetsView
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
 ResultSetsView::ResultSetsView(Wt::WContainerWidget* parent) : Wt::WTemplateFormView(parent)
 {
 	setStyleClass(Wt::WString::fromUTF8("table-striped table table-hover table-bordered tableCQ"));
@@ -70,8 +70,8 @@ ResultSetsView::ResultSetsView(Wt::WContainerWidget* parent) : Wt::WTemplateForm
 #endif
 
 #if 0
-/// Establece la fila de encabezamiento
-/// @param[in] headers Vector con cadenas de texto de encabezamiento de columnas
+// Establece la fila de encabezamiento
+// @param[in] headers Vector con cadenas de texto de encabezamiento de columnas
 void TableView2::setHeader(vector<string> headers)
 {
 #if 0
@@ -119,14 +119,14 @@ void TableView2::setHeader(vector<string> headers)
 #endif
 }
 
-/// Establece la cantidad de filas o columnas de encabezamiento
-/// @param[in] headers_count Entero con cantidad de filas (o columnas) de encabezamiento
-/// @param[in] headers_orientation Enumeración de tipo Wt::Orientation que establece si los encabezados son verticales u horizontales
+// Establece la cantidad de filas o columnas de encabezamiento
+// @param[in] headers_count Entero con cantidad de filas (o columnas) de encabezamiento
+// @param[in] headers_orientation Enumeración de tipo Wt::Orientation que establece si los encabezados son verticales u horizontales
 void TableView2::setHeaderCount(int headers_count, Wt::Orientation headers_orientation)
 {
 }
 
-/// Destructor 
+// Destructor 
 ResultSetsView::~ResultSetsView()
 {
 }
@@ -135,19 +135,19 @@ ResultSetsView::~ResultSetsView()
 
 
 
-////////////////////////// ResultSetsView /////////////////////////////////////////
+//*************************** ResultSetsView ********************************
 
-/// Constructor de la clase ResultSetsView
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// Constructor de la clase ResultSetsView
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
 //ResultSetsView::ResultSetsView(WContainerWidget *parent) : WContainerWidget(parent)
 ResultSetsView::ResultSetsView(WContainerWidget *parent) : WTabWidget(parent)
 {
 }
 
 #if 0
-/// Constructor de la clase ResultSetsView
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// Constructor de la clase ResultSetsView
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
 ResultSetsView::ResultSetsView(vector<string>, Wt::WContainerWidget *parent)
 {
 }
@@ -362,14 +362,14 @@ void ResultSetsView::showRows()
 }
 #endif
 
-/// Establece el modelo usado para esta vista
-/// @param model Puntero al modelo que a utilizar
+// Establece el modelo usado para esta vista
+// @param model Puntero al modelo que a utilizar
 void ResultSetsView::setModel(ResultSetsModel* model)
 {
     model_ = model;
 }
 
-/// Destructor
+// Destructor
 ResultSetsView::~ResultSetsView()
 {
 }

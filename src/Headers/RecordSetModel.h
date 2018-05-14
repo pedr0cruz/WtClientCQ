@@ -1,4 +1,4 @@
-// RecordSetModel.h
+/// RecordSetModel.h
 
 #ifndef RECORDSET_MODEL_H
 #define RECORDSET_MODEL_H
@@ -24,30 +24,32 @@
 #include <string>
 #include <vector>
 
-///	RecordSetModel: Stores the data for a custom model.
-/// This class inherits from WStandardItemModel to implement 
-/// a custom model.
-class RecordSetModel : public Wt::WStandardItemModel ///< Guarda un modelo personalizado
+///	Stores the data for a custom model. This class inherits 
+/// from WStandardItemModel to implement a custom model.
+class RecordSetModel : public Wt::WStandardItemModel
 {
 public:
-
-	/// Constructor.
-	RecordSetModel(Wt::WObject *parent);
+	/// Constructor
+    /// @param rows Initial number of rows of the model
+    /// @param cols Initial number of columns of the model
+    /// @param parent Wt::WObject* Puntero a objeto padre para el ciclo de vida del objeto
+    RecordSetModel(int rows, int cols, Wt::WObject *parent);
 
 	/// Llena modelo con datos para el elemento dado
+    /// @param result_set const std::string & Cadena que especifica el conjunto de datos a usar
     bool fillModel(const std::string & result_set);
 
 protected:
 
 #ifdef MyDEBUG
-    /// Puntero a Objeto que se comunica con el servidor
-    /// y que se implementa con el patrón Singleton. 
-    /// Esta es una variante de la clase que no utiliza
-    /// ni necesita Las bibliotecas de ClearQuest.
+    /// Puntero a Objeto que se comunica con el servidor y que se implementa 
+    /// con el patrón Singleton. Esta es una variante de la clase que no
+    /// utiliza ni necesita Las bibliotecas de ClearQuest.
     CQJSONdummy* cqSession;
 #else
-    /// Puntero a Objeto que se comunica con el servidor
-    /// y que se implementa con el patrón Singleton. 
+    /// Puntero a Objeto que se comunica con el servidor y que se implementa
+    /// con el patrón Singleton. Esta es la variante oficial que utiliza las
+    /// bibliotecas de ClearQuest y éstas son por tanto imprescindibles.
     CQJSON* cqSession;
 #endif
 

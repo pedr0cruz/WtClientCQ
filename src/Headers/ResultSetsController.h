@@ -1,4 +1,4 @@
-//  ResultSetsController
+///  ResultSetsController
 
 #ifndef RESULTSETS_CTRL_H
 #define RESULTSETS_CTRL_H
@@ -28,19 +28,25 @@ class ResultSetsController : public Wt::WObject, public SubjectGoF
 {
 public:
     /// Constructor
-    ResultSetsController(const std::string & parent);
+    /// @param name const std::string & Nombre asociado a este controlador 
+    /// como sujeto del patrón Observer (interfaz SubjectGoF).
+    ResultSetsController(const std::string & name);
 
     /// Crea la vista
-    //Wt::WContainerWidget* createView(Wt::WContainerWidget* parentContainer);
-    ResultSetsView* createView(Wt::WContainerWidget* parentContainer);
+    /// @param parent Wt::WContainerWidget* Puntero a objeto contenedor
+    /// @return ResultSetsView* Puntero a vista creada
+    ResultSetsView* createView(Wt::WContainerWidget* parent);
 
-    /// Crea un nuevo controlador para una nueva pestaña
+    /// Crea un nuevo controlador si es necesario (para una nueva pestaña) o devuelve
+    /// el controlador existente para una pestaña con el nombre especificado.
+    /// @param name const string & Cadena de texto con el nombre de la pestaña
+    /// @return ResultSetController* Puntero a controlador asociado
     ResultSetController* getNewControllerIfNeeded(const std::string & name);
 
     /// Eventos a los que debe reaccionar este controlador
 
-    /// Ha cambiado la pestaña activa, se recibe como 
-    /// argumento el indice de la nueva pestaña.
+    /// Ha cambiado la pestaña activa.
+    /// @param currentTab int Indice de la pestaña activa (en base 0)
     void tabChanged(int currentTab);
 
     /// Se ha movido la vista dentro de la ventana
@@ -63,7 +69,7 @@ public:
 protected:
     ///  DATOS ESPECÍFICOS de cada controlador
 
-    ///  Control de pestañas
+    //  Control de pestañas
     //Wt::WTabWidget* tabWidget_;
 
     ///  Contenedor del control de pestañas

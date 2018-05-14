@@ -1,4 +1,4 @@
-// ResultSetView
+/// ResultSetView
 
 #ifndef RESULTSET_VIEW_H
 #define RESULTSET_VIEW_H
@@ -22,8 +22,8 @@
 #include "ResultSetModel.h"
 
 #if 1
-///	TableView: Shows the data from a model.
-/// This class inherits from WTable to implement a custom table view.
+///	Shows the data from a model. This class inherits from 
+/// WTableView to implement a custom table view.
 class TableView : public Wt::WTableView
 {
 private:
@@ -43,19 +43,28 @@ private:
 	std::vector<bool> sortOrder;
 
     /// FIX ME HACK PENDIENTE TODO
+    /// Selecciona la fila especificada
+    /// @param row int indice de la fila a seleccionar (base 0)
 	void s_selectRow(int);
 
 public:
     /// Constructor
-	TableView(Wt::WContainerWidget *parent = 0);
-    /// Establece los encabezamientos
-    void setHeader(std::vector <std::string>);
-    /// Agrega una fila recibida en un argumento como vector de cadenas
-    void addRow(std::vector <std::string>);
-    /// Oculta/muestra la vista (argumento en true/false) y establece qué animación utilizar.
-    void setHidden(bool, const Wt::WAnimation & animation = Wt::WAnimation());
+    /// @param parent Wt::WContainerWidget* Puntero a objeto padre para el ciclo de vida del objeto
+    TableView(Wt::WContainerWidget* parent = 0);
+    /// Establece los encabezamientos de columna
+    /// @param headers vector <string> Vector de cadenas con nombres de encabezados de columna
+    void setHeader(std::vector <std::string> headers);
+    /// Agrega fila recibida en el argumento
+    /// @param row vector <string> Vector de cadenas con datos de celdas de la fila a agregar
+    void addRow(std::vector <std::string> & row);
+    /// Oculta/muestra la vista y establece qué animación utilizar.
+    /// @param hide true: Oculta la vista, false: la muestra
+    /// @param animation const Wt::WAnimation & Tipo de animación a usar, por defecto Wt::WAnimation()
+    void setHidden(bool hide, const Wt::WAnimation & animation = Wt::WAnimation());
     /// Establece la cantidad de filas/columnas que se usarán como encabezamientos (según header_orientation).
-	void setHeaderCount(int headers_count, Wt::Orientation header_orientation);
+    /// @param headers_count int Cantidad de filas a usar como encabezamiento de columna
+    /// @param header_orientation Wt::Orientation Orientación horizontal o vertical
+    void setHeaderCount(int headers_count, Wt::Orientation header_orientation);
 
 /*
 	Signal< int, int > &  cellClicked()
@@ -68,6 +77,8 @@ public:
 		Signal emitted when the selection changes.More...
 */
 
+    /// Señales emitidas por esta vista
+
     Wt::Signal<int>& rowSelected(){ return rowSelect; }
     Wt::Signal<int>& onFindByColumn(){ return findByColumn; }
     Wt::Signal<int, bool>& onSortByColumn(){ return sortByColumn; }
@@ -79,10 +90,10 @@ public:
 
 ////////////////////////// ResultSetView /////////////////////////////////////////
 
-///	ResultSetView: Shows the data from a result set.
-/// This class inherits from WContainerWidget to implement a container which holds
-/// a set of results.
+///	Shows the data from a result set. This class inherits from WContainerWidget 
+/// to implement a container which holds a set of results.
 class ResultSetView : public Wt::WContainerWidget
+//class ResultSetView : public TableView
 {
 private:
     ///  DATOS ESPECÍFICOS de cada vista
@@ -136,12 +147,16 @@ private:
 	void showRows();
 
 public:
-	ResultSetView(Wt::WContainerWidget *parent = 0);
-    ResultSetView(std::vector <std::string>, Wt::WContainerWidget *parent = 0);
+    /// Constructor
+    /// @param parent Wt::WContainerWidget* Puntero a objeto padre contenedor
+    ResultSetView(Wt::WContainerWidget *parent = 0);
+    // Constructor
+    // @param parent Wt::WContainerWidget* Puntero a objeto padre contenedor
+    //ResultSetView(std::vector <std::string>, Wt::WContainerWidget *parent = 0);
 
     void setHeader(std::vector <std::string>);
     void setData(std::vector < std::vector <std::string> >);
-    /// Toma el modelo y lo guarda de la matriz <vector <vector>>
+    /// Toma el modelo y lo guarda de la matriz (vector de vectores)
 	void createData();
 	void fillTable();
 	void clearTable();
@@ -160,6 +175,7 @@ public:
 	}
 	*/
 
+    /// Destructor
 	~ResultSetView();
 };
 #endif /// RESULTSET_VIEW_H

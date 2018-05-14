@@ -1,4 +1,4 @@
-//  ResultSetsView
+///  ResultSetsView
 
 #ifndef RESULTSETS_VIEW_H
 #define RESULTSETS_VIEW_H
@@ -116,19 +116,18 @@ public:
 
 #endif // #if 0
 
-///	ResultSetsView: Shows the data from the associated model.
-/// Inherits from WContainerWidget and from WTabWidget to implement 
-//  a Tab widget and its inner container.
-//class ResultSetsView : public Wt::WContainerWidget
-class ResultSetsView : /* public Wt::WContainerWidget, */ public TabWidget
+///	Shows the data from the associated model. Inherits from 
+/// WTabWidget to implement a Tab widget (control de pestañas).
+class ResultSetsView : public Wt::WTabWidget
 {
 public:
+    /// Constructor
+    /// @param parent Wt::WContainerWidget* Puntero a objeto contenedor, por defecto nullptr
+    ResultSetsView(Wt::WContainerWidget* parent = nullptr);
     //static ResultSetsView* createView(WContainerWidget* parentContainer);
-    ResultSetsView(Wt::WContainerWidget* parentContainer = nullptr);
-    
-    // No hace falta, WTabWidget tiene la funcion currentIndex() que hace eso mismo
-    //int currentTabIndex() { return currentTabIndex_; }
 
+    /// Establece el modelo para esta vista
+    /// @param model ResultSetsModel* Puntero a objeto que implementa el modelo asociado
     void setModel(ResultSetsModel* model);
 
 //	void setHidden(bool, const Wt::WAnimation &animation = Wt::WAnimation());
@@ -137,6 +136,7 @@ public:
 //	Signal<int>& onFindByColumn(){ return findByColumn; }
 //	Signal<int, bool>& onSortByColumn(){ return sortByColumn; }
 
+    /// Destructor
 	~ResultSetsView();
 
 private:

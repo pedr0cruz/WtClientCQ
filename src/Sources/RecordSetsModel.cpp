@@ -15,7 +15,7 @@
 #	include "CQJSON.h"
 #endif
 
-/// Cuando se incluye CQJSONdummy.h no se definen esas constantes
+// Cuando se incluye CQJSONdummy.h no se definen esas constantes
 #if !defined (FALSE_DEFINED)
 #	define FALSE         0
 #	define FALSE_DEFINED 1
@@ -25,8 +25,8 @@
 #	define TRUE_DEFINED  1
 #endif
 
-/// Constructor
-RecordSetsModel::RecordSetsModel(WObject* parent) : WStandardItemModel(parent)
+// Constructor
+RecordSetsModel::RecordSetsModel(int rows, int cols, WObject* parent) : WStandardItemModel(rows, cols, parent)
 {
 #ifdef MyDEBUG
 	cqSession = CQJSONdummy::getInstance();
@@ -36,12 +36,12 @@ RecordSetsModel::RecordSetsModel(WObject* parent) : WStandardItemModel(parent)
 	cqSession->UserLogon("admin", "", "SAMPL", "SAMPLCNX");
 }
 
-/// Destructor
+// Destructor
 RecordSetsModel::~RecordSetsModel()
 {
 }
 
-/// Actualiza el modelo
+// Actualiza el modelo
 bool RecordSetsModel::fillModel(int selectedTabIndex)
 {
     bool changed = (currentTabIndex_ != selectedTabIndex);

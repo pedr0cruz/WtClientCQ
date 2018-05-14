@@ -142,12 +142,12 @@ public:
 	//		return input.jsstd::stringLiteral();
 
     /// *********************** ENTITY ******************************
-    /// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
+    /// Obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
     bool GetEntity(const char* record_type, const char *display_name);
-    /// GetEntity: obtiene un registro y lo guarda en entity usando JSON. Recibe el tipo de registro y el DbId
+    /// Obtiene un registro y lo guarda en entity usando JSON. Recibe el tipo de registro y el DbId
     std::string JSONGetEntity(const char* JSON_entity);
 
-    /// GetFieldValue: Obtiene el campo del registro almancenado en entity
+    /// Obtiene el campo del registro almancenado en entity
     char* GetFieldValue(const char* field);
 
     /// Devuelve los valores de texto de un campo JSON

@@ -1,4 +1,4 @@
-// WorkspaceView.h
+/// WorkspaceView.h
 
 #ifndef WORKSPACE_VIEW_H_
 #define WORKSPACE_VIEW_H_
@@ -7,8 +7,7 @@
 
 #include <Wt/WTreeView>
 
-///	WorkSpaceView: Main Application View
-/// This class inherits from a WT WTreeView
+///	Main Application View. This class inherits from a WT::WTreeView
 class WorkSpaceView : public Wt::WTreeView
 {
 public:
@@ -17,7 +16,8 @@ public:
 	static const char *FileSelectionMimeType;
 
 	/// Constructor
-	WorkSpaceView(Wt::WContainerWidget *parent = 0);
+    /// @param parent Wt::WContainerWidget* Puntero a objeto padre contenedor
+    WorkSpaceView(Wt::WContainerWidget *parent = 0);
 
     /// Called when primary mouse button clicked
     void clicked();

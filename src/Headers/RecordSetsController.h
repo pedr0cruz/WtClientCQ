@@ -1,4 +1,4 @@
-//  RecordSetsController.h
+///  RecordSetsController.h
 
 #ifndef RECORDSETS_CTRL_H
 #define RECORDSETS_CTRL_H
@@ -16,25 +16,29 @@ class RecordSetsModel;
 class RecordSetsView;
 class RecordSetController;
 
-///	Esta clase funciona como contenedor para todas las tuplas MVC. Además, 
-/// incluye un puntero al Widget contenedor con las pestañas. Cada tupla
-/// MVC funciona de manera independiente con su propio controlador, modelo
-/// y vista.
+///	Esta clase funciona como contenedor para todas las tuplas MVC. Además, incluye 
+/// un puntero al Widget contenedor con las pestañas. Cada tupla MVC funciona de 
+/// manera independiente con su propio controlador, modelo y vista.
 class RecordSetsController : public Wt::WObject, public SubjectGoF
 {
 public:
 	/// Constructor
-    //RecordSetsController(Wt::WContainerWidget* tabWidgetParent);
-    RecordSetsController(const std::string & parent);
+    /// @param name const std::string & Identifica el sujeto que notifica que hubo cambios
+    RecordSetsController(const std::string & name);
 
     /// Crea la vista
-    Wt::WWidget* createView(Wt::WContainerWidget* rssParentContainer);
+    /// @param container Wt::WContainerWidget* Puntero a objeto contenedor
+    /// @return Wt::WWidget* Puntero a vista (objeto derivado de contenedor Wt::WWidget)
+    Wt::WWidget* createView(Wt::WContainerWidget* container);
 
     /// Crea un nuevo controlador para una nueva pestaña
+    /// @param name Nombre asociado al controlador a crear
+    /// @return RecordSetController* Puntero a controlador con el nombre especificado
     RecordSetController* newController(const std::string & name);
 
     /// Evento que ocurre al cambiar la pestaña activa
-	void tabChanged(int currentTab);
+    /// @param currentTab int indice de pestaña activada
+    void tabChanged(int currentTab);
 
 	/// Destructor
 	~RecordSetsController();

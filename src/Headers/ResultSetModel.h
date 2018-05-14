@@ -1,5 +1,4 @@
-// ResultSetModel.h
-//
+/// ResultSetModel.h
 
 #ifndef RESULTSET_MODEL_H
 #define RESULTSET_MODEL_H
@@ -20,19 +19,23 @@
 #	include "CQJSON.h"
 #endif
 
-///	ResultSetModel: Stores the data for a custom model.
-/// This class inherits from WStandardItemModel to implement 
-/// a custom model.
-class ResultSetModel : public Wt::WStandardItemModel ///< Guarda un modelo personalizado
+///	ResultSetModel: Stores the data for a custom model. This class 
+/// inherits from WStandardItemModel to implement a custom model.
+class ResultSetModel : public Wt::WStandardItemModel
 {
 public:
     /// Constructor
-    ResultSetModel(Wt::WObject *parent);
+    /// @param rows Initial number of rows of the model
+    /// @param cols Initial number of columns of the model
+    /// @param parent Wt::WObject* Puntero a objeto padre para el ciclo de vida del objeto
+    ResultSetModel(int rows, int cols, Wt::WObject *parent);
 
     /// Destructor
     virtual ~ResultSetModel();
 
     /// Llena el modelo con los datos de la consulta
+    /// @param QueryName const string & Cadena de texto con el nombre de la consulta
+    /// @return true en caso de éxito, false en caso de error
     bool fillModel(const std::string & QueryName);
 
 private:

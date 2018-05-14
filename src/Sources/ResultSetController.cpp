@@ -21,13 +21,13 @@
 using std::string;
 using namespace Wt;
 
-/// Constructor
+// Constructor
 ResultSetController::ResultSetController(const string & name) : SubjectGoF(name)
 {
-	model_ = new ResultSetModel(this);
+	model_ = new ResultSetModel(0, 0, this);
 }
 
-/// Crea y configura la vista
+// Crea y configura la vista
 //WWidget* ResultSetController::createView(WContainerWidget* resultsetContainer)
 ResultSetView* ResultSetController::createView(WContainerWidget* resultsetContainer)
 {

@@ -52,8 +52,8 @@ tableView->setWidth((WIDTH + 7) * tableView->model()->columnCount() + 2);
 #endif
 
 #if 0
-/// Constructor de la clase RecordSetView
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// Constructor de la clase RecordSetView
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
 RecordSetView::RecordSetView(Wt::WContainerWidget* parent) : Wt::WTemplateFormView(parent)
 {
 	setStyleClass(Wt::WString::fromUTF8("table-striped table table-hover table-bordered tableCQ"));
@@ -66,8 +66,8 @@ RecordSetView::RecordSetView(Wt::WContainerWidget* parent) : Wt::WTemplateFormVi
 #endif
 
 #if 0
-/// Establece la fila de encabezamiento
-/// @param[in] headers Vector con cadenas de texto de encabezamiento de columnas
+// Establece la fila de encabezamiento
+// @param[in] headers Vector con cadenas de texto de encabezamiento de columnas
 void TableView2::setHeader(vector<string> headers)
 {
 #if 0
@@ -115,14 +115,14 @@ void TableView2::setHeader(vector<string> headers)
 #endif
 }
 
-/// Establece la cantidad de filas o columnas de encabezamiento
-/// @param[in] headers_count Entero con cantidad de filas (o columnas) de encabezamiento
-/// @param[in] headers_orientation Enumeración de tipo Wt::Orientation que establece si los encabezados son verticales u horizontales
+// Establece la cantidad de filas o columnas de encabezamiento
+// @param[in] headers_count Entero con cantidad de filas (o columnas) de encabezamiento
+// @param[in] headers_orientation Enumeración de tipo Wt::Orientation que establece si los encabezados son verticales u horizontales
 void TableView2::setHeaderCount(int headers_count, Wt::Orientation headers_orientation)
 {
 }
 
-/// Destructor 
+// Destructor 
 RecordSetView::~RecordSetView()
 {
 }
@@ -131,10 +131,10 @@ RecordSetView::~RecordSetView()
 
 
 
-////////////////////////// RecordSetView /////////////////////////////////////////
+//************************** RecordSetView ***********************************
 
-/// Constructor de la clase RecordSetView
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// Constructor de la clase RecordSetView
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
 RecordSetView::RecordSetView(WContainerWidget *parent) : WTemplateFormView(parent)
 {
 	// Limpia el estilo	
@@ -229,9 +229,9 @@ RecordSetView::RecordSetView(WContainerWidget *parent) : WTemplateFormView(paren
 }
 
 #if 0
-/// Constructor de la clase RecordSetView
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
-/// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// Constructor de la clase RecordSetView
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
+// @param[in] parent Puntero a clase padre que debe ser de tipo Wt::WContainerWidget o derivada
 RecordSetView::RecordSetView(vector<string>, Wt::WContainerWidget *parent)
 {
 }
@@ -446,22 +446,22 @@ void RecordSetView::showRows()
 }
 #endif
 
-/// Establece el modelo usado para esta vista
-/// @param model Puntero al modelo que a utilizar
+// Establece el modelo usado para esta vista
+// @param model Puntero al modelo que a utilizar
 void RecordSetView::setModel(RecordSetModel* model)
 {
     model_ = model;
 }
 
-/// Oculta (hidden: true) o muestra (hiddeN : false) la vista 
-/// @param hidden Si es true, oculta la vista, la hace visible en caso contrario
-/// @param animation Establece el tipo de animación a usar para ocultar o mostrar la vista
+// Oculta (hidden: true) o muestra (hiddeN : false) la vista 
+// @param hidden Si es true, oculta la vista, la hace visible en caso contrario
+// @param animation Establece el tipo de animación a usar para ocultar o mostrar la vista
 void RecordSetView::setHidden(bool hidden, const Wt::WAnimation &animation)
 {
     WTemplateFormView::setHidden(hidden, animation);
 }
 
-/// Destructor
+// Destructor
 RecordSetView::~RecordSetView()
 {
 }

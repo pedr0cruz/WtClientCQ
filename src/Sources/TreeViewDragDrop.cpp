@@ -91,10 +91,10 @@ public:
     return FolderView::FileSelectionMimeType;
   }
 
-  /// Date display format.
+  // Date display format.
   static WString dateDisplayFormat;
 
-  /// Date edit format.
+  // Date edit format.
   static WString dateEditFormat;
 };
 
@@ -313,31 +313,31 @@ public:
   }
 
 private:
-  /// The folder model (used by folderView_)
+  // The folder model (used by folderView_)
   WStandardItemModel    *folderModel_;
   WModelIndex         folderItem_;
 
-  /// The file model (used by fileView_)
+  // The file model (used by fileView_)
   WStandardItemModel    *fileModel_;
 
-  /// The sort filter proxy model that adapts fileModel_
+  // The sort filter proxy model that adapts fileModel_
   WSortFilterProxyModel *fileFilterModel_;
 
-  /// Maps folder id's to folder descriptions.
+  // Maps folder id's to folder descriptions.
   std::map<string, WString> folderNameMap_;
   std::map<string, WStandardItem*> folderItemMap_;
   std::map<string, Json::Object*> jsonObjectMap_;
 
-  /// The folder view.
+  // The folder view.
   WTreeView *folderView_;
 
-  /// The file view.
+  // The file view.
   WTableView *fileView_;
 
-  /// Popup menu on the folder view
+  // Popup menu on the folder view
   WPopupMenu *popup_;
 
-  /// Message box to confirm the poup menu action
+  // Message box to confirm the poup menu action
   WMessageBox *popupActionBox_;
 
   /*! \brief Setup the user interface.

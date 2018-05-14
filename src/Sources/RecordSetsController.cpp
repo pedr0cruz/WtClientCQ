@@ -31,13 +31,13 @@ using namespace Wt;
 
 static const string s_recordSetsTabsWidget("recordSetsTabWidget");
 
-/// Constructor
+// Constructor
 RecordSetsController::RecordSetsController(const string & name) : SubjectGoF(name)
 {
-    model_ = new RecordSetsModel(this);
+    model_ = new RecordSetsModel(0, 0, this);
 }
 
-/// Destructor
+// Destructor
 RecordSetsController::~RecordSetsController()
 {
     for each (auto key_value_pair in controllersMap_) {
@@ -47,7 +47,7 @@ RecordSetsController::~RecordSetsController()
     delete model_;
 }
 
-/// Crea un nuevo controlador
+// Crea un nuevo controlador
 RecordSetController* RecordSetsController::newController(const string & name)
 {
     auto controller = new RecordSetController(name);
@@ -57,7 +57,7 @@ RecordSetController* RecordSetsController::newController(const string & name)
     return controller;
 }
 
-/// Crea y configura la vista
+// Crea y configura la vista
 WWidget* RecordSetsController::createView(WContainerWidget* recordSetsContainer)
 {
     view_ = new RecordSetsView(recordSetsContainer);
