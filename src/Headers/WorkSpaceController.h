@@ -1,4 +1,4 @@
-//  WorkSpaceController.h
+///  WorkSpaceController.h
 
 #ifndef WORKSPACECTRL_H
 #define WORKSPACECTRL_H
@@ -21,13 +21,14 @@
 #include "WorkSpaceView.h"
 #include "WorkSpaceModel.h"
 
-///	WorkSpaceController: Main Application Controller.
-/// Implements a Subject Pattern and creates the view
+///	Main Application Controller. Implements an Observer Pattern (GoF),
+/// and creates the model and the view asociated with this controller.
 class WorkSpaceController : public Wt::WObject, public SubjectGoF
 {
 public:
 	/// Constructor
-	WorkSpaceController(const std::string & name);
+    /// @param name Nombre asociado al controlador, vista y modelo
+    WorkSpaceController(const std::string & name);
 
     /// Crea una vista (pudiera haber varias para el mismo modelo)
     Wt::WTreeView *createView(Wt::WContainerWidget* wsContainer);

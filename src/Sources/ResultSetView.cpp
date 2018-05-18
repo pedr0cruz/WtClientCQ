@@ -11,6 +11,7 @@
 #include <Wt/WSignal>
 #include <Wt/WLineEdit>
 #include <Wt/WBreak>
+#include <Wt/WTableView>
 
 #include <string>
 #include <vector>
@@ -169,10 +170,11 @@ TableView::~TableView()
 
 
 
-////////////////////////// ResultSetView /////////////////////////////////////////
+//************************ ResultSetView *****************************
 
 // Constructor: recibe el contenedor padre
 ResultSetView::ResultSetView( WContainerWidget *parent) : WContainerWidget(parent)
+//ResultSetView::ResultSetView(WContainerWidget *parent) : TableView(parent)
 {
 	// Limpia el estilo	
 	this->setStyleClass(Wt::WString::fromUTF8(""));
@@ -264,9 +266,11 @@ ResultSetView::ResultSetView( WContainerWidget *parent) : WContainerWidget(paren
 
 }
 
+/*
 ResultSetView::ResultSetView(vector<string>, Wt::WContainerWidget *parent)
 {
 }
+*/
 
 void ResultSetView::setHeader(vector<string> m_header)
 {
@@ -325,6 +329,7 @@ void ResultSetView::s_rowSelected(int row)
 {
 	//TODO / HACK / FIXME
 	//rowSelect.emit(filterData[row - 1][0]);
+    auto a = 0;
 }
 
 void ResultSetView::s_findByColumn(int column)

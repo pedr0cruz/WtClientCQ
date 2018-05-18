@@ -26,7 +26,7 @@
 class CQJSON
 	{
 	private:
-		///	singleton (unique global instance)
+		///	GoF Pattern: Singleton (unique global instance)
 		static CQJSON *instance;
 
         /// Puntero a sesión de ClearQuest
@@ -149,34 +149,34 @@ class CQJSON
 	
 
 		/// *********************** ENTITY ******************************
-		/// GetEntity: obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
+		/// Obtiene un registro y lo guarda en entity. Recibe el tipo de registro y el DbId
 		bool GetEntity(const char* record_type, const char *display_name);
         /// GetEntity: obtiene un registro y lo guarda en entity usando JSON. Recibe el tipo de registro y el DbId
         std::string JSONGetEntity(const char* JSON_entity);
 
-		/// GetFieldValue: Obtiene el campo del registro almancenado en entity
+		/// Obtiene el campo del registro almancenado en entity
 		char* GetFieldValue(const char* field);
 
         /// Devuelve valores de campo de JSON
         std::string JSONGetFieldStringValues(const char* JSON_field);
 
-		/// SetFieldValue: Setea un campo del registro almancenado en entity
+		/// Setea un campo del registro almancenado en entity
 		char* SetFieldValue(const char* field, const char* value);
 		std::string JSONSetFieldValues(const char* JSON_fields);
 
-		/// EditEntity: Inicia una acción de la entidad
+		/// Inicia una acción de la entidad
 		char* EditEntity(const char* action);
 
-		/// ValidateEntity: Valida la acción iniciada de la entidad
+		/// Valida la acción iniciada de la entidad
 		char* ValidateEntity();
 
-		/// CommitEntity: Registra los cambios de la acción iniciada de la entidad
+		/// Registra los cambios de la acción iniciada de la entidad
 		char* CommitEntity();
 
-		/// RevertEntity: Cancela los cambios de la acción iniciada de la entidad
+		/// Cancela los cambios de la acción iniciada de la entidad
 		char* RevertEntity();
 
-		/// ClearEntity: limpia la variable entity obligando a cargar nuevamente
+		/// Limpia la variable entity obligando a cargar nuevamente
 		void ClearEntity();
 };
 

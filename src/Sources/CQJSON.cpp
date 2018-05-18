@@ -1,6 +1,6 @@
-/// CQJSON.cpp: Clase de integración con ClearQuest con protocolo JSON (JavaScript Object Notation)
-/// TO-DO
-/// Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
+// CQJSON.cpp: Clase de integración con ClearQuest con protocolo JSON (JavaScript Object Notation)
+// TO-DO / FIX / PENDIENTE
+// Hacer metodos para utilizar la variable "entity" (SetFieldValue, etc.)
 
 #include "stdafx.h"
 
@@ -11,8 +11,12 @@
 #include <Wt/Json/Value>
 #include <iostream>
 #include <vector>
-#include <algorithm>    ///< std::find
+
+// Included to use std::find
+#include <algorithm>
+
 #include <sstream>
+
 #include "CQJSON.h"
 
 using namespace std;
@@ -21,7 +25,8 @@ using namespace Wt;
 
 // #define MyDEBUG
 
-CQJSON *CQJSON::instance = 0;	///< Se comporta como un singleton (GoF)
+// Se comporta como un singleton (GoF)
+CQJSON *CQJSON::instance = 0;
 
 void _main_()
 {
@@ -115,10 +120,10 @@ void _main_()
 	system("PAUSE");
 }
 
-/// Constructor
+// Constructor
 CQJSON::CQJSON()
 {
-    /// La clase utiliza COM, es necesario inicializar las bibliotecas COM
+    // La clase utiliza COM, es necesario inicializar las bibliotecas COM
 	CoInitialize(0); // Debe estar en el constructor de la clase
 /*
 	// Conexion a la session de ClearQuest
@@ -175,14 +180,14 @@ CQJSON::CQJSON()
 	// CoUninitialize(); // Debe estar en el destructor de la clase
 }
 
-/// Destructor
+// Destructor
 CQJSON::~CQJSON()
 {
-    ///  Libera los recursos usados por el sistema COM
+    //  Libera los recursos usados por el sistema COM
     CoUninitialize();
 }
  
-/// Patrón Singleton: Devuelve siempre la misma instancia cuando se contruye
+// Patrón Singleton: Devuelve siempre la misma instancia cuando se contruye
 CQJSON *CQJSON::getInstance()
 {
 	if (! instance)	{
@@ -191,11 +196,11 @@ CQJSON *CQJSON::getInstance()
 	return instance;
 }
 
-/// UserLogon : Conexion al ClearQuest
-/// @param login_name
-/// @param password
-/// @param database_name
-/// @param database_set
+// UserLogon : Conexion al ClearQuest
+// @param login_name
+// @param password
+// @param database_name
+// @param database_set
 bool CQJSON::UserLogon(const char* login_name, const char* password, const char* database_name, const char* database_set)
 {
 	// Conexion a la session de ClearQuest
@@ -255,9 +260,9 @@ string CQJSON::JSONUserLogon(const char* JSON_connection)
 	return jsonOK("Conexion exitosa");
 }
 
-/// GetEntity: Carga en variable entity un registro
-/// @param record_type
-/// @param display_name
+// GetEntity: Carga en variable entity un registro
+// @param record_type
+// @param display_name
 bool CQJSON::GetEntity(const char* record_type, const char *display_name)
 {
     if (!session) {
@@ -306,7 +311,7 @@ string CQJSON::JSONGetEntity(const char* JSON_entity)
 	return jsonOK("Carga exitosa");
 }
 
-/// GetFieldNames: Carga en memoria los nombres de todos los campos de la entidad actual
+// GetFieldNames: Carga en memoria los nombres de todos los campos de la entidad actual
 bool CQJSON::GetFieldNames()
 {
 	_variant_t fieldnames;
@@ -400,8 +405,8 @@ string CQJSON::JSONGetFieldStringValues(const char* JSON_fields)
 	return respuesta.toUTF8();
 }
 
-/// GetFieldValue: Obtiene el campo del registro almancenado en entity
-/// @param field Nombre del campo cuyo valor se desea conocer
+// GetFieldValue: Obtiene el campo del registro almancenado en entity
+// @param field Nombre del campo cuyo valor se desea conocer
 char* CQJSON::GetFieldValue(const char* field)
 {
     if (!session || !entity) {

@@ -1,5 +1,5 @@
-/// main.cpp
-/// CQWtClient: Cliente de ClearQuest en Wt C++
+// main.cpp
+// CQWtClient: Cliente de ClearQuest en Wt C++
 
 #include "stdafx.h"
 

@@ -14,7 +14,7 @@
 #	include "CQJSON.h"
 #endif
 
-/// Cuando se incluye CQJSONdummy.h no se definen esas constantes
+// Cuando se incluye CQJSONdummy.h no se definen esas constantes
 #if !defined (FALSE_DEFINED)
 #	define FALSE         0
 #	define FALSE_DEFINED 1
@@ -27,8 +27,8 @@
 using std::string;
 using namespace Wt;
 
-/// Constructor
-RecordSetModel::RecordSetModel(WObject* parent) : WStandardItemModel(parent)
+// Constructor
+RecordSetModel::RecordSetModel(int rows, int cols, WObject* parent) : WStandardItemModel(rows, cols, parent)
 {
 #ifdef MyDEBUG
 	cqSession = CQJSONdummy::getInstance();

@@ -1,4 +1,4 @@
-//  ResultSetController.h
+///  ResultSetController.h
 
 #ifndef RESULTSET_CTRL_H
 #define RESULTSET_CTRL_H
@@ -25,29 +25,39 @@ class ResultSetController : public Wt::WObject, public SubjectGoF
 {
 public:
     /// Constructor
+    /// @param name Nombre asociado al controlador, vista y modelo
     ResultSetController(const std::string & name);
 
     /// Crea una vista (pudiera haber varias para el mismo modelo)
-    //Wt::WContainerWidget* createView(Wt::WContainerWidget* container);
+    /// @param container Wt::WContainerWidget* Puntero a objeto contenedor
+    /// @return ResultSetView* Puntero a vista creada
     ResultSetView* createView(Wt::WContainerWidget* container);
 
     ///  Eventos a los que debe reaccionar este controlador
 
     /// Ha cambiado el registro mostrado
+    /// @param s const std::string & Cadena de texto con datos del registro cambiado
     void recordChanged(const std::string & s);
+    /// El usuario ha pulsado el botón primario del ratón sobre la vista
     void clicked();
+    /// El usuario ha pulsado el botón primario del ratón sobre la vista
     void doubleClicked();
+    /// El usuario ha pulsado doblemente el botón primario del ratón sobre la vista
     void focussed();
+    /// El usuario ha pulsado alguna tecla sobre la vista 
     void keyPressed();
+    /// El usuario ha movido la rueda del ratón sobre la vista 
     void mouseWheel();
+    /// Ha cambiado la fila del conjunto de resultados mostrados en la vista
     void rowChanged();
-    /// Se ha movido la vista dentro de la ventana
+    /// Se ha desplazado la vista dentro de la ventana
     //EventSignal<Wt::WScrollEvent>& scrolled();
     void scrolled(Wt::WScrollEvent e);
 
     ///  Fin de eventos a los que debe reaccionar este controlador
 
     /// Slot para seleccion de nuevo item
+    /// @return std::string Cadena con el elemento seleccionado
     std::string selectedItem() { return selectedItem_; }
 
     /// Destructor
@@ -69,6 +79,7 @@ protected:
 
     /// FIN de DATOS ESPECÍFICOS de cada tipo de vista
 
+    /// Actualiza datos del modelo 
     void fillModel();
 };
 

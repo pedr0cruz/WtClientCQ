@@ -1,4 +1,4 @@
-// WorskSpaceModel.h
+/// WorskSpaceModel.h
 
 #ifndef WORKSPACE_MODEL_H
 #define WORKSPACE_MODEL_H
@@ -21,39 +21,39 @@
 #   include "CQJSON.h"
 #endif
 
-///	WorkSpaceModel: Main Application Model.
-/// This class inherits from a WT WStandardItemModel to implement 
-/// a custom model.
-class WorkSpaceModel : public Wt::WStandardItemModel ///< Guarda un modelo personalizado
+///	Main Application Model. This class inherits from 
+/// WT::WStandardItemModel to implement a custom model.
+class WorkSpaceModel : public Wt::WStandardItemModel
 {
 public:
     /// Constructor
+    /// @param parent Wt::WObject* Puntero a objeto padre en el ciclo de vida del objeto
     WorkSpaceModel(Wt::WObject* parent);
 
     /// Destructor
     ~WorkSpaceModel();
 
-    /// Llena el modelo con los datos del árbol
+    /// Actualiza modelo con los datos del árbol
+    /// @return true en caso de éxito, false en caso de error
     bool fillModel();
 
 protected:
     ///  DATOS ESPECÍFICOS de cada vista
 
+    /// Puntero a Objeto que se comunica con el servidor y se implementa 
+    /// con el patrón Singleton (GoF) para tener una sola instancia. 
 #ifdef MyDEBUG
-    /// Puntero a Objeto que se comunica con el servidor
-    /// y que se implementa con el patrón Singleton. 
-    /// Esta es una variante de la clase que no utiliza
-    /// ni necesita Las bibliotecas de ClearQuest.
+    /// Variante de la clase que no utiliza ni necesita Las bibliotecas de ClearQuest
     CQJSONdummy* cqSession;
 #else
-    /// Puntero a Objeto que se comunica con el servidor
-    /// y que se implementa con el patrón Singleton. 
+    /// Variante de la clase que utiliza y NECESITA Las bibliotecas de ClearQuest
     CQJSON* cqSession;
 #endif
 
     ///  Elemento seleccionado
 	Wt::WModelIndex wsItem_;
-	/// Mapas para la descripcion de los elementos del WS
+
+    /// Mapas para la descripcion de los elementos del WS
 	std::map<std::string, Wt::WString> wsNameMap_;
     std::map<std::string, Wt::WStandardItem*> wsItemMap_;
     std::map<std::string, Wt::Json::Object*> jsonObjectMap_;

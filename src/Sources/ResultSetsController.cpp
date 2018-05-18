@@ -32,7 +32,7 @@ using namespace Wt;
 
 static const string s_resultSetsTabsWidget("resultSetsTabWidget");
 
-/// Constructor
+// Constructor
 ResultSetsController::ResultSetsController(const string & name) : SubjectGoF(name)
 //    , tabWidget_(nullptr)
 //    , tabWidgetContainer_(nullptr)
@@ -40,7 +40,7 @@ ResultSetsController::ResultSetsController(const string & name) : SubjectGoF(nam
     model_ = new ResultSetsModel(this);
 }
 
-/// Destructor
+// Destructor
 ResultSetsController::~ResultSetsController()
 {
     for each (auto key_value_pair in controllersMap_) {
@@ -50,7 +50,7 @@ ResultSetsController::~ResultSetsController()
     delete model_;
 }
 
-/// Crea la vista que contiene todas las pestañas
+// Crea la vista que contiene todas las pestañas
 //WContainerWidget* ResultSetsController::createView(WContainerWidget* parentContainer)
 ResultSetsView* ResultSetsController::createView(WContainerWidget* parentContainer)
 {

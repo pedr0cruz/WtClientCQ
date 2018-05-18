@@ -20,10 +20,10 @@
 using std::string;
 using namespace Wt;
 
-/// Constructor
+// Constructor
 RecordSetController::RecordSetController(const string & name) : SubjectGoF(name)
 {
-    model_ = new RecordSetModel(this);
+    model_ = new RecordSetModel(0, 0, this);
 }
 
 /// Crea y configura la vista
@@ -34,7 +34,7 @@ WWidget* RecordSetController::createView(WContainerWidget* recordsetContainer)
     view_ = new RecordSetView(recordsetContainer);
     view_->setModel(model_);
 
-    /// Conecta los generadores de eventos a las funciones receptoras
+    // Conecta los generadores de eventos a las funciones receptoras
 
 //	view_->selectionChanged()
 //		.connect(this, &RecordSetController::recordChanged);
@@ -53,7 +53,7 @@ WWidget* RecordSetController::createView(WContainerWidget* recordsetContainer)
 //	view_->onSelectedRow()
 //		.connect(this, &RecordSetController::recordChanged);
 
-    /// Agrega la vista creada al contenedor superior
+    // Agrega la vista creada al contenedor superior
 	viewContainer_->addWidget(view_);
 
 	return view_;

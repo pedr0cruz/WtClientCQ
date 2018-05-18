@@ -17,52 +17,47 @@
 using std::string;
 using namespace Wt;
 
-/// Application class Constructor  
+// Application class Constructor  
 CQWtApplication::CQWtApplication(const Wt::WEnvironment& env) : Wt::WApplication(env)
 {
-	/// Inicializa recursos
+	// Inicializa recursos
 	setResources();
-	/// Prepara la interface de usuario
-	mainView = new CQWtAppView(root()); ///< Crea toda la estructura de la app
+	// Prepara la interface de usuario, crea toda la estructura de la app
+    mainView = new CQWtAppView(root());
 
-	/// Aqui debe inicializar el singleton de CQ
+	// Aqui debe inicializar el singleton de CQ
 
-	/// Crea la controladora del WorkSpace
+	// Crea la controladora del WorkSpace
 	workSpaceCtrl = new WorkSpaceController("WorkSpaceCtrl");
-	workSpaceCtrl->createView(mainView->workSpaceContainer()); ///< Indica en que vista trabajará
-	workSpaceCtrl->attach(this); ///< GoF: conecta sujeto con Observador
-	//workSpaceCtrl->attach(std::shared_ptr <ObserverGoF> (this)); ///< GoF: conecta sujeto con Observador
+    // Indica en que vista trabajará
+    workSpaceCtrl->createView(mainView->workSpaceContainer());
+    // GoF: conecta sujeto con Observador
+	workSpaceCtrl->attach(this);
 
-    //resultSetCtrl->createView(mainView->resultSetTabsContainer()); ///< Indica en que vista trabajará
-	//resultSetCtrl->attach(this); ///< GoF: conecta sujeto con Observador
-    //resultSetCtrl->attach(std::shared_ptr <ObserverGoF>(this)); ///< GoF: conecta sujeto con Observador
-    /// Crea la controladora de los ResultSets
+    // Crea la controladora de los ResultSets
     resultSetsCtrl = new ResultSetsController("ResultSetsCtrl");
-    //resultSetsCtrl->createView(mainView->resultSetsTabsContainer()); ///< Indica en que vista trabajará
-    resultSetsCtrl->createView(mainView->resultSetsViewContainer()); ///< Indica en que vista trabajará
+    // Indica en que vista trabajará
+    resultSetsCtrl->createView(mainView->resultSetsViewContainer());
+    // GoF: conecta sujeto con Observador
+    resultSetsCtrl->attach(this);
 
-    //resultSetsCtrl->attach(std::shared_ptr <ObserverGoF>(this)); ///< GoF: conecta sujeto con Observador
-    resultSetsCtrl->attach(this); ///< GoF: conecta sujeto con Observador
-
-	/// Crea la controladora del RecordSet
-	//recordSetCtrl = new RecordSetController("RecordSetCtrl");
-	//recordSetCtrl->createView(mainView->workSpaceContainer()); ///< Indica en que vista trabajará
-    //recordSetCtrl->createView(mainView->recordSetTabsContainer()); ///< Indica en que vista trabajará
+	// Crea la controladora del RecordSet
     recordSetsCtrl = new RecordSetsController("RecordSetsCtrl");
-    recordSetsCtrl->createView(mainView->recordSetsViewContainer()); ///< Indica en que vista trabajará
+    // Indica en que vista trabajará
+    recordSetsCtrl->createView(mainView->recordSetsViewContainer());
 
-	//workSpaceCtrl->attach(this); ///< GoF: conecta sujeto con Observador
-	//workSpaceCtrl->attach(std::shared_ptr <ObserverGoF>(this)); ///< GoF: conecta sujeto con Observador
+    // FIX / HACK / PENDIENTE / REVISAR
+	// internalPathChanged().connect(this, &CQWtApplication::handlePathChange);
 
-	///	internalPathChanged().connect(this, &CQWtApplication::handlePathChange);
-	refresh(); ///< recargar todos los elementos incluyendo los bundles
+    // recargar todos los elementos incluyendo los bundles
+	refresh();
 }
 
 // Update: Llamado desde un sujeto que cambia (Patron Observer-GoF)
 void CQWtApplication::update(SubjectGoF* aController)
 {
-	/// Como Observador, recibe notificaciones de los diferentes Sujetos (Controladoras)
-	/// Evento en el WorkSpace
+	// Como Observador, recibe notificaciones de los diferentes Sujetos (Controladoras)
+	// Evento en el WorkSpace
     const std::string subjectName(aController->subjectName());
     if (subjectName == "WorkSpaceCtrl"){
         WorkSpaceController* ws = dynamic_cast <decltype (ws)> (aController);
@@ -80,10 +75,13 @@ CQWtApplication::~CQWtApplication()
 
 void CQWtApplication::setResources()
 {
-	/// Archivos de recursos a utilizar en toda la app
+	// Archivos de recursos a utilizar en toda la app
 	messageResourceBundle().use("resources/forms");
 	messageResourceBundle().use("resources/configFile");
-	//messageResourceBundle().use(WApplication::appRoot() + "about"); // otra opcion, probar
-	setTwoPhaseRenderingThreshold(0); ///< Establece two-phase rendering para JavaScript		
-	refresh(); ///< recargar todos los elementos incluyendo los bundles
+    // otra opcion, probar
+    //messageResourceBundle().use(WApplication::appRoot() + "about");
+    // Establece two-phase rendering para JavaScript		
+    setTwoPhaseRenderingThreshold(0);
+    // recargar todos los elementos incluyendo los bundles
+	refresh();
 }

@@ -1,5 +1,4 @@
-// RecordSetsModel.h
-//
+/// RecordSetsModel.h
 
 #ifndef RECORDSETS_MODEL_H
 #define RECORDSETS_MODEL_H
@@ -20,19 +19,23 @@
 #	include "CQJSON.h"
 #endif
 
-///	RecordSetsModel: Stores the data for a custom model.
-/// This class inherits from WStandardItemModel to implement
-/// a custom model.
-class RecordSetsModel : public Wt::WStandardItemModel ///< Guarda un modelo personalizado
+///	Stores the data for a custom model. This class inherits 
+/// from WStandardItemModel to implement a custom model.
+class RecordSetsModel : public Wt::WStandardItemModel
 {
 public:
     /// Constructor
-	RecordSetsModel(Wt::WObject *parent);
+    /// @param rows Initial number of rows of the model
+    /// @param cols Initial number of columns of the model
+    /// @param parent Wt::WObject* Puntero a objeto padre para el ciclo de vida del objeto
+    RecordSetsModel(int rows, int cols, Wt::WObject *parent);
 
     /// Destructor
     virtual ~RecordSetsModel();
 
-    /// Selecciona la pestaña especificada
+    /// Actualiza el modelo asociado
+    /// @param selectedTabIndex int Actualiza indice de pestaña seleccionada, por defecto 0
+    /// @return bool true en caso de cambio de pestaña, false si se mantiene la misma
     bool fillModel(int selectedTabIndex = 0);
 
 protected:

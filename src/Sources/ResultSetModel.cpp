@@ -16,7 +16,7 @@
 #	include "CQJSON.h"
 #endif
 
-/// Cuando se incluye CQJSONdummy.h no se definen esas constantes
+// Cuando se incluye CQJSONdummy.h no se definen esas constantes
 #if !defined (FALSE_DEFINED)
 #	define FALSE         0
 #	define FALSE_DEFINED 1
@@ -31,8 +31,8 @@ using namespace Wt;
 
 const char* ResultSetModel::ItemSelectionMimeType = "text/resultsetmodel";
 
-/// Constructor
-ResultSetModel::ResultSetModel(WObject* parent) : WStandardItemModel(parent)
+// Constructor
+ResultSetModel::ResultSetModel(int rows, int cols, WObject* parent) : WStandardItemModel(rows, cols, parent)
 {
 #ifdef MyDEBUG
 	cqSession = CQJSONdummy::getInstance();
@@ -42,12 +42,12 @@ ResultSetModel::ResultSetModel(WObject* parent) : WStandardItemModel(parent)
 	cqSession->UserLogon("admin", "", "SAMPL", "SAMPLCNX");
 }
 
-/// Constructor
+// Constructor
 ResultSetModel::~ResultSetModel()
 {
 }
 
-/// Llena el WorkSpace desde el CQ
+// Llena el WorkSpace desde el CQ
 bool ResultSetModel::fillModel(const string & QueryName)
 {
 	Json::Object JsonObject, JsonCQ, JsonQuery, JsonColumn, JsonRow, result;
