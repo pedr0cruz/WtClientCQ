@@ -37,9 +37,15 @@ public:
     void setModel(RecordSetModel* model);
 
     /// Oculta o muestra la vista
+<<<<<<< HEAD
+    /// @param hide bool false: la vista, true: la muestra
+    /// @param animation const Wt::WAnimation & Anmación a usar, por defecto es  Wt::WAnimation()
+	void setHidden(bool, const Wt::WAnimation &animation = Wt::WAnimation());
+=======
     /// @param hidden bool false: la vista, true: la muestra
     /// @param animation const Wt::WAnimation & Anmación a usar, por defecto es  Wt::WAnimation()
 	void setHidden(bool hidden, const Wt::WAnimation &animation = Wt::WAnimation());
+>>>>>>> master
 
 //	Signal<int>& rowSelected(){ return rowSelect; }
 //	Signal<int>& onFindByColumn(){ return findByColumn; }

@@ -120,7 +120,7 @@ void TableView::setHeaderCount(int headers_count, Wt::Orientation headers_orient
 {
 }
 
-void TableView::addRow(vector<string> content)
+void TableView::addRow(vector <string> & content)
 {
 #if 0
 	int row = rowCount();

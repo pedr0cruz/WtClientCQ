@@ -244,7 +244,6 @@
     <ClInclude Include="..\..\src\Headers\ResultSetsController.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetsModel.h" />
     <ClInclude Include="..\..\src\Headers\ResultSetsView.h" />
-    <ClInclude Include="..\..\src\Headers\TabWidget.h" />
     <ClInclude Include="..\..\src\Headers\WorkSpaceController.h" />
     <ClInclude Include="..\..\src\Headers\WorkSpaceModel.h" />
     <ClInclude Include="..\..\src\Headers\WorkSpaceView.h" />

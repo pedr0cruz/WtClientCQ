@@ -37,8 +37,8 @@ CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
 	///////////////////////////////////////////////////////////////
 	// ENTORNO: Se contruye de adentro hacia afuera
 	///////////////////////////////////////////////////////////////
-#ifdef MYTEST	
-	// Para escribir textos en los paneles
+#if defined (MYTEST)
+    // Para escribir textos en los paneles
 	const char *cell = "{1} panel"; 
 	WText *item;
 #endif
@@ -73,8 +73,7 @@ CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
     //layoutDetalles->addWidget(resultSetsTabsContainer_, 0, 0);
     layoutDetalles->addWidget(resultSetsViewContainer_, 0, 0);
 
-#ifdef MYTEST
-
+#if defined (MYTEST)
 #if 0
 	/// Imprime el texto "Panel TABLE"
 	resultSetContainer_->setStyleClass("green-box");
@@ -83,7 +82,7 @@ CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
 #endif
 
 	auto newTabForResultSets = new Wt::WTableView();
-    resultSetsViewContainer_->setStyleClass("green-box");
+//    resultSetsViewContainer_->setStyleClass("green-box");
 	//item = new Wt::WText(Wt::WString(cell).arg("TABLE"));
 	Wt::WString tab_text("tab1-tableview1");
     //auto menu_for_tab = resultSetsTabWidget_->addTab(newTabForResultSets, tab_text);
@@ -114,11 +113,11 @@ CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
     //layoutDetalles->addWidget(recordSetsTabsContainer_, 1, 0);
     layoutDetalles->addWidget(recordSetsViewContainer_, 1, 0);
 
-#ifdef MYTEST
-	// Imprime el texto "Panel DETAILS" 	
+#if 0 && defined (MYTEST)
+    // Imprime el texto "Panel DETAILS" 	
 	item = new Wt::WText(Wt::WString(cell).arg("DETAILS"));
     //recordSetsTabsContainer_->setStyleClass("green-box");
-    recordSetsViewContainer_->setStyleClass("green-box");
+//    recordSetsViewContainer_->setStyleClass("green-box");
 
 	//recordFormContainer_->addWidget(item);
 	//	CHECK: the argument should be recordFormContainer_ OR appContainer_ ???
@@ -134,14 +133,14 @@ CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
 
 	// Panel WorkSpace
 	workSpaceContainer_ = new Wt::WContainerWidget(appContainer_);
-	layoutInterior->addWidget(workSpaceContainer_, 0, 0);
-
-#ifdef MYTEST
-	// Imprime el texto "Panel LEFT" 	
-	item = new Wt::WText(Wt::WString(cell).arg("LEFT"));
-	workSpaceContainer_->setStyleClass("green-box");
-	workSpaceContainer_->addWidget(item);
+    workSpaceContainer_->setWidth(WLength(30, WLength::Percentage));
+#if defined (MYTEST)
+    // Imprime el texto "Panel LEFT" 	
+    item = new Wt::WText(Wt::WString(cell).arg("LEFT"));
+    //	workSpaceContainer_->setStyleClass("green-box");
+    workSpaceContainer_->addWidget(item);
 #endif
+    layoutInterior->addWidget(workSpaceContainer_, 0, 0);
 
 	///////////////// Exteriores (Superior e Inferior)
 	Wt::WGridLayout *layoutExterior = new Wt::WGridLayout();
@@ -152,21 +151,21 @@ CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
 	topPanelContainer_ = new Wt::WContainerWidget(appContainer_);
 	layoutExterior->addWidget(topPanelContainer_, 0, 0);
 
-#ifdef MYTEST
+#if 0 && defined (MYTEST)
 	// Imprime el texto "Panel TOP" 	
 	item = new Wt::WText(Wt::WString(cell).arg("TOP"));
 	topPanelContainer_->addWidget(item);
-	topPanelContainer_->setStyleClass("green-box");
+//	topPanelContainer_->setStyleClass("green-box");
 #endif
 
 	// Panel inferior
 	footerContainer_ = new Wt::WContainerWidget(appContainer_);
 	layoutExterior->addWidget(footerContainer_, 2, 0);
 
-#ifdef MYTEST
+#if 0 && defined (MYTEST)
 	// Imprime el texto "Panel DOWN" 	
 	item = new Wt::WText(Wt::WString(cell).arg("DOWN"));
-	footerContainer_->setStyleClass("green-box");
+//	footerContainer_->setStyleClass("green-box");
 	footerContainer_->addWidget(item);
 #endif
 

@@ -37,9 +37,18 @@ public:
 
     /// Ha cambiado el elemento seleccionado en el árbol de la izquierda
     void folderChanged();
+    /// Se ha cambiado el ancho de una columna
+    void columnResized(int col, Wt::WLength width);
     /// Se ha movido la vista dentro de la ventana
     //EventSignal<WScrollEvent>& scrolled();
     void scrolled(Wt::WScrollEvent e);
+
+    /// Se ha movido la vista dentro del contenedor
+    // se trata de capturar el evento en el que el usuario
+    // mueve el divisor vertical para ajustar el ancho del
+    // arbol contenido dentro de la vista del workspace
+    //EventSignal<WScrollEvent>& scrolled();
+    void containerScrolled(Wt::WScrollEvent e);
 
     ///  Fin de eventos a los que debe reaccionar este controlador
 

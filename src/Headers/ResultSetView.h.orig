@@ -56,7 +56,11 @@ public:
     void setHeader(std::vector <std::string> headers);
     /// Agrega fila recibida en el argumento
     /// @param row vector <string> Vector de cadenas con datos de celdas de la fila a agregar
+<<<<<<< HEAD
+    void addRow(std::vector <std::string>);
+=======
     void addRow(std::vector <std::string> & row);
+>>>>>>> master
     /// Oculta/muestra la vista y establece qué animación utilizar.
     /// @param hide true: Oculta la vista, false: la muestra
     /// @param animation const Wt::WAnimation & Tipo de animación a usar, por defecto Wt::WAnimation()

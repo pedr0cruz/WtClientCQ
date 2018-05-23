@@ -41,6 +41,11 @@ WTreeView *WorkSpaceController::createView(WContainerWidget* workSpaceContainer)
 	view_->selectionChanged()
 		.connect(this, &WorkSpaceController::folderChanged);
 	//treeView->mouseWentUp().connect(this, &WorkSpaceController::showPopup);
+    view_->columnResized()
+        .connect(this, &WorkSpaceController::columnResized);
+
+    viewContainer_->scrolled()
+        .connect(this, &WorkSpaceController::containerScrolled);
 
 	viewContainer_->addWidget(view_);
 
@@ -61,6 +66,19 @@ void WorkSpaceController::folderChanged()
 		}
 	}
 }
+
+void WorkSpaceController::columnResized(int col, Wt::WLength width)
+{
+    std::cout << "col: " << col;
+    std::cout << " width: " << width.value();
+}
+
+void WorkSpaceController::containerScrolled(Wt::WScrollEvent e)
+{
+    std::cout << "e.scrollX: " << e.scrollX();
+    std::cout << "e.viewportWidth: " << e.viewportWidth();
+}
+
 
 WorkSpaceController::~WorkSpaceController()
 {

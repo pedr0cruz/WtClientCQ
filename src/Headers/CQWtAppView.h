@@ -35,8 +35,6 @@ protected:
                             *appContainer_,			    ///< Contendor exterior
                             *topPanelContainer_,	    ///< Contenedor del panel superior
                             *workSpaceContainer_,       ///< Contenedor del arbol izquierdo
-//                            *resultSetsTabsContainer_,  ///< Contenedor con pestañas para las tablas de resultados
-//                            *recordSetsTabsContainer_,  ///< Contenedor con pestañas para los formularios
                             *footerContainer_;          ///< Contenedor del pie de pagina
     /// Widget contenedor del widget con las pestañas para las tablas de resultados
     Wt::WContainerWidget* resultSetsViewContainer_;
@@ -47,11 +45,6 @@ protected:
     Wt::WContainerWidget* recordSetsViewContainer_;
     /// La vista de conjuntos de registros (formularios) es un widget con pestañas 
     RecordSetsView* recordSetsView_;
-
-    //< Vector con punteros a tablas WTableViews que van dentro de resultSetTabsContainer_
-    //vector <Wt::WTableView>         resultSetTablesVec_;
-    //< Vector con punteros a formularios WTemplateFormView que van dentro de recordSetTabsContainer_
-    //vector <Wt::WTemplateFormView>  recordSetFormsVec_;
 
 public:
 	/// Constructor: crea toda la vista exterior de la App

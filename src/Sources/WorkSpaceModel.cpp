@@ -177,7 +177,11 @@ bool WorkSpaceModel::fillModel()
 						string folderName = WString(aFolder.get("name")).toUTF8(); // Nombre
 						string folderID = WString(aFolder.get("folder")).toUTF8() + "/" + sPath3 + "/" + folderName;
 						boost::algorithm::replace_all(folderID, " ", "_"); // ID sin espacios
-						level3->appendRow(level4 = createFolderItem(folderName, folderID));
+
+						//level3->appendRow(level4 = createFolderItem(folderName, folderID));
+                        level4 = createFolderItem(folderName, folderID);
+                        level3->appendRow(level4);
+
 						publicFolders.erase(publicFolders.begin() + index3);
 					}
 				}
@@ -199,8 +203,12 @@ bool WorkSpaceModel::fillModel()
 		string sPath = WString(aQuery.get("path")).toUTF8();
 		boost::algorithm::replace_all(sFolder, " ", "_"); // Path sin espacios
 		WStandardItem *aFolder = wsItemMap_[sFolder]; // Obtiene el folder del mapa
-		aFolder->appendRow(createElementItem(sName, sPath, aQuery));	// Agrega el elemento al folder
-	}
+
+		//aFolder->appendRow(createElementItem(sName, sPath, aQuery));	// Agrega el elemento al folder
+        WStandardItem* elem = createElementItem(sName, sPath, aQuery);	// Crea elemento que se va a agregar
+        aFolder->appendRow(elem);	// Agrega elemento creado al folder
+        std::cerr << "[" << sFolder << "] cols: " << aFolder->columnCount() << std::endl;
+    }
 
 	setHeaderData(0, Horizontal, boost::any(std::string("Explorador")));
 

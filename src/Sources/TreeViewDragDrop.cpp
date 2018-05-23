@@ -43,7 +43,6 @@
 #include <Wt/Json/Array>
 #include <Wt/Json/Value>
 
-//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else
@@ -432,7 +431,15 @@ private:
     tableView->setColumnWidth(3, 60);
     tableView->setColumnWidth(4, 100);
     tableView->setColumnWidth(5, 100);
-
+    */
+    // FIXME HACK REVISAR PENDIENTE PENDING
+    tableView->setColumnWidth(0, 100);
+    tableView->setColumnWidth(1, 50);
+    tableView->setColumnWidth(2, 50);
+    tableView->setColumnWidth(3, 50);
+    tableView->setColumnWidth(4, 50);
+    tableView->setColumnWidth(5, 50);
+    /*
     WItemDelegate *delegate = new WItemDelegate(this);
     delegate->setTextFormat(FileModel::dateDisplayFormat);
     tableView->setItemDelegateForColumn(0, delegate);

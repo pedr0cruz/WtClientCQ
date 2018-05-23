@@ -11,7 +11,6 @@
 #include "ResultSetController.h"
 #include "ResultSetView.h"
 
-//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else

@@ -23,7 +23,16 @@ WorkSpaceView::WorkSpaceView(Wt::WContainerWidget *parent) : WTreeView(parent)
 	resize(WLength::Auto, WLength::Auto);
 	setLayoutSizeAware(true);
 	setSelectionMode(SingleSelection);
-	
+
+    int col = 0;
+    setColumnWidth(col++, Wt::WLength(150.0, Wt::WLength::Unit::Pixel));
+    setColumnWidth(col++, Wt::WLength(150.0, Wt::WLength::Unit::Pixel));
+    setColumnWidth(col++, Wt::WLength(150.0, Wt::WLength::Unit::Pixel));
+    setColumnWidth(col++, Wt::WLength(150.0, Wt::WLength::Unit::Pixel));
+    //setColumnWidth(col++, Wt::WLength(100.0, Wt::WLength::Unit::Pixel));
+    //setColumnWidth(col++, Wt::WLength()); // CSS width: auto 
+    setColumnWidth(col++, Wt::WLength(100.0, Wt::WLength::Unit::Percentage));
+
 	// Accept drops for the custom mime type.
 	acceptDrops(FileSelectionMimeType);
 }
@@ -58,7 +67,7 @@ void WorkSpaceView::dropEvent(const Wt::WDropEvent& event,	const Wt::WModelIndex
 		int result = Yes;
 #endif
 
-		if (result == Yes) {
+		if (Yes == result) {
 			/*
 			* You can access the source model from the selection and
 			* manipulate it.

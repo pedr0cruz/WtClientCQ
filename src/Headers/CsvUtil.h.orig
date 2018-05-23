@@ -17,7 +17,11 @@ namespace Wt {
 
 /// Lee datos en formato CSV de corriente de datos de entrada (istream)
 /// @param f std::istream& Corriente de datos de entrada
+<<<<<<< HEAD
+/// @param model Puntero a modelo que consumirÃ¡ los datos
+=======
 /// @param model Puntero a modelo que consumirá los datos
+>>>>>>> master
 /// @param numRows Cantidad de filas a leer. El valor por defecto es -1, que lee todas
 /// @param firstLineIsHeaders Si true (valor por defecto) la primera fila son los nombres de las columnas
 extern void readFromCsv(std::istream& f, Wt::WAbstractItemModel *model,
@@ -26,7 +30,11 @@ extern void readFromCsv(std::istream& f, Wt::WAbstractItemModel *model,
 /// Convierte datos en formato CSV de corriente de datos de entrada (istream) a modelo
 /// @param csvFile const std::string&  Cadena de texto que es el nombre del archivo a leer
 /// @param parent Puntero a objeto de clase Wt::WObject o derivada que es el padre del modelo a crear
+<<<<<<< HEAD
+/// @param firstLineIsHeaders Si true (valor por defecto) la primera fila son los nombres de las columnas
+=======
 /// @param firstLineIsHeader Si true (valor por defecto) la primera fila son los nombres de las columnas
+>>>>>>> master
 /// @return Puntero a instancia de clase Wt::WStandardItemModel * que es el modelo creado
 extern Wt::WStandardItemModel *csvToModel(const std::string& csvFile,
                                             Wt::WObject *parent,

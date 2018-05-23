@@ -8,7 +8,6 @@
 
 #include "ResultSetsModel.h"
 
-//#include "CQJSON.h"
 #ifdef MyDEBUG
 #	include "CQJSONdummy.h"
 #else
