@@ -18,6 +18,9 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{e1ac768f-1113-4159-947a-10cbddd086f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="web-resources">
+      <UniqueIdentifier>{8b5ddfbd-0256-4e7d-9fd7-f4b2f82c3317}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -55,9 +58,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Utils\ObserverGoF.h">
       <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\CQJSONdummy.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Headers\CQJSONdummy.h">
       <Filter>Headers</Filter>
@@ -196,5 +196,45 @@
     <ClCompile Include="..\..\src\Sources\RecordSetsView.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\web\resources\form.css">
+      <Filter>web-resources</Filter>
+    </None>
+    <None Include="..\..\web\resources\html4_default.css">
+      <Filter>web-resources</Filter>
+    </None>
+    <None Include="..\..\web\resources\main.css">
+      <Filter>web-resources</Filter>
+    </None>
+    <None Include="..\..\web\resources\moz-transitions.css">
+      <Filter>web-resources</Filter>
+    </None>
+    <None Include="..\..\web\resources\style.css">
+      <Filter>web-resources</Filter>
+    </None>
+    <None Include="..\..\web\resources\styles.css">
+      <Filter>web-resources</Filter>
+    </None>
+    <None Include="..\..\web\resources\transitions.css">
+      <Filter>web-resources</Filter>
+    </None>
+    <None Include="..\..\web\resources\webkit-transitions.css">
+      <Filter>web-resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\web\resources\about.xml">
+      <Filter>web-resources</Filter>
+    </Xml>
+    <Xml Include="..\..\web\resources\configFile.xml">
+      <Filter>web-resources</Filter>
+    </Xml>
+    <Xml Include="..\..\web\resources\forms.xml">
+      <Filter>web-resources</Filter>
+    </Xml>
+    <Xml Include="..\..\web\resources\resources.xml">
+      <Filter>web-resources</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

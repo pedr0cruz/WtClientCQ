@@ -222,7 +222,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\CQJSONdummy.h" />
     <ClInclude Include="..\..\src\Headers\CQJSON.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MyDeb|Win32'">true</ExcludedFromBuild>
@@ -312,6 +311,22 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\web\resources\form.css" />
+    <None Include="..\..\web\resources\html4_default.css" />
+    <None Include="..\..\web\resources\main.css" />
+    <None Include="..\..\web\resources\moz-transitions.css" />
+    <None Include="..\..\web\resources\style.css" />
+    <None Include="..\..\web\resources\styles.css" />
+    <None Include="..\..\web\resources\transitions.css" />
+    <None Include="..\..\web\resources\webkit-transitions.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\web\resources\about.xml" />
+    <Xml Include="..\..\web\resources\configFile.xml" />
+    <Xml Include="..\..\web\resources\forms.xml" />
+    <Xml Include="..\..\web\resources\resources.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
