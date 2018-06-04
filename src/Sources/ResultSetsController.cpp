@@ -78,10 +78,10 @@ ResultSetController* ResultSetsController::getNewControllerIfNeeded(const string
     auto itIndex = indexesMap_.find(name);
     if (indexesMap_.end() == itIndex) {
         controller = new ResultSetController(name);
-        ResultSetView* rsView = new ResultSetView();
-        Wt::WMenuItem* tabMenuItem = view_->addTab(rsView, name);
-        int new_tab_index = static_cast <int> (indexesMap_.size());
-        indexesMap_[name] = new_tab_index;
+        ResultSetView* view = new ResultSetView();
+        Wt::WMenuItem* tabMenuItem = view_->addTab(view, name);
+        auto new_tab_index = indexesMap_.size();
+        indexesMap_[name] = static_cast <unsigned int> (new_tab_index);
         controllersMap_[new_tab_index] = controller;
     }
     else {

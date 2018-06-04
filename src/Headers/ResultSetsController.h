@@ -81,9 +81,9 @@ protected:
     ResultSetsView* view_;
 
     /// Mapa de indices (enteros) a controladores (uno por pestaña)
-    typedef std::map<int, ResultSetController*> ControllersMap;
+    typedef std::map<unsigned int, ResultSetController*> ControllersMap;
     ControllersMap controllersMap_;
-    typedef std::map<const std::string, int> IndexesMap;
+    typedef std::map<const std::string, unsigned int> IndexesMap;
     IndexesMap indexesMap_;
 
     ResultSetController* currentController_;

@@ -45,9 +45,11 @@ CQWtApplication::CQWtApplication(const Wt::WEnvironment& env) : Wt::WApplication
     recordSetsCtrl = new RecordSetsController("RecordSetsCtrl");
     // Indica en que vista trabajará
     recordSetsCtrl->createView(mainView->recordSetsViewContainer());
+    // GoF: conecta sujeto con Observador
+    recordSetsCtrl->attach(this);
 
     // FIX / HACK / PENDIENTE / REVISAR
-	// internalPathChanged().connect(this, &CQWtApplication::handlePathChange);
+	//internalPathChanged().connect(this, &CQWtApplication::handlePathChange);
 
     // recargar todos los elementos incluyendo los bundles
 	refresh();
@@ -64,7 +66,7 @@ void CQWtApplication::update(SubjectGoF* aController)
         //	TODO FIXME HACK
 //		resultSetCtrl->recordChanged(ws->selectedItem());
         string tabName(ws->selectedItem());
-        resultSetsCtrl->getNewControllerIfNeeded(tabName);
+        ResultSetController* controller = resultSetsCtrl->getNewControllerIfNeeded(tabName);
     }
 }
 

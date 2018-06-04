@@ -107,6 +107,15 @@
     <ClInclude Include="..\..\src\Utils\ChainOfResponsibilityGoF.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="MyTreeViewController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTreeViewModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTreeViewView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Sources\CQWtApp.cpp">
@@ -196,6 +205,9 @@
     <ClCompile Include="..\..\src\Sources\RecordSetsView.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="MyTreeViewController.cpp" />
+    <ClCompile Include="MyTreeViewModel.cpp" />
+    <ClCompile Include="MyTreeViewView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\web\resources\form.css">

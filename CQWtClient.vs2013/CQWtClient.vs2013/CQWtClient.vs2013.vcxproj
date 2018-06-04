@@ -48,13 +48,11 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MyDeb|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -68,7 +66,6 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -250,6 +247,9 @@
     <ClInclude Include="..\..\src\Utils\DecoratorGoF.h" />
     <ClInclude Include="..\..\src\Utils\MediatorGoF.h" />
     <ClInclude Include="..\..\src\Utils\ObserverGoF.h" />
+    <ClInclude Include="MyTreeViewController.h" />
+    <ClInclude Include="MyTreeViewModel.h" />
+    <ClInclude Include="MyTreeViewView.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -303,6 +303,9 @@
     <ClCompile Include="..\..\src\Sources\WorkSpaceView.cpp" />
     <ClCompile Include="..\..\src\Utils\MediatorGoF.cpp" />
     <ClCompile Include="..\..\src\Utils\ObserverGoF.cpp" />
+    <ClCompile Include="MyTreeViewController.cpp" />
+    <ClCompile Include="MyTreeViewModel.cpp" />
+    <ClCompile Include="MyTreeViewView.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='MyDeb|Win32'">Create</PrecompiledHeader>

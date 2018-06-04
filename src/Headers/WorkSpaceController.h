@@ -41,7 +41,7 @@ public:
     void columnResized(int col, Wt::WLength width);
     /// Se ha movido la vista dentro de la ventana
     //EventSignal<WScrollEvent>& scrolled();
-    void scrolled(Wt::WScrollEvent e);
+    void viewScrolled(Wt::WScrollEvent e);
 
     /// Se ha movido la vista dentro del contenedor
     // se trata de capturar el evento en el que el usuario

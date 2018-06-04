@@ -210,14 +210,13 @@ bool WorkSpaceModel::fillModel()
         std::cerr << "[" << sFolder << "] cols: " << aFolder->columnCount() << std::endl;
     }
 
-	setHeaderData(0, Horizontal, boost::any(std::string("Explorador")));
+	setHeaderData(0, Horizontal, boost::any(string("Explorador")));
 
 	return true;
 }
 
 // Crea un elemento folder en el modelo
-WStandardItem* WorkSpaceModel::createElementItem(const WString& location,
-	const std::string& folderId, Json::Object &joItem)
+WStandardItem* WorkSpaceModel::createElementItem(const WString& location, const string& folderId, Json::Object &joItem)
 {
 	WStandardItem *result = new WStandardItem(location);
 	Json::Object *json = new Json::Object(joItem);
@@ -234,8 +233,7 @@ WStandardItem* WorkSpaceModel::createElementItem(const WString& location,
 }
 
 // Crea un elemento query en el modelo
-WStandardItem* WorkSpaceModel::createFolderItem(const WString& location,
-	const std::string& folderId)
+WStandardItem* WorkSpaceModel::createFolderItem(const WString& location, const string& folderId)
 {
 	WStandardItem *result = new WStandardItem(location);
 

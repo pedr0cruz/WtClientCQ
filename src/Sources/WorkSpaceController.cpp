@@ -17,6 +17,14 @@
 #	include "CQJSON.h"
 #endif
 
+#if defined (_DEBUG)
+//#   define _AMD64_
+//#	include <WinDef.h>
+//#	include <WinBase.h>
+extern "C" void OutputDebugStringA(const char* lpOutputString);
+#define OutputDebugString OutputDebugStringA
+#endif
+
 #include <string>
 
 using std::string;
@@ -43,6 +51,8 @@ WTreeView *WorkSpaceController::createView(WContainerWidget* workSpaceContainer)
 	//treeView->mouseWentUp().connect(this, &WorkSpaceController::showPopup);
     view_->columnResized()
         .connect(this, &WorkSpaceController::columnResized);
+    view_->scrolled()
+        .connect(this, &WorkSpaceController::viewScrolled);
 
     viewContainer_->scrolled()
         .connect(this, &WorkSpaceController::containerScrolled);
@@ -54,6 +64,9 @@ WTreeView *WorkSpaceController::createView(WContainerWidget* workSpaceContainer)
 
 void WorkSpaceController::folderChanged()
 {
+#if defined(_DEBUG)
+    OutputDebugStringA("WorkSpaceController::folderChanged()\n");
+#endif
     if (view_->selectedIndexes().empty()) {
         return;
     }
@@ -63,20 +76,44 @@ void WorkSpaceController::folderChanged()
 		selectedItem_ = boost::any_cast<std::string>(d);
 		if (selected.flags().testFlag(ItemIsDragEnabled)){
 			notify(); // a los observadores o controladoras principales
+#if defined(_DEBUG)
+            OutputDebugStringA("\tselected.flags().testFlag(ItemIsDragEnabled) => notify()\n");
+#endif
 		}
 	}
 }
 
 void WorkSpaceController::columnResized(int col, Wt::WLength width)
 {
-    std::cout << "col: " << col;
-    std::cout << " width: " << width.value();
+#if defined(_DEBUG)
+    char msg[1000];
+    _snprintf_s(msg, sizeof(msg)-1, "WorkSpaceController::columnResized (col: %d, width: %f)\n", col, width.value());
+    OutputDebugStringA(msg);
+#endif
+}
+
+void WorkSpaceController::viewScrolled(Wt::WScrollEvent e)
+{
+#if defined(_DEBUG)
+    char msg[1000];
+    _snprintf_s(msg, sizeof(msg)-1, "WorkSpaceController::viewScrolled (x: %d/%d, y: %d/%d)\n",
+        e.scrollX(), e.viewportWidth(),
+        e.scrollY(), e.viewportHeight());
+    OutputDebugStringA(msg);
+#endif
 }
 
 void WorkSpaceController::containerScrolled(Wt::WScrollEvent e)
 {
-    std::cout << "e.scrollX: " << e.scrollX();
-    std::cout << "e.viewportWidth: " << e.viewportWidth();
+//    std::cout << "e.scrollX: " << e.scrollX();
+//    std::cout << "e.viewportWidth: " << e.viewportWidth();
+#if defined(_DEBUG)
+    char msg[1000];
+    _snprintf_s(msg, sizeof(msg)-1, "WorkSpaceController::containerScrolled (x: %d/%d, y: %d/%d)\n", 
+        e.scrollX(), e.viewportWidth(), 
+        e.scrollY(), e.viewportHeight());
+    OutputDebugStringA(msg);
+#endif
 }
 
 

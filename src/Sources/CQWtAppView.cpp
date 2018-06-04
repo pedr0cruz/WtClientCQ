@@ -43,8 +43,9 @@ CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
 	WText *item;
 #endif
 	// Creo un contendor adicional interno full screen
-	appContainer_ = new Wt::WContainerWidget(wt_root);
-	appContainer_->setHeight(WLength("100%")); // ó (100, WLength::Percentage));
+	//appContainer_ = new Wt::WContainerWidget(wt_root);
+	//appContainer_->setHeight(WLength("100%")); // ó (100, WLength::Percentage));
+    appContainer_ = wt_root;
 
 	///////////////// Interiores
 
@@ -52,25 +53,12 @@ CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
 	Wt::WGridLayout *layoutDetalles = new Wt::WGridLayout();
 	layoutDetalles->setRowResizable(0); // No cambia de tamaño externo
 
-    // Panel contenedor de pestañas con tablas (panel derecho superior)
-    //resultSetsTabsContainer_ = new Wt::WContainerWidget(appContainer_);
-    // Panel con las pestañas de las tablas
-    //resultSetsTabWidget_ = ResultSetsView(resultSetsTabsContainer_);
-
-    // Panel contenedor de pestañas con tablas (panel derecho superior)
-    //resultSetsTabsContainer_ = new ResultSetsView(resultSetsTabsContainer_);
-
-    // Panel con las pestañas de las tablas
-    //resultSetsTabWidget_ = new Wt::WTabWidget(resultSetsTabsContainer_);
-
-    // Agrega el panel con las pestañas al contenedor creado antes
-    //resultSetsTabsContainer_->addWidget(resultSetsTabWidget_);
-
+    // Lista de pestañas con tablas de resultados
     resultSetsViewContainer_ = new Wt::WContainerWidget(appContainer_);
     resultSetsView_ = new ResultSetsView(resultSetsViewContainer_);
 
-    // Agrega el contenedor (que contiene el panel con las pestañas) al contenedor interior
-    //layoutDetalles->addWidget(resultSetsTabsContainer_, 0, 0);
+    // Agrega el contenedor (que contiene el panel con las pestañas) 
+    // en la fila superior de la rejilla.
     layoutDetalles->addWidget(resultSetsViewContainer_, 0, 0);
 
 #if defined (MYTEST)
@@ -81,13 +69,14 @@ CQWtAppView::CQWtAppView(Wt::WContainerWidget *PageRoot)
 	resultSetContainer_->addWidget(item);
 #endif
 
+    /*
 	auto newTabForResultSets = new Wt::WTableView();
 //    resultSetsViewContainer_->setStyleClass("green-box");
 	//item = new Wt::WText(Wt::WString(cell).arg("TABLE"));
 	Wt::WString tab_text("tab1-tableview1");
     //auto menu_for_tab = resultSetsTabWidget_->addTab(newTabForResultSets, tab_text);
     auto menu_for_tab = resultSetsView_->addTab(newTabForResultSets, tab_text);
-
+    */
 #endif
 
     // Panel contenedor de pestañas con formularios (panel derecho inferior)
